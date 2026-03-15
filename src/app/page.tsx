@@ -1,10 +1,11 @@
+import Intro from "./main/_components/Intro";
 
 export default function Home() {
   return (
-    <div className="inner">
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
+    <div className="wrap">
+      <main>
+        <Intro />
+      </main>
     </div>
   );
 }

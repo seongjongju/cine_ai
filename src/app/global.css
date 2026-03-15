@@ -72,13 +72,64 @@
 }
 
 /*** layout ***/
+body {
+	background: #0E0D0A;
+}
+
 .inner {
     max-width: 1600px;
     margin: 0 auto;
+}
+
+main {
+	padding-top: 100px;
+}
+
+section {
+	padding: 100px 0;
 }
 
 @media screen and (max-width: 1640px) {
     .inner {
         padding: 0 3%;
     }
+}
+
+@media screen and (max-width: 968px) {
+	main {
+		padding-top: 10.5%;
+	}
+
+	section {
+		padding: 10.5% 0;
+	}	
+}
+
+/*** 제목글 ***/
+.title__chip {
+	font-size: 16px;
+	color: #C9A84C;
+	line-height: 1.4;
+	display: flex;
+	align-items: center;
+	gap: 1em;
+	margin-bottom: .5em;
+}
+
+.title__line {
+	display: block;
+	background: #C9A84C;
+	width: 2em;
+	height: 1px;
+}
+
+.title {
+	font-size: 100px;
+	color: #fff;
+	line-height: 1.2;
+	font-weight: 600;
+}
+
+.title span {
+	color: #C9A84C;
 }
