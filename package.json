@@ -10,6 +10,8 @@
     "test": "jest"
   },
   "dependencies": {
+    "@splidejs/react-splide": "^0.7.12",
+    "@splidejs/splide-extension-auto-scroll": "^0.5.3",
     "jest": "^30.3.0",
     "next": "16.1.6",
     "react": "19.2.3",

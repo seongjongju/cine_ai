@@ -97,7 +97,7 @@ section {
 
 @media screen and (max-width: 968px) {
 	main {
-		padding-top: 10.5%;
+		padding-top: 70px;
 	}
 
 	section {
@@ -132,4 +132,30 @@ section {
 
 .title span {
 	color: #C9A84C;
+}
+
+@media screen and (max-width: 1280px) {
+	.title__chip {
+		font-size: 14px;
+	}
+
+    .title {
+		font-size: 70px;
+	}
+}
+
+@media screen and (max-width: 768px) {
+    .title {
+		font-size: 50px;
+	}
+}
+
+@media screen and (max-width: 640px) {
+	.title__chip {
+		font-size: 12px;
+	}
+
+    .title {
+		font-size: 40px;
+	}
 }

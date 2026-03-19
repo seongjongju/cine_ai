@@ -29,7 +29,9 @@ const Header = () => {
     };
 
     return (
-        <header className='fixed w-full z-[99] h-[55px] md:h-[60px] lg:h-[70px] xl:h-[90px]'>
+        <header 
+            className='bg-[#111111] fixed w-full z-[99] h-[55px] md:h-[60px] lg:h-[70px] xl:h-[90px]'
+        >
             <nav className='inner h-full flex justify-between items-center'>
                 <h1>
                     <Link href={'/'}>
