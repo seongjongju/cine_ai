@@ -81,12 +81,21 @@ body {
     margin: 0 auto;
 }
 
+.inner-2 {
+    max-width: 1760px;
+    margin: 0 auto;
+}
+
 main {
 	padding-top: 100px;
 }
 
 section {
 	padding: 100px 0;
+}
+
+@media screen and (max-width: 1800px) {
+	.inner-2 {padding: 0 3%;}
 }
 
 @media screen and (max-width: 1640px) {
@@ -134,6 +143,15 @@ section {
 	color: #C9A84C;
 }
 
+.title__chip.md {
+	font-size: 14px;
+}
+
+.title.md {
+	font-size: 42px;
+	margin-bottom: 1em;
+}
+
 @media screen and (max-width: 1280px) {
 	.title__chip {
 		font-size: 14px;
@@ -157,5 +175,13 @@ section {
 
     .title {
 		font-size: 40px;
+	}
+
+	.title__chip.md {
+		font-size: 12px;
+	}
+
+	.title.md {
+		font-size: 30px;
 	}
 }
