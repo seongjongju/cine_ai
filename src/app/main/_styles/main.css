@@ -226,10 +226,17 @@
 .pick-swiper__slide {
     width: 100%;
     aspect-ratio: 438 / 657;
+    background: no-repeat center / cover;
+}
+
+.pick-swiper__link {
     display: flex;
     align-items: flex-end;
     justify-content: flex-start;
     padding: 1.25rem;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, #000 0%, transparent 100%);
 }
 
 .navi {
@@ -466,9 +473,11 @@
 
 /**************************** How_mood */
 .mood-tab-btns {
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     gap: 8px;
+    max-width: 700px;
+    margin-bottom: 40px;
 }
 
 .mood-tab-btn {
@@ -482,4 +491,93 @@
 .mood-tab-btn.is-active {
     color: #333333;
     background: #C9A84C;
+}
+
+.mood-list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2px;
+}
+
+.mood-list__link {
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    aspect-ratio: 350/500;
+    background: no-repeat center / cover;
+    position: relative;
+    padding: 20px;
+}
+
+.mood-list__link::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, #000 0%, transparent 100%);
+}
+
+.mood-list__detail {
+    position: relative;
+    z-index: 10;
+}
+
+.mood-list__title {
+    color: #fff;
+    font-size: 20px;
+    margin-bottom: .5em;
+    word-break: keep-all;
+}
+
+.mood-list__ex {
+    color: #fff;
+    font-size: 14px;
+    opacity: .7;
+    word-break: keep-all;
+}
+
+@media screen and (max-width: 1280px) {
+    .mood-list {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media screen and (max-width: 1080px) {
+    .mood-list__title {
+        font-size: 18px;
+    }
+
+    .mood-list__ex {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 968px) {
+    .mood-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .mood-tab-btns {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .mood-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .mood-list__link {
+        padding: 15px;
+    }
+
+    .mood-list__title {
+        font-size: 16px;
+    }
 }
