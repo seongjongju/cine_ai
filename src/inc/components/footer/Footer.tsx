@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
@@ -7,7 +8,7 @@ const Footer = () => {
             <nav className='inner footer__nav'>
                 <h1 className='footer__logo'>
                     <Link href={''}>
-                        <img src="/common/f_logo.png" alt="CINE AI 로고" />
+                        <Image src="/common/f_logo.png" alt="CINE AI 로고" width={58} height={15} />
                     </Link>
                 </h1>
 
@@ -17,7 +18,7 @@ const Footer = () => {
 
                 <ul className='footer__list'>
                     <li>
-                        <Link href={'/'}>About</Link>
+                        <Link href={'/about'}>About</Link>
                     </li>
                     <li>
                         <Link href={'/'}>Policy</Link>

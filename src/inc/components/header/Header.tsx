@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import React from 'react';
 import '../../styles/inc.css';
+import Image from 'next/image';
 
 const Header = () => {
     const gnbOpen = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
@@ -33,7 +34,7 @@ const Header = () => {
             <nav className='inner header__nav'>
                 <h1>
                     <Link href={'/'}>
-                        <img src="/common/logo.png" alt="CINE AI 로고" />
+                        <Image src="/common/logo.png" alt="CINE AI 로고" width={68} height={33}/>
                     </Link>
                 </h1>
 
@@ -47,7 +48,7 @@ const Header = () => {
                     </button>
 
                     <li>
-                        <Link href={'/'}>About</Link>
+                        <Link href={'/about'}>About</Link>
                     </li>
                     <li>
                         <Link href={'/'}>Discover Films</Link>
@@ -55,9 +56,29 @@ const Header = () => {
                 </ul>
 
                 <div className='header__actions'>
+                    <Link href={'/'} className='moved-search'>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle 
+                                cx="11" 
+                                cy="11" 
+                                r="7" 
+                                stroke="currentColor" 
+                                strokeWidth="2"      
+                                strokeLinecap="round"   
+                                strokeLinejoin="round"  
+                            />
+                            <path 
+                                d="M20 20L16.65 16.65" 
+                                stroke="currentColor" 
+                                strokeWidth="2"      
+                                strokeLinecap="round"   
+                                strokeLinejoin="round"  
+                            />
+                        </svg>
+                    </Link>
                     <Link
                         className='button-0 bg-[#C9A84C] text-[#333333]'
-                        href={'/'}
+                        href={'/login'}
                     >
                         무료로 시작하기
                     </Link>

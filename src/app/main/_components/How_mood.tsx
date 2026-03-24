@@ -1,7 +1,6 @@
 'use client';
 import Title from '@/shared/components/title/Title';
 import React, { useState } from 'react';
-import How_mood_list from './How_mood_list';
 import { Genre, Movie } from '@/types/movie';
 import Link from 'next/link';
 import { getGenreNames } from '@/shared/utils/get.genre.names';
@@ -133,8 +132,6 @@ const How_mood = ({ movies, genres }: {movies: Movie[], genres: Genre[]}) => {
                         : null
                     }
                 </div>
-
-                <How_mood_list movies={movies} genres={genres} />
             </div>
         </section>
     );

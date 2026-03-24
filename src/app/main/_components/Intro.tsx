@@ -20,7 +20,7 @@ const Intro = () => {
                     </p>
 
                     <div className='intro__btn-group'>
-                        <Link href={''} className='button-0 bg-[#C9A84C] text-[#333333]'>
+                        <Link href={'/login'} className='button-0 bg-[#C9A84C] text-[#333333]'>
                             무료로 시작하기
                         </Link>
                         <Link href={''} className='button-0 bg-[rgba(255,255,255,.07)] text-[#ffffff]'>

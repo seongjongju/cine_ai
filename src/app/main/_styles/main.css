@@ -286,17 +286,19 @@
 
 .pick-swiper__genre {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: .7em;
     font-size: 16px;
     color: #e2ddd7;
     margin-bottom: .5em;
+    word-break: keep-all;
 }
 
 .pick-swiper__genre span {
     color: #C9A84C;
     font-size: 1.25em;
     font-weight: 700;
+    line-height: 1.2;
 }
 
 .pick-swiper__name {
@@ -333,17 +335,19 @@
 }
 
 @media screen and (max-width: 968px) {
-    .pick-swiper__slide {
-        padding: 2.5%;
-    }
-
     .navi {
         margin-top: 5.5%;
     }
 }
 
 @media screen and (max-width: 640px) {
+    .pick-swiper__link {
+        padding: 15px;
+    }
+
     .pick-swiper__genre {
+        flex-direction: column;
+        gap: 2px;
         font-size: 12px;
     }
 
@@ -385,7 +389,7 @@
     }
 
     .pick-swiper__name {
-        font-size: 18px;
+        font-size: 16px;
     }
 
     .pick-swiper__badge {
@@ -536,6 +540,11 @@
     font-size: 14px;
     opacity: .7;
     word-break: keep-all;
+}
+
+/* Instructions 컴포넌트 구조 사용 */
+.instructions.instructions-1 {
+    grid-template-columns: repeat(3, 1fr);
 }
 
 @media screen and (max-width: 1280px) {
