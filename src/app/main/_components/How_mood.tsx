@@ -1,10 +1,10 @@
 'use client';
 import Title from '@/shared/components/title/Title';
 import React, { useState } from 'react';
-import { Genre, Movie } from '@/types/movie';
 import Link from 'next/link';
 import { getGenreNames } from '@/shared/utils/get.genre.names';
 import useMoodTabArray from '@/features/hooks/useMoodTabArray';
+import { useMovie } from '@/features/hooks/useMovie';
 
 const moodTabs = [
     { id: 'smile', label: '😂 웃고 싶어' },
@@ -14,9 +14,12 @@ const moodTabs = [
     { id: 'light', label: '🌙 가볍게' },
 ];
 
-const How_mood = ({ movies, genres }: {movies: Movie[], genres: Genre[]}) => {
+const How_mood = () => {
     const [moodTabState, setMoodTabState] = useState('smile');
+    const {movies, genres, isLoading} = useMovie();
     const {comedyMovie, cryMovies, tensionMovies, thinkMovies, lightMovies} = useMoodTabArray(movies);
+    
+    if (isLoading) return null;
     
     return (
         <section>

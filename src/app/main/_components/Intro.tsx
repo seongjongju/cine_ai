@@ -23,7 +23,7 @@ const Intro = () => {
                         <Link href={'/login'} className='button-0 bg-[#C9A84C] text-[#333333]'>
                             무료로 시작하기
                         </Link>
-                        <Link href={''} className='button-0 bg-[rgba(255,255,255,.07)] text-[#ffffff]'>
+                        <Link href={'/about'} className='button-0 bg-[rgba(255,255,255,.07)] text-[#ffffff]'>
                             서비스 소개 →
                         </Link>
                     </div>

@@ -1,0 +1,57 @@
+.login-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 400px;
+    margin: 50px auto 20px;
+}
+
+.login-btn {
+    width: 100%;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: #ffffff;
+    font-size: 16px;
+    padding: 1em;
+    cursor: pointer;
+}
+
+.login-btn.btn-0 {
+    background: rgba(255, 255, 255, .03);
+    border: 1px solid rgba(255, 255, 255, .1);
+}
+
+.login-btn.btn-1 {
+    background: #FEE500;
+    color: #000000;
+}
+
+.login-btn.btn-2 {
+    background: #03C75A;
+}
+
+.login-btn__icon {
+    position: absolute;
+    top: 50%;
+    left: 25px;
+    transform: translateY(-50%);
+}
+
+@media screen and (max-width: 480px) {
+    .login-btns {
+        max-width: 300px;
+        margin-top: 30px;
+    }
+
+    .login-btn {
+        font-size: 14px;
+        height: 45px;
+    }
+
+    .login-btn__icon {
+        width: 17px;
+    }
+}

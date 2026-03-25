@@ -4,12 +4,16 @@ import { Pagination, Navigation, Autoplay } from 'swiper/modules';
 
 import Title from '@/shared/components/title/Title';
 import React from 'react';
-import { Movie, Genre } from '@/types/movie';
 import Link from 'next/link';
 import { getGenreNames } from '@/shared/utils/get.genre.names';
+import { useMovie } from '@/features/hooks/useMovie';
 
 
-const Ai_pick = ({ movies, genres }: {movies: Movie[], genres: Genre[]}) => {    
+const Ai_pick = () => {    
+    const {movies, genres, isLoading} = useMovie();
+
+    if (isLoading) return null;
+
     return (
         <section>
             <div className='inner-2'>
