@@ -3,10 +3,11 @@ import React from 'react';
 interface TitleProps {
     chip: string,
     title: string,
-    accent: string
+    title_1?: string,
+    accent?: string
 }
 
-const Title = ({ chip, title, accent }: TitleProps) => {
+const Title = ({ chip, title, title_1, accent }: TitleProps) => {
     return (
         <div>
             <p className='title__chip md'>
@@ -15,7 +16,8 @@ const Title = ({ chip, title, accent }: TitleProps) => {
             </p>
             <h2 className='title md'>
                 {title} <br/>
-                <span>{accent}</span>
+                <span>{accent}</span> {title_1}
+                
             </h2>
         </div>
     );

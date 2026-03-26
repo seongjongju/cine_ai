@@ -5,8 +5,8 @@ import Image from 'next/image';
 
 const LoginPage = () => {
     return (
-        <div className='wrap' style={{ height: "75vh" }}>
-            <section>
+        <div className='wrap'>
+            <section className='login-section'>
                 <div className='inner-2'>
                     <p className='title__chip md justify-center'>Welcome to CineAI</p>
                     <p className='title md text-center' style={{marginBottom: "10px"}}>시작하기</p>

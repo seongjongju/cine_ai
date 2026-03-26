@@ -74,14 +74,29 @@
 }
 
 /******************************** reset */
+/*** template ***/
+:root {
+	/* gpld */
+	--gold-0: #c9a84c;
+
+	/* black */
+	--black-0: #111111;
+	--black-1: #333333;
+	
+	/* gray */
+	--gray-0: #5a5550;
+	--gray-1: #7a7068;
+}
+
 /*** font ***/
 * {
     font-family: 'Pretendard';
 }
 
 /*** layout ***/
-body {
+html, body {
 	background: #0E0D0A;
+	scroll-behavior: smooth;
 }
 
 .inner {
@@ -99,7 +114,11 @@ main {
 }
 
 section {
-	padding: 100px 0;
+	padding: 100px 0 0;
+}
+
+section:last-child {
+	padding-bottom: 100px;
 }
 
 @media screen and (max-width: 1800px) {
@@ -118,14 +137,18 @@ section {
 	}
 
 	section {
-		padding: 10.5% 0;
+		padding: 10.5% 0 0;
 	}	
+
+	section:last-child {
+		padding-bottom: 10.5%;
+	}
 }
 
 /*** 제목글 ***/
 .title__chip {
 	font-size: 16px;
-	color: #C9A84C;
+	color: var(--gold-0);
 	line-height: 1.4;
 	display: flex;
 	align-items: center;
@@ -135,7 +158,7 @@ section {
 
 .title__line {
 	display: block;
-	background: #C9A84C;
+	background: var(--gold-0);
 	width: 2em;
 	height: 1px;
 }
@@ -148,7 +171,7 @@ section {
 }
 
 .title span {
-	color: #C9A84C;
+	color: var(--gold-0);
 }
 
 .title__chip.md {
@@ -215,5 +238,71 @@ section {
 @media screen and (max-width: 380px) {
 	.button-0 {
 		font-size: 12px;
+	}
+}
+
+/*** table ***/
+.table-wrap {
+	padding-top: 40px;
+	border-top: 1px solid rgba(255, 255, 255, .2);
+}
+
+.default-table {
+	width: 100%;
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+
+.default-table th,
+.default-table td {
+	font-size: 16px;
+	border: 1px solid var(--gray-1);
+	padding: .7em 1.5em;
+	text-align: left;
+}
+
+.default-table th {
+	font-weight: 600;
+	color: #ffffff;
+	background: rgba(255, 255, 255, .1);
+}
+
+.default-table .accent-th {
+	color: var(--gold-0);
+}
+
+.table-badge {
+	font-size: 12px;
+	padding: .2em 1em;
+	width: fit-content;
+	color: var(--gold-0);
+	background: rgba(201, 168, 76, 0.08);
+	border: 1px solid var(--gold-0);
+}
+
+@media screen and (max-width: 768px) {
+	.table-wrap {
+		padding-top: 20px;
+	}
+
+	.default-table th,
+	.default-table td {
+		font-size: 14px;
+	}
+
+	.table-badge {
+		font-size: 11px;
+	}
+}
+
+@media screen and (max-width: 640px) {
+	.default-table th,
+	.default-table td {
+		font-size: 12px;
+		padding: .7em;
+	}
+
+	.table-badge {
+		font-size: 10px;
 	}
 }

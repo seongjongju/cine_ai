@@ -1,3 +1,7 @@
+.login-section {
+    height: 76.9vh;
+}
+
 .login-btns {
     display: flex;
     flex-direction: column;

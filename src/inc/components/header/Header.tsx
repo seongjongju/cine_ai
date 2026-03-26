@@ -5,7 +5,7 @@ import '../../styles/inc.css';
 import Image from 'next/image';
 
 const Header = () => {
-    const gnbOpen = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    const gnbOpen = () => {
         if(window.innerWidth > 768) return;
 
         const gnb = document.querySelector<HTMLElement>('.gnb');
@@ -18,7 +18,7 @@ const Header = () => {
         }, 10);
     };
 
-    const gnbClose = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    const gnbClose = () => {
         if(window.innerWidth > 768) return;
 
         const gnb = document.querySelector<HTMLElement>('.gnb');
