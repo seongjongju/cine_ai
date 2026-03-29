@@ -6,6 +6,7 @@ import Footer from "@/inc/components/footer/Footer";
 import QueryProvider from "@/providers/QueryProvider";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 import { getGenres, getMovies } from "@/features/services/getMovie_service";
+import Quick_menu from "@/inc/components/quick/Quick_menu";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,8 +35,9 @@ export default async function RootLayout({
     queryClient.prefetchQuery({ queryKey: ['movies'], queryFn: getMovies }),
     queryClient.prefetchQuery({ queryKey: ['genres'], queryFn: getGenres }),
   ]);
+
   return (
-    <html lang="en">
+    <html lang="ko">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <QueryProvider>
           <HydrationBoundary state={dehydrate(queryClient)} >
@@ -43,6 +45,7 @@ export default async function RootLayout({
             <main>
               {children}
             </main>
+            <Quick_menu />
             <Footer />
           </HydrationBoundary>
         </QueryProvider>

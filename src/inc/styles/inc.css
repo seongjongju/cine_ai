@@ -190,7 +190,37 @@
     }
 }
 
+/*************************** quick */
+.quick {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: fixed;
+    bottom: 5%;
+    right: 3%;
+    z-index: 99;
+}
 
+.top-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    aspect-ratio: 1/1;
+    background: var(--black-1);
+    border: 1px solid var(--gold-0);
+    border-radius: 50%;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 640px) {
+    .top-btn {
+        width: 45px;
+        font-size: 12px;
+    }
+}
 
 
 

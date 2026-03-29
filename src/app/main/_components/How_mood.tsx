@@ -46,7 +46,7 @@ const How_mood = () => {
                         (
                             comedyMovie.map((movie) => (
                                 <Link 
-                                    href={'/'} 
+                                    href={`/discover_films_view/${movie.id}`}
                                     key={movie.id} 
                                     className='mood-list__link'
                                     style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.poster_path}` }}
@@ -64,7 +64,7 @@ const How_mood = () => {
                         (
                             cryMovies.map((movie) => (
                                 <Link 
-                                    href={'/'} 
+                                    href={`/discover_films_view/${movie.id}`}
                                     key={movie.id} 
                                     className='mood-list__link'
                                     style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.poster_path}` }}
@@ -82,7 +82,7 @@ const How_mood = () => {
                         (
                             tensionMovies.map((movie) => (
                                 <Link 
-                                    href={'/'} 
+                                    href={`/discover_films_view/${movie.id}`}
                                     key={movie.id} 
                                     className='mood-list__link'
                                     style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.poster_path}` }}
@@ -100,7 +100,7 @@ const How_mood = () => {
                         (
                             thinkMovies.map((movie) => (
                                 <Link 
-                                    href={'/'} 
+                                    href={`/discover_films_view/${movie.id}`} 
                                     key={movie.id} 
                                     className='mood-list__link'
                                     style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.poster_path}` }}
@@ -118,7 +118,7 @@ const How_mood = () => {
                         (
                             lightMovies.map((movie) => (
                                 <Link 
-                                    href={'/'} 
+                                    href={`/discover_films_view/${movie.id}`} 
                                     key={movie.id} 
                                     className='mood-list__link'
                                     style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.poster_path}` }}

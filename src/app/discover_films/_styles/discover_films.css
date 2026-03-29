@@ -1,0 +1,140 @@
+/*********************** Films-list  */
+.films-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.films-list__item {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 100%;
+    aspect-ratio: 438 / 657;
+    padding: 1.25rem;
+    background: no-repeat center / cover;
+    position: relative;
+}
+
+.films-list__item::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, #000 0%, transparent 100%);
+}
+
+.films-list__genre {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: .7em;
+    font-size: 16px;
+    color: #e2ddd7;
+    margin-bottom: .5em;
+    word-break: keep-all;
+    z-index: 1;
+}
+
+.films-list__genre span {
+    color: var(--gold-0);
+    font-size: 1.25em;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.films-list__name {
+    position: relative;
+    font-size: 30px;
+    color: #fff;
+    word-break: keep-all;
+    z-index: 1;
+}
+
+/* paginations */
+.paginations {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    margin-top: 30px;
+}
+
+.paging {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2em;
+    aspect-ratio: 1/1;
+    background: var(--black-0);
+    border: 1px solid rgba(255, 255, 255, .07);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.paging.current {
+    background: var(--gold-0);
+    border-color: var(--gold-0);
+    color: var(--black-0);
+}
+
+@media screen and (max-width: 1080px) {
+    .films-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .films-list__genre {
+        font-size: 14px;
+    }
+
+    .films-list__name {
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .films-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .films-list {
+        gap: 6px;
+    }
+
+    .films-list__item {
+        padding: 15px;
+    }
+
+    .films-list__genre {
+        flex-direction: column;
+        gap: 2px;
+        font-size: 12px;
+    }
+
+    .films-list__name {
+        font-size: 20px;
+    }
+
+    .paging {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .films-list__item {
+        padding: 10px;
+    }
+
+    .films-list__genre {
+        font-size: 11px;
+    }
+
+    .films-list__name {
+        font-size: 16px;
+    }
+}

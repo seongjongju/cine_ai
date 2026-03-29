@@ -51,7 +51,10 @@ const Ai_pick = () => {
                                 key={movie.id} 
                                 style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.poster_path}` }}
                             >
-                                <Link href={'/'} className='pick-swiper__link'>
+                                <Link 
+                                    href={`/discover_films_view/${movie.id}`}
+                                    className='pick-swiper__link'
+                                >
                                     <div className="pick-swiper__detail">
                                         <p className="pick-swiper__genre">
                                             <span>{movie.vote_average.toFixed(1)}</span>

@@ -114,11 +114,7 @@ main {
 }
 
 section {
-	padding: 100px 0 0;
-}
-
-section:last-child {
-	padding-bottom: 100px;
+	padding: 100px 0;
 }
 
 @media screen and (max-width: 1800px) {
@@ -137,7 +133,7 @@ section:last-child {
 	}
 
 	section {
-		padding: 10.5% 0 0;
+		padding: 10.5% 0;
 	}	
 
 	section:last-child {

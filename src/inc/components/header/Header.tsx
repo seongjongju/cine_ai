@@ -53,7 +53,7 @@ const Header = () => {
                         <Link href={'/about'} onClick={gnbClose}>About</Link>
                     </li>
                     <li>
-                        <Link href={'/'} onClick={gnbClose}>Discover Films</Link>
+                        <Link href={'/discover_films?page=1'} onClick={gnbClose}>Discover Films</Link>
                     </li>
                 </ul>
 

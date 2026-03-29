@@ -1,8 +1,7 @@
 import { Movie } from "@/types/movie";
-
-//영화 목록
+//인기순 영화 목록
 export const getMovies = async (): Promise<Movie[]> => {
-    const url = `${process.env.NEXT_PUBLIC_MOVIE_BASE_URL}`;
+    const url = `${process.env.NEXT_PUBLIC_POPULAR_MOVIE_BASE_URL}`;
     const options = {
         method: 'GET',
         headers: {
@@ -17,7 +16,7 @@ export const getMovies = async (): Promise<Movie[]> => {
         const json = await res.json();
         return json.results;
     } catch (err) {
-        console.error('영화 API 요청 실패:', err);
+        console.error('인기순 영화 API 요청 실패:', err);
         return [];
     }
 };
