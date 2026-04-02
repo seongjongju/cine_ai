@@ -109,12 +109,12 @@ html, body {
     margin: 0 auto;
 }
 
-main {
-	padding-top: 100px;
-}
-
 section {
 	padding: 100px 0;
+}
+
+section:first-child {
+	padding-top: 200px;
 }
 
 @media screen and (max-width: 1800px) {
@@ -128,16 +128,12 @@ section {
 }
 
 @media screen and (max-width: 968px) {
-	main {
-		padding-top: 70px;
-	}
-
 	section {
 		padding: 10.5% 0;
 	}	
 
-	section:last-child {
-		padding-bottom: 10.5%;
+	section:first-child {
+		padding-top: 120px;
 	}
 }
 

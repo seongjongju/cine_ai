@@ -1,5 +1,7 @@
 .login-section {
-    height: 76vh;
+    height: 87vh;
+    display: flex;
+    align-items: center;
 }
 
 .login-btns {
