@@ -1,6 +1,5 @@
 import React from 'react';
 import './_styles/discover_films.css';
-import Films_list from './_components/Films_list';
 import Title from '@/shared/components/title/Title';
 import { AllMovie } from '@/types/movie';
 import Paginations from './_components/Paginations';

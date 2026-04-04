@@ -14,7 +14,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to top, #000 10%, transparent 100%);
+    background: linear-gradient(to top, #000 0%, transparent 100%);
 }
 
 .view-detail {
@@ -81,14 +81,15 @@
 }
 
 .movie-info {
-    margin-top: .5em;
-    font-size: 24px;
+    margin-top: 1em;
+    font-size: 16px;
+    margin-bottom: 100px;
 }
 
 .movie-info__text {
     color: #fff;
     word-break: keep-all;
-    letter-spacing: -.8px;
+    letter-spacing: -.3px;
     line-height: 1.8;
     font-weight: 200;
 }
@@ -103,4 +104,105 @@
 
 .back-films-btn:hover {
     color: #fff;
+}
+
+.gemini-mode {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 8px;
+    margin: 16px 0;
+}
+
+.gemini-mode__li {
+    font-size: 16px;
+    padding: 1em;
+    border: 1px solid var(--gray-0);
+    background: var(--black-0);
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.gemini-mode__icon {
+    font-size: 1.25em;
+}
+
+.gemini-mode__title {
+    font-size: 1.5em;
+    color: #fff;
+    margin-bottom: .5em;
+    font-weight: 500;
+}
+
+.gemini-mode__text {
+    font-size: 1em;
+    color: #fff;
+    word-break: keep-all;
+    font-weight: 200;
+}
+
+.gemini-mode__li:hover,
+.gemini-mode__li.is-active {
+    border-color: var(--gold-0);
+}
+
+.gemini-qna {
+    display: flex;
+}
+
+.gemini-qna__q {
+    width: 50%;
+    padding: 36px;
+    background: var(--black-0);
+}
+
+.gemini-qna__title {
+    font-size: 24px;
+    color: #fff;
+    margin-bottom: 1em;
+}
+
+.gemini-qna__ex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 20px;
+}
+
+.gemini-qna__li {
+    font-size: 16px;
+    padding: .8em 1em;
+    border: 1px solid var(--gray-1);
+    color: var(--gray-1);
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.gemini-qna__li:hover,
+.gemini-qna__li.is-active {
+    color: var(--gold-0);
+    border-color: var(--gold-0);
+}
+
+.gemini-qna__form {
+    display: flex;
+    gap: 8px;
+}
+
+.gemini-qna__input {
+    font-size: 16px;
+    display: block;
+    width: calc(100% - 80px - 8px);
+    height: 50px;
+    padding: 0 1em;
+    color: #fff;
+    border: 1px solid var(--gray-1);
+    outline: none;
+}
+
+.gemini-qna__button {
+    font-size: 20px;
+    background: var(--gold-0);
+    height: 50px;
+    width: 4em;
+    cursor: pointer;
 }

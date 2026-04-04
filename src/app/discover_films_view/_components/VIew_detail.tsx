@@ -5,26 +5,28 @@ import { Detail } from '@/types/movie';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React from 'react';
+import View_detail_qna from './View_detail_qna';
 
 interface DetailProps {
     movieDetail:Detail;
 };
 
 const countryMap: { [key: string]: string } = {
-  'US': '미국',
-  'KR': '한국',
-  'JP': '일본',
-  'GB': '영국',
-  'FR': '프랑스',
-  'CN': '중국',
-  'DE': '독일',
-  'CA': '캐나다',
-  'IT': '이탈리아',
-  'ES': '스페인',
-  'HK': '홍콩',
-  'TW': '대만',
-  'IN': '인도',
-  'AU': '호주',
+    'US': '미국',
+    'KR': '한국',
+    'JP': '일본',
+    'GB': '영국',
+    'FR': '프랑스',
+    'CN': '중국',
+    'DE': '독일',
+    'CA': '캐나다',
+    'IT': '이탈리아',
+    'ES': '스페인',
+    'HK': '홍콩',
+    'TW': '대만',
+    'IN': '인도',
+    'AU': '호주',
+    'PH': '필리핀',
 };
 
 const VIew_detail = ({ movieDetail }: DetailProps) => {
@@ -94,16 +96,27 @@ const VIew_detail = ({ movieDetail }: DetailProps) => {
                             <p className='detail__summation--text'>{movieDetail.popularity}</p>  
                         </li>
                     </ul> {/* detail__summation */}
+                    
+                    {
+                        movieDetail.overview !== '' ?
+                        (   
+                            <>
+                                <p className='title__chip md'>
+                                    <span className='title__line'></span>
+                                    영화 소개
+                                </p>
+                                <div className='movie-info'>
+                                    <p className='movie-info__text'>{movieDetail.overview}</p>
+                                </div>
 
-                    <p className='title__chip md'>
-                        <span className='title__line'></span>
-                        영화 소개
-                    </p>
-                    <div className='movie-info'>
-                        <p className='movie-info__text'>{movieDetail.overview}</p>
-                    </div>
+                                {/* 등장인물 작업 예정 */}
+                            </>
+                        ) : null
+                    }
 
-                     <button 
+                    <View_detail_qna />
+
+                    <button 
                         className='back-films-btn'
                         onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                             e.preventDefault();
