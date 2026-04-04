@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@splidejs/react-splide": "^0.7.12",
-    "@splidejs/splide-extension-auto-scroll": "^0.5.3",
+    "@splidejs/splide-extension-auto-scroll": "github:splidejs/splide-extension-auto-scroll",
     "@tanstack/react-query": "^5.95.2",
     "@tanstack/react-query-devtools": "^5.95.2",
     "jest": "^30.3.0",

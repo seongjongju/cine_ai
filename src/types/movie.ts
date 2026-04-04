@@ -40,6 +40,34 @@ export type Detail = {
         backdrop_path: string | null;
     } | null;
     budget: number;
+    credits: {
+        cast: Array<{
+            adult: boolean; 
+            cast_id: number;
+            character: string;
+            credit_id: string; 
+            gender: number;
+            id: number;
+            known_for_department: string;
+            name: string;
+            order: number;
+            original_name: string;
+            popularity: number;
+            profile_path: string | null; 
+        }>;
+        crew: Array<{
+            adult: boolean; 
+            credit_id: string; 
+            department: string;
+            gender: number;
+            id: number;
+            job: string; 
+            name: string;
+            original_name: string;
+            popularity: number;
+            profile_path: string | null; 
+        }>;
+    };
     genres: Array<{
         id: number;
         name: string;
@@ -64,6 +92,15 @@ export type Detail = {
         name: string;
     }>;
     release_date: string;
+    release_dates: {
+        results: Array<{
+            iso_3166_1: string;
+            release_dates: Array<{
+                certification: string;
+                
+            }>
+        }>
+    };
     revenue: number;
     runtime: number | null;
     spoken_languages: Array<{

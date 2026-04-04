@@ -44,7 +44,7 @@ export const getGenres = async () => {
 
 //영화상세
 export const getDetail = async (id: number):Promise<Detail> => {
-    const url = `https://api.themoviedb.org/3/movie/${id}?language=ko-KR`;
+    const url = `https://api.themoviedb.org/3/movie/${id}?language=ko-KR&append_to_response=credits,release_dates`;
     const options = {
         method: 'GET',
         headers: {

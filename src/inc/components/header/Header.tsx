@@ -3,6 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 import '../../styles/inc.css';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 const Header = () => {
     const gnbOpen = () => {
@@ -31,8 +32,15 @@ const Header = () => {
         }, 500);
     };
 
+    const pathName = usePathname();
+
     return (
-        <header className='header'>
+        <header 
+            className='header'
+            style={{
+                backgroundColor: pathName.includes('discover_films_view') ? 'rgba(0,0,0,.5)' : ''
+            }}
+        >
             <nav className='inner header__nav'>
                 <h1>
                     <Link href={'/'}>

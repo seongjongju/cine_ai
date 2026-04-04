@@ -272,7 +272,7 @@
 .navi .swiper-pagination-bullet {
     width: 20px;
     height: 2px;
-    border-radius: 50%;
+    border-radius: 50px;
     background: #fff;
     opacity: .07;
     transition: all .3s ease;
