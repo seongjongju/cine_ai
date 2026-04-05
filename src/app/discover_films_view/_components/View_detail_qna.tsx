@@ -30,7 +30,7 @@ const View_detail_qna = () => {
         <div>
             <p className='title__chip md'>
                 <span className='title__line'></span>
-                인터랙티브 Q&A
+                인터랙티브 Q&A : 모드를 선택해주세요.
             </p>
 
             <ul className='gemini-mode'>

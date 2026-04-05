@@ -1,11 +1,12 @@
 import React from 'react';
+import Search_interface from './_components/Search_interface';
 
-const Searchpage = () => {
+const SearchPage = () => {
     return (
-        <div>
-            
-        </div>
+        <section>
+            <Search_interface />
+        </section>
     );
 };
 
-export default Searchpage;
+export default SearchPage;
