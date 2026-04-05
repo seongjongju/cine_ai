@@ -81,7 +81,24 @@ const View_detail_qna = () => {
                 </div> {/* gemini-qna__q */}
 
                 <div className='gemini-qna__a'>
-                        
+                    <p className="gemini-qna__ai">
+                        <span className="gemini-qna__circle"></span>
+                        AI 응답
+                    </p>
+                    {
+                        exText !== '' || qnaInput !== '' ? 
+                        (
+                            <p className='gemini-qna__user'>
+                                {exText ? exText : qnaInput}
+                            </p>
+                        ) : null
+                    }
+                    <p className='gemini-qna__answer'>
+                        반전이라기보다 폭로에 가깝습니다. 중반부에 예상치 못한 전환이 있는데, 이게 장르 자
+                        체를 갈아엎어버립니다. 스릴러적 긴장감이 갑자기 치고 들어오는 구조라서 — 알고 봐도
+                        충격이고, 모르고 봐도 충격입니다. 스포 없이 말하자면 "지하에 무언가 있다"는 것만 알
+                        고 들어가세요.
+                    </p>
                 </div> {/* gemini-qna__a */}
             </div> {/* gemini-qna */}
         </div>

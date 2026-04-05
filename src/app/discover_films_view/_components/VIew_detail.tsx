@@ -1,4 +1,7 @@
 'use client';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Navigation, Autoplay } from 'swiper/modules';
+
 import { useMovie } from '@/features/hooks/useMovie';
 import { getGenreNames } from '@/shared/utils/get.genre.names';
 import { Detail } from '@/types/movie';
@@ -6,6 +9,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import View_detail_qna from './View_detail_qna';
+import View_detail_moodBoard from './View_detail_moodBoard';
 
 interface DetailProps {
     movieDetail:Detail;
@@ -38,6 +42,10 @@ const VIew_detail = ({ movieDetail }: DetailProps) => {
     const crews = movieDetail.credits.crew;
     const crewsDirector = crews.filter(crew => crew.job === 'Director')
                                 .map(director => director.name);
+
+    //캐스팅
+    const casts = movieDetail.credits.cast;
+
     //국가 맵핑
     const countryName = movieDetail.origin_country?.[0] 
                         ? (countryMap[movieDetail.origin_country[0]] || movieDetail.origin_country[0]) 
@@ -108,13 +116,62 @@ const VIew_detail = ({ movieDetail }: DetailProps) => {
                                 <div className='movie-info'>
                                     <p className='movie-info__text'>{movieDetail.overview}</p>
                                 </div>
-
-                                {/* 등장인물 작업 예정 */}
                             </>
                         ) : null
                     }
 
+                    <p className='title__chip md'>
+                        <span className='title__line'></span>
+                        캐스팅
+                    </p>
+
+                    <Swiper
+                        slidesPerView={5.5}
+                        spaceBetween={10}
+                        speed={1300}
+                        freeMode={true}
+                        breakpoints={{
+                            1081: {slidesPerView: 5.5},
+                            769: {slidesPerView: 4.5},
+                            641: {slidesPerView: 3.5},
+                            481: {slidesPerView: 2.5},
+                            1: {slidesPerView: 1.5},
+                        }}
+                        className='cast-list'
+                    >
+                        {
+                            casts?.map((cast) => (
+                                <SwiperSlide
+                                    key={cast.id}
+                                >
+                                    {
+                                        cast.profile_path !== null ? 
+                                        (
+                                            <img 
+                                                src={`https://image.tmdb.org/t/p/w300${cast.profile_path}`} 
+                                                alt={cast.name}
+                                                className='cast-list__image' 
+                                            />
+                                        )
+                                        :
+                                        (
+                                            <img 
+                                                src="/images/profile_none.png" 
+                                                alt="기본 이미지"
+                                                className='cast-list__image' 
+                                            />
+                                        )
+                                    }
+                                    <p className='cast-list__casting'>{cast.character}역</p>
+                                    <p className='cast-list__name'>{cast.name}</p>
+                                </SwiperSlide>
+                            ))
+                        }
+                    </Swiper>
+
                     <View_detail_qna />
+
+                    <View_detail_moodBoard />
 
                     <button 
                         className='back-films-btn'
