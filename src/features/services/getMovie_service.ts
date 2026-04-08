@@ -1,4 +1,26 @@
-import { Detail, Movie } from "@/types/movie";
+import { AllMovie, Detail, Movie } from "@/types/movie";
+//영화 전체 목록
+export const getAllMovies = async (page: number = 1): Promise<AllMovie[]> => {
+    const url = `${process.env.NEXT_PUBLIC_ALL_MOVIE_BASE_URL}&page=${page}&sort_by=popularity.desc`;
+    const options = {
+        method: 'GET',
+        headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_MOVIE_API}`
+        }
+    };
+
+    try {
+        const res = await fetch(url, options);
+        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+        const json = await res.json();
+        return json.results;
+    } catch (err) {
+        console.error('전체 영화 API 요청 실패:', err);
+        return [];
+    }
+};
+
 //인기순 영화 목록
 export const getMovies = async (): Promise<Movie[]> => {
     const url = `${process.env.NEXT_PUBLIC_POPULAR_MOVIE_BASE_URL}`;

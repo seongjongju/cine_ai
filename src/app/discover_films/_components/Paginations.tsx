@@ -2,22 +2,23 @@ import React from 'react';
 
 interface PaginationsProps {
     paginations: number[],
-    currentPage: number
+    currentPage: number,
+    path: string,
 };
 
-const Paginations = ({ paginations, currentPage }: PaginationsProps) => {
+const Paginations = ({ paginations, currentPage, path }: PaginationsProps) => {
     return (
         <div className='paginations'>
             {
                 currentPage > 5 &&
-                <a href={`discover_films?page=5`} className='paging'>←</a>
+                <a href={`${path}?page=5`} className='paging'>←</a>
             }
             {
                 currentPage <= 5 ? 
                 (
                     paginations.slice(0,5).map((paging) => (
                         <a 
-                            href={`discover_films?page=${paging}`} 
+                            href={`${path}?page=${paging}`} 
                             key={paging}
                             className={`paging ${currentPage === paging ? 'current' : ''}`}
                         >
@@ -29,7 +30,7 @@ const Paginations = ({ paginations, currentPage }: PaginationsProps) => {
                 (
                     paginations.slice(5,10).map((paging) => (
                         <a 
-                            href={`discover_films?page=${paging}`} 
+                            href={`${path}?page=${paging}`} 
                             key={paging}
                             className={`paging ${currentPage === paging ? 'current' : ''}`}
                         >
@@ -40,7 +41,7 @@ const Paginations = ({ paginations, currentPage }: PaginationsProps) => {
             }
             {
                 currentPage <= 5 &&
-                <a href={`discover_films?page=6`} className='paging'>→</a>
+                <a href={`${path}?page=6`} className='paging'>→</a>
             }
         </div>
     );

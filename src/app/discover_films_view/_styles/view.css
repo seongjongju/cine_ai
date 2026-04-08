@@ -212,15 +212,16 @@
 
 .gemini-qna__form {
     display: flex;
-    gap: 8px;
+    flex-direction: column;
+    gap: 30px;
 }
 
-.gemini-qna__input {
+.gemini-qna__textarea {
     font-size: 16px;
     display: block;
-    width: calc(100% - 80px - 8px);
-    height: 50px;
-    padding: 0 1em;
+    width: 100%;
+    height: 150px;
+    padding: 1em;
     color: #fff;
     border: 1px solid var(--gray-1);
     outline: none;
@@ -230,8 +231,9 @@
     font-size: 20px;
     background: var(--gold-0);
     height: 50px;
-    width: 4em;
+    width: 10em;
     cursor: pointer;
+    margin: 0 auto;
 }
 
 .gemini-qna__a {
@@ -465,9 +467,12 @@
         font-size: 17.5px;
     }
 
-    .gemini-qna__input {
-        height: 45px;
-        width: calc(100% - 64px - 8px);
+    .gemini-qna__form {
+        gap: 20px;
+    }
+
+    .gemini-qna__textarea {
+        height: 125px;
     }
 
     .gemini-qna__button {

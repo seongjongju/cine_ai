@@ -13,19 +13,32 @@ const Films_list = ({ allMovies }: AllMoviesProps) => {
 
     return (
         <div className='films-list'>
-            {
+            {   
                 allMovies.map((allMovie) => (
                     <Link 
                         key={allMovie.id}
                         href={`/discover_films_view/${allMovie.id}`}
-                        style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${allMovie.poster_path}` }}
+                        style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${allMovie.poster_path ? allMovie.poster_path : ''}`}}
                         className='films-list__item'
                     >
                         <p className="films-list__genre">
-                            <span>{allMovie.vote_average.toFixed(1)}</span>
-                            {getGenreNames(allMovie.genre_ids, genres)}
+                            <span>
+                                {
+                                    allMovie.vote_average ? allMovie.vote_average.toFixed(1)
+                                    : "0.0"
+                                }
+                            </span>
+                            {
+                                allMovie.genre_ids ? getGenreNames(allMovie.genre_ids, genres)
+                                : "정보없음" 
+                            }
                         </p>
-                        <h6 className='films-list__name'>{allMovie.title}</h6>
+                        <h6 className='films-list__name'>
+                            {
+                                allMovie.title ?  allMovie.title
+                                : ""
+                            }
+                        </h6>
                     </Link>
                 ))
             }
