@@ -49,7 +49,7 @@ const Ai_pick = () => {
                             <SwiperSlide
                                 className='pick-swiper__slide' 
                                 key={movie.id} 
-                                style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.poster_path}` }}
+                                style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.poster_path ? movie.poster_path : ''}` }}
                             >
                                 <Link 
                                     href={`/discover_films_view/${movie.id}`}
@@ -57,10 +57,23 @@ const Ai_pick = () => {
                                 >
                                     <div className="pick-swiper__detail">
                                         <p className="pick-swiper__genre">
-                                            <span>{movie.vote_average.toFixed(1)}</span>
-                                            {getGenreNames(movie.genre_ids, genres)}
+                                            <span>  
+                                                {
+                                                    movie.vote_average ? movie.vote_average.toFixed(1)
+                                                    : "0.0"
+                                                }
+                                            </span>
+                                            {
+                                                movie.genre_ids ? getGenreNames(movie.genre_ids, genres)
+                                                : "정보없음"
+                                            }
                                         </p>
-                                        <p className="pick-swiper__name">{movie.title}</p>
+                                        <p className="pick-swiper__name">
+                                            {
+                                                movie.title ? movie.title
+                                                : ""
+                                            }
+                                        </p>
                                     </div>
                                 </Link>
                             </SwiperSlide>

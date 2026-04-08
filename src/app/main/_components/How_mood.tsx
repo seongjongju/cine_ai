@@ -49,12 +49,14 @@ const How_mood = () => {
                                     href={`/discover_films_view/${movie.id}`}
                                     key={movie.id} 
                                     className='mood-list__link'
-                                    style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.poster_path}` }}
+                                    style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.poster_path ? movie.poster_path : ''})` }}
                                 >
                                     <div className='mood-list__detail'>
-                                        <p className='mood-list__title'>{movie.title}</p>
+                                        <p className='mood-list__title'>
+                                            {movie.title ? movie.title : ""}
+                                        </p>
                                         <p className='mood-list__ex'>
-                                            {getGenreNames(movie.genre_ids, genres)}
+                                            {movie.genre_ids ? getGenreNames(movie.genre_ids, genres) : "정보없음"}
                                         </p>
                                     </div>
                                 </Link> 
@@ -67,12 +69,14 @@ const How_mood = () => {
                                     href={`/discover_films_view/${movie.id}`}
                                     key={movie.id} 
                                     className='mood-list__link'
-                                    style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.poster_path}` }}
+                                    style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.poster_path ? movie.poster_path : ''})` }}
                                 >
                                     <div className='mood-list__detail'>
-                                        <p className='mood-list__title'>{movie.title}</p>
+                                        <p className='mood-list__title'>
+                                            {movie.title ? movie.title : ""}
+                                        </p>
                                         <p className='mood-list__ex'>
-                                            {getGenreNames(movie.genre_ids, genres)}
+                                            {movie.genre_ids ? getGenreNames(movie.genre_ids, genres) : "정보없음"}
                                         </p>
                                     </div>
                                 </Link> 
@@ -85,12 +89,14 @@ const How_mood = () => {
                                     href={`/discover_films_view/${movie.id}`}
                                     key={movie.id} 
                                     className='mood-list__link'
-                                    style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.poster_path}` }}
+                                    style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.poster_path ? movie.poster_path : ''})` }}
                                 >
                                     <div className='mood-list__detail'>
-                                        <p className='mood-list__title'>{movie.title}</p>
+                                        <p className='mood-list__title'>
+                                            {movie.title ? movie.title : ""}
+                                        </p>
                                         <p className='mood-list__ex'>
-                                            {getGenreNames(movie.genre_ids, genres)}
+                                            {movie.genre_ids ? getGenreNames(movie.genre_ids, genres) : "정보없음"}
                                         </p>
                                     </div>
                                 </Link> 
@@ -103,12 +109,14 @@ const How_mood = () => {
                                     href={`/discover_films_view/${movie.id}`} 
                                     key={movie.id} 
                                     className='mood-list__link'
-                                    style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.poster_path}` }}
+                                    style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.poster_path ? movie.poster_path : ''})` }}
                                 >
                                     <div className='mood-list__detail'>
-                                        <p className='mood-list__title'>{movie.title}</p>
+                                        <p className='mood-list__title'>
+                                            {movie.title ? movie.title : ""}
+                                        </p>
                                         <p className='mood-list__ex'>
-                                            {getGenreNames(movie.genre_ids, genres)}
+                                            {movie.genre_ids ? getGenreNames(movie.genre_ids, genres) : "정보없음"}
                                         </p>
                                     </div>
                                 </Link> 
@@ -121,12 +129,14 @@ const How_mood = () => {
                                     href={`/discover_films_view/${movie.id}`} 
                                     key={movie.id} 
                                     className='mood-list__link'
-                                    style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.poster_path}` }}
+                                    style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.poster_path ? movie.poster_path : ''})` }}
                                 >
                                     <div className='mood-list__detail'>
-                                        <p className='mood-list__title'>{movie.title}</p>
+                                        <p className='mood-list__title'>
+                                            {movie.title ? movie.title : ""}
+                                        </p>
                                         <p className='mood-list__ex'>
-                                            {getGenreNames(movie.genre_ids, genres)}
+                                            {movie.genre_ids ? getGenreNames(movie.genre_ids, genres) : "정보없음"}
                                         </p>
                                     </div>
                                 </Link> 

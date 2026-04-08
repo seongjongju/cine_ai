@@ -19,11 +19,11 @@ const View_detail_qna = () => {
     const [modeTab, setModeTab] = useState<string>('');
     const [exTab, setExTab] = useState<string>('');
     const [exText, setExText] = useState<string>('');
-    const [qnaInput, setQnaInput] = useState<string>('');
+    const [qnaTextarea, setQnaTextarea] = useState<string>('');
 
-    const handleChangeQnaInput = (e:React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeQnaTextarea = (e:React.ChangeEvent<HTMLTextAreaElement>) => {
         setExText('');
-        setQnaInput(e.target.value);
+        setQnaTextarea(e.target.value);
     };
 
     return (
@@ -69,14 +69,13 @@ const View_detail_qna = () => {
                         }
                     </ul> {/* gemini-qna__ex */}
                     <form className='gemini-qna__form'>
-                        <input 
-                            type="text" 
+                        <textarea 
                             placeholder='직접 질문을 입력하세요.' 
-                            onChange={handleChangeQnaInput}
-                            value={exText ? exText : qnaInput}
-                            className='gemini-qna__input' 
+                            onChange={handleChangeQnaTextarea}
+                            value={exText ? exText : qnaTextarea}
+                            className='gemini-qna__textarea' 
                         />
-                        <button className='gemini-qna__button'>→</button>
+                        <button className='gemini-qna__button'>질문하기</button>
                     </form>
                 </div> {/* gemini-qna__q */}
 
@@ -86,17 +85,17 @@ const View_detail_qna = () => {
                         AI 응답
                     </p>
                     {
-                        exText !== '' || qnaInput !== '' ? 
+                        exText !== '' || qnaTextarea !== '' ? 
                         (
                             <p className='gemini-qna__user'>
-                                {exText ? exText : qnaInput}
+                                {exText ? exText : qnaTextarea}
                             </p>
                         ) : null
                     }
                     <p className='gemini-qna__answer'>
                         반전이라기보다 폭로에 가깝습니다. 중반부에 예상치 못한 전환이 있는데, 이게 장르 자
                         체를 갈아엎어버립니다. 스릴러적 긴장감이 갑자기 치고 들어오는 구조라서 — 알고 봐도
-                        충격이고, 모르고 봐도 충격입니다. 스포 없이 말하자면 "지하에 무언가 있다"는 것만 알
+                        충격이고, 모르고 봐도 충격입니다. 스포 없이 말하자면 지하에 무언가 있다는 것만 알
                         고 들어가세요.
                     </p>
                 </div> {/* gemini-qna__a */}

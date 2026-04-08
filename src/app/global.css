@@ -299,3 +299,37 @@ section:first-child {
 		font-size: 10px;
 	}
 }
+
+/************************* 페이징 */
+.paginations {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    margin-top: 30px;
+}
+
+.paging {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2em;
+    aspect-ratio: 1/1;
+    background: var(--black-0);
+    border: 1px solid rgba(255, 255, 255, .07);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.paging.current {
+    background: var(--gold-0);
+    border-color: var(--gold-0);
+    color: var(--black-0);
+}
+
+@media screen and (max-width: 640px) {
+    .paging {
+        font-size: 14px;
+    }
+}
