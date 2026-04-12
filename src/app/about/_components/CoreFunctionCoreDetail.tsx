@@ -8,7 +8,7 @@ interface CoreDetailProps {
     badges?:  string[];
 };
 
-const Core_function_coreDetail = ({icon, title, accent, text, badges}: CoreDetailProps) => {
+const CoreFunctionCoreDetail = ({icon, title, accent, text, badges}: CoreDetailProps) => {
     return (
         <div className='core__detail'>
             <span className='core__icon'>{icon}</span>
@@ -30,4 +30,4 @@ const Core_function_coreDetail = ({icon, title, accent, text, badges}: CoreDetai
     );
 };
 
-export default Core_function_coreDetail;
+export default CoreFunctionCoreDetail;

@@ -4,13 +4,15 @@ import { useMovie } from '@/features/hooks/useMovie';
 import { getGenreNames } from '@/shared/utils/get.genre.names';
 import { AllMovie } from '@/types/movie';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
-const Search_interface = ({ allMovies }: AllMoviesProps) => {
+const SearchInterface = ({ allMovies }: AllMoviesProps) => {
     const { genres, isLoading } = useMovie();
     const [searchInput, setSearchInput] = useState<string>('');
     const [foundedList, setFoundedList] = useState<AllMovie[]>([]);
     const [movieCount, setMovieCount] = useState<number>(20);
+
+    const searchInputRef = useRef<HTMLInputElement>(null);
 
     if(isLoading) return null;
 
@@ -23,12 +25,15 @@ const Search_interface = ({ allMovies }: AllMoviesProps) => {
         
         if(searchInput === '') {
             alert('영화명을 입력해주세요.');
+            searchInputRef.current?.focus();
             return;
         };
         const foundMovies = allMovies.filter(mv => mv.title.includes(searchInput.trim()));
 
         setFoundedList(foundMovies);
         setMovieCount(20);
+
+        setSearchInput('');
     };
 
     const cutMovies = foundedList.slice(0, movieCount);
@@ -41,7 +46,9 @@ const Search_interface = ({ allMovies }: AllMoviesProps) => {
                     type="text" 
                     placeholder='영화명을 입력하세요.' 
                     className='search-form__input' 
+                    value={searchInput}
                     onChange={handleChangeSearchInput}
+                    ref={searchInputRef}
                 />
                 <button 
                     className='search-form__button'
@@ -50,6 +57,10 @@ const Search_interface = ({ allMovies }: AllMoviesProps) => {
                     검색
                 </button>
             </form> {/* search-form */}
+
+            <p className='search-count'>
+                검색된 영화 총 <strong>{foundedList.length}</strong>개
+            </p>
 
             <div className='search-list'>
                 {
@@ -100,4 +111,4 @@ const Search_interface = ({ allMovies }: AllMoviesProps) => {
     );
 };
 
-export default Search_interface;
+export default SearchInterface;

@@ -9,7 +9,7 @@ import { getGenreNames } from '@/shared/utils/get.genre.names';
 import { useMovie } from '@/features/hooks/useMovie';
 
 
-const Ai_pick = () => {    
+const AiPick = () => {    
     const {movies, genres, isLoading} = useMovie();
 
     if (isLoading) return null;
@@ -91,4 +91,4 @@ const Ai_pick = () => {
     );
 };
 
-export default Ai_pick;
+export default AiPick;

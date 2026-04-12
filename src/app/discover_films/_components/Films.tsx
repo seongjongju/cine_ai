@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import Films_list from './Films_list';
+import FilmsList from './FilmsList';
 import { AllMovie } from '@/types/movie';
 
 export interface AllMoviesProps {
@@ -9,7 +9,7 @@ export interface AllMoviesProps {
 
 const Films = ({ allMovies }: AllMoviesProps) => {
     return (
-        <Films_list allMovies={allMovies}/>  
+        <FilmsList allMovies={allMovies}/>  
     );
 };
 

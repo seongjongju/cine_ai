@@ -4,8 +4,10 @@ import React from 'react';
 import '../../styles/inc.css';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { supabase } from '@/app/lib/supabaseClient';
+import { Users } from '@/types/user';
 
-const Header = () => {
+const Header = ({isLoggedIn}: Users) => {
     const gnbOpen = () => {
         if(window.innerWidth > 768) return;
 
@@ -86,12 +88,34 @@ const Header = () => {
                             />
                         </svg>
                     </Link>
-                    <Link
-                        className='button-0 bg-[#C9A84C] text-[#333333]'
-                        href={'/login'}
-                    >
-                        무료로 시작하기
-                    </Link>
+                    {
+                        isLoggedIn ? 
+                        (
+                            <div>
+                                <Link
+                                    className='button-0 bg-[#C9A84C] text-[#333333]'
+                                    href={'/mypage'}
+                                >
+                                    마이페이지
+                                </Link>
+                                <Link
+                                    className='button-0 bg-[#C9A84C] text-[#333333]'
+                                    href={'/wish'}
+                                >
+                                    위시리스트
+                                </Link>
+                            </div>
+                        )
+                        :
+                        (
+                            <Link
+                                className='button-0 bg-[#C9A84C] text-[#333333]'
+                                href={'/login'}
+                            >
+                                무료로 시작하기
+                            </Link>
+                        )
+                    }
                     <button
                         className='gnb-open'
                         onClick={gnbOpen}

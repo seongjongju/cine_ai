@@ -1,8 +1,8 @@
-import { getDetail } from '@/features/services/getMovie_service';
+import { getDetail } from '@/features/services/getMovieService';
 import React from 'react';
 import 'swiper/css';
 import '../_styles/view.css';
-import VIew_detail from '../_components/VIew_detail';
+import VIewDetail from '../_components/VIewDetail';
 
 const DiscoverFilmsViewPage = async ({ params }: { params: Promise<{ id: number }> }) => {
     const { id } = await params;
@@ -12,7 +12,7 @@ const DiscoverFilmsViewPage = async ({ params }: { params: Promise<{ id: number 
 
     return (
         <div className='wrap'>
-            <VIew_detail 
+            <VIewDetail 
                 movieDetail={movieDetail}
             />
         </div>

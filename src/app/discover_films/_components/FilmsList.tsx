@@ -5,7 +5,7 @@ import React from 'react';
 import { AllMoviesProps } from './Films';
 import Link from 'next/link';
 
-const Films_list = ({ allMovies }: AllMoviesProps) => {
+const FilmsList = ({ allMovies }: AllMoviesProps) => {
     const { genres, isLoading } = useMovie();
 
     if(!allMovies) return null;
@@ -46,4 +46,4 @@ const Films_list = ({ allMovies }: AllMoviesProps) => {
     );
 };
 
-export default Films_list;
+export default FilmsList;

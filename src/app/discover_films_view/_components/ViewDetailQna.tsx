@@ -15,7 +15,7 @@ const geminiEx = [
     {id: 'ex_4', text: '원작 있나요?'},
 ];
 
-const View_detail_qna = () => {
+const ViewDetailQna = () => {
     const [modeTab, setModeTab] = useState<string>('');
     const [exTab, setExTab] = useState<string>('');
     const [exText, setExText] = useState<string>('');
@@ -104,4 +104,4 @@ const View_detail_qna = () => {
     );
 };
 
-export default View_detail_qna;
+export default ViewDetailQna;

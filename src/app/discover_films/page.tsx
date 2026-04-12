@@ -3,7 +3,7 @@ import './_styles/discover_films.css';
 import Title from '@/shared/components/title/Title';
 import Paginations from './_components/Paginations';
 import Films from './_components/Films';
-import { getAllMovies } from '@/features/services/getMovie_service';
+import { getAllMovies } from '@/features/services/getMovieService';
 import { paginations } from '@/shared/utils/paginations';
 
 const Discover_filmsPage = async ({ searchParams }: { searchParams: Promise<{ page?: string }> }) => {

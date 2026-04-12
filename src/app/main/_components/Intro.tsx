@@ -1,7 +1,13 @@
+'use client';
+import { useUser } from '@/providers/UsersProvider';
 import Link from 'next/link';
 import React from 'react';
 
 const Intro = () => {
+    const {user} = useUser();
+
+    console.log(user)
+
     return (
         <section className='intro'>
             <div className='inner intro__inner'>
@@ -20,9 +26,14 @@ const Intro = () => {
                     </p>
 
                     <div className='intro__btn-group'>
-                        <Link href={'/login'} className='button-0 bg-[#C9A84C] text-[#333333]'>
-                            무료로 시작하기
-                        </Link>
+                        {
+                            user === null && 
+                            (
+                                <Link href={'/login'} className='button-0 bg-[#C9A84C] text-[#333333]'>
+                                    무료로 시작하기
+                                </Link>
+                            )
+                        }
                         <Link href={'/about'} className='button-0 bg-[rgba(255,255,255,.07)] text-[#ffffff]'>
                             서비스 소개 →
                         </Link>

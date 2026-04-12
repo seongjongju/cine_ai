@@ -2,21 +2,21 @@ import 'swiper/css';
 import 'swiper/css/scrollbar';
 import './main/_styles/main.css';
 
-import Ai_pick from "./main/_components/Ai_pick";
+import AiPick from "./main/_components/AiPick";
 import Intro from "./main/_components/Intro";
-import Loop_carousel from "./main/_components/Loop_carousel";
+import LoopCarousel from "./main/_components/LoopCarousel";
 import Instructions from './main/_components/Instructions';
-import How_mood from './main/_components/How_mood';
+import HowMood from './main/_components/HowMood';
 import Link from 'next/link';
 
 export default async function Home() {
   return (
     <div className="wrap">
       <Intro />
-      <Loop_carousel />
-      <Ai_pick />
+      <LoopCarousel />
+      <AiPick />
       <Instructions />
-      <How_mood />
+      <HowMood />
 
       <section className='bg-[#111111]'>
         <div className='inner-2'>

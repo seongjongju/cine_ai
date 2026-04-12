@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Core_function_coreArt = () => {
+const CoreFunctionCoreArt = () => {
     return (
         <div className='core__art'>
             <div className='core__board'>
@@ -29,4 +29,4 @@ const Core_function_coreArt = () => {
     );
 };
 
-export default Core_function_coreArt;
+export default CoreFunctionCoreArt;

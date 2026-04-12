@@ -1,17 +1,17 @@
 import React from 'react';
 import './_styles/about.css';
-import About_intro from './_components/About_intro';
+import AboutIntro from './_components/AboutIntro';
 import Problem from './_components/Problem';
-import Core_function from './_components/Core_function';
+import CoreFunction from './_components/CoreFunction';
 import Faq from './_components/Faq';
 import Link from 'next/link';
 
 const AboutPage = () => {
     return (
         <div className='wrap'>
-            <About_intro />
+            <AboutIntro />
             <Problem />
-            <Core_function />
+            <CoreFunction />
             <Faq />
             <section className='bg-[#111111]'>
                 <div className='inner-2'>

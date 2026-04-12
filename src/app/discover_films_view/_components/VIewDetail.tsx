@@ -1,13 +1,12 @@
 'use client';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import { useMovie } from '@/features/hooks/useMovie';
 import { getGenreNames } from '@/shared/utils/get.genre.names';
 import { Detail } from '@/types/movie';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React from 'react';
-import View_detail_qna from './View_detail_qna';
-import View_detail_moodBoard from './View_detail_moodBoard';
+import ViewDetailQna from './ViewDetailQna';
+import ViewDetailMoodBoard from './ViewDetailMoodBoard';
 
 interface DetailProps {
     movieDetail:Detail;
@@ -31,20 +30,15 @@ const countryMap: { [key: string]: string } = {
     'PH': '필리핀',
 };
 
-const VIew_detail = ({ movieDetail }: DetailProps) => {
+const VIewDetail = ({ movieDetail }: DetailProps) => {
     const router = useRouter();
-    const {genres, isLoading} = useMovie();
-
-    if(isLoading) return null;
+    const {genres} = useMovie();
+    console.log('상세페이지 : ',movieDetail);
 
     //스태프 배열
-    const crews = movieDetail?.credits.crew;
+    const crews = movieDetail.credits.crew;
     const crewsDirector = crews.filter(crew => crew.job === 'Director')
                                 .map(director => director.name);
-
-    //캐스팅
-    const casts = movieDetail?.credits.cast;
-
     //국가 맵핑
     const countryName = movieDetail.origin_country?.[0] 
                         ? (countryMap[movieDetail.origin_country[0]] || movieDetail.origin_country[0]) 
@@ -60,29 +54,18 @@ const VIew_detail = ({ movieDetail }: DetailProps) => {
             <div 
                 className='back-poster'
                 style={{
-                    backgroundImage: `url(https://image.tmdb.org/t/p/w1920${movieDetail.backdrop_path ? movieDetail.backdrop_path : ''})`
+                    backgroundImage: `url(https://image.tmdb.org/t/p/w1920${movieDetail.backdrop_path})`
                 }}
             >
                 <div className='inner w-full'>
                     <div className='view-detail'>
-                        <h6 className='view-detail__name'>
-                            {
-                                movieDetail.title ? movieDetail.title
-                                : ""
-                            }
-                        </h6>
+                        <h6 className='view-detail__name'>{movieDetail.title}</h6>
                         <div className='view-detail__badges'>
-                            <p className='view-detail__badge'>
-                                {   
-                                    movieDetail.vote_average ? movieDetail.vote_average.toFixed(1)
-                                    : "0.0"
-                                }
-                            </p>
+                            <p className='view-detail__badge'>{movieDetail.vote_average.toFixed(1)}</p>
                             <p className='view-detail__badge'>{crewsDirector}</p>
                             <p className='view-detail__badge'>
                                 {
-                                    movieDetail.genres ? getGenreNames(movieDetail.genres.map(genre => genre.id), genres)
-                                    : "정보없음"
+                                    getGenreNames(movieDetail.genres.map(genre => genre.id), genres)
                                 }
                             </p>
                             <p className='view-detail__badge'>{movieDetail.runtime ? `${movieDetail.runtime}분` : '정보 없음'}</p>
@@ -103,12 +86,7 @@ const VIew_detail = ({ movieDetail }: DetailProps) => {
                         </li>
                         <li className='detail__summation--li'>
                             <span className='detail__summation--chip'>개봉</span>
-                            <p className='detail__summation--text'>
-                                {   
-                                    movieDetail.release_date ? movieDetail.release_date
-                                    : "정보없음"
-                                }
-                            </p>  
+                            <p className='detail__summation--text'>{movieDetail.release_date}</p>  
                         </li>
                         <li className='detail__summation--li'>
                             <span className='detail__summation--chip'>등급</span>
@@ -116,17 +94,12 @@ const VIew_detail = ({ movieDetail }: DetailProps) => {
                         </li>
                         <li className='detail__summation--li'>
                             <span className='detail__summation--chip'>인기도</span>
-                            <p className='detail__summation--text'>
-                                {
-                                    movieDetail.popularity ? movieDetail.popularity
-                                    : "0.0"
-                                }
-                            </p>  
+                            <p className='detail__summation--text'>{movieDetail.popularity}</p>  
                         </li>
                     </ul> {/* detail__summation */}
                     
                     {
-                        movieDetail?.overview !== '' ?
+                        movieDetail.overview !== '' ?
                         (   
                             <>
                                 <p className='title__chip md'>
@@ -136,67 +109,15 @@ const VIew_detail = ({ movieDetail }: DetailProps) => {
                                 <div className='movie-info'>
                                     <p className='movie-info__text'>{movieDetail.overview}</p>
                                 </div>
+
+                                {/* 등장인물 작업 예정 */}
                             </>
                         ) : null
                     }
 
-                    <p className='title__chip md'>
-                        <span className='title__line'></span>
-                        캐스팅
-                    </p>
+                    <ViewDetailQna />
 
-                    <Swiper
-                        slidesPerView={5.5}
-                        spaceBetween={10}
-                        speed={1300}
-                        freeMode={true}
-                        breakpoints={{
-                            1081: {slidesPerView: 5.5},
-                            769: {slidesPerView: 4.5},
-                            641: {slidesPerView: 3.5},
-                            481: {slidesPerView: 2.5},
-                            1: {slidesPerView: 1.5},
-                        }}
-                        className='cast-list'
-                    >
-                        {
-                            casts?.map((cast) => (
-                                <SwiperSlide
-                                    key={cast.id}
-                                >
-                                    {
-                                        cast.profile_path !== null ? 
-                                        (
-                                            <img 
-                                                src={`https://image.tmdb.org/t/p/w300${cast.profile_path}`} 
-                                                alt={cast?.name}
-                                                className='cast-list__image' 
-                                            />
-                                        )
-                                        :
-                                        (
-                                            <img
-                                                src="/images/profile_none.png" 
-                                                alt="기본 이미지"
-                                                className='cast-list__image' 
-                                            />
-                                        )
-                                    }
-                                    <p className='cast-list__casting'>
-                                        {
-                                            cast.character ? cast.character + "역"
-                                            : ""
-                                        }
-                                    </p>
-                                    <p className='cast-list__name'>{cast?.name}</p>
-                                </SwiperSlide>
-                            ))
-                        }
-                    </Swiper>
-
-                    <View_detail_qna />
-
-                    <View_detail_moodBoard />
+                    <ViewDetailMoodBoard />
 
                     <button 
                         className='back-films-btn'
@@ -213,4 +134,4 @@ const VIew_detail = ({ movieDetail }: DetailProps) => {
     );
 };
 
-export default VIew_detail;
+export default VIewDetail;

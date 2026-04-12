@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Core_function_coreChat = () => {
+const CoreFunctionCoreChat = () => {
     return (
         <div className='core__chat'>
             <div className='core__chat--q'>
@@ -27,4 +27,4 @@ const Core_function_coreChat = () => {
     );
 };
 
-export default Core_function_coreChat;
+export default CoreFunctionCoreChat;
