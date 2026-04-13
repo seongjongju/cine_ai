@@ -86,6 +86,11 @@
     background: #fff;
 }
 
+.user-service {
+    display: flex;
+    gap: 1rem;
+}
+
 @media screen and (max-width: 1024px) {
     .header {
         height: 70px;

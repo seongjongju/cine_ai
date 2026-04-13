@@ -1,6 +1,8 @@
 'use client';
 import { supabase } from '@/app/lib/supabaseClient';
+import { useUser } from '@/providers/UsersProvider';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
 
 interface MassageProps {
@@ -8,6 +10,8 @@ interface MassageProps {
 };
 
 const OauthInterface = ({message}: MassageProps) => {
+    const {user} = useUser();
+    const router = useRouter();
     const signInWithGoogle = async () => {
     const { error: err } = await supabase.auth.signInWithOAuth({
             provider: "google",
@@ -24,6 +28,14 @@ const OauthInterface = ({message}: MassageProps) => {
             return;
         }
     }, []);
+
+    useEffect(() => {
+        if(user) {
+            alert('이미 로그인 상태입니다.');
+            router.push('/');
+            return;
+        }
+    }, [])
 
     return (
         <div className='login-btns'>

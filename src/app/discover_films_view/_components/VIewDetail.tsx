@@ -70,7 +70,7 @@ const VIewDetail = ({ movieDetail }: DetailProps) => {
                             </p>
                             <p className='view-detail__badge'>{movieDetail.runtime ? `${movieDetail.runtime}분` : '정보 없음'}</p>
                         </div>
-                        <button className='button-0 text-[var(--gray-1)] border-1 border-[var(--gray-1)]    hover:text-[var(--gold-0)] hover:border-[var(--gold-0)]   transition duration-300'>
+                        <button className='button-0 text-[var(--gray-1)] border-1 border-[var(--gray-1)]    hover:text-[var(--gold-0)] hover:border-[var(--gold-0)] transition duration-300'>
                             + 찜하기
                         </button>
                     </div> {/* view-detail */}
