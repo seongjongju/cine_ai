@@ -1,10 +1,10 @@
 'use client';
 import Title from '@/shared/components/title/Title';
 import React, { useState } from 'react';
-import Core_function_coreDetail from './Core_function_coreDetail';
-import Core_function_coreList from './Core_function_coreList';
-import Core_function_coreChat from './Core_function_coreChat';
-import Core_function_coreArt from './Core_function_coreArt';
+import CoreFunctionCoreDetail from './CoreFunctionCoreDetail';
+import CoreFunctionCoreList from './CoreFunctionCoreList';
+import CoreFunctionCoreChat from './CoreFunctionCoreChat';
+import CoreFunctionCoreArt from './CoreFunctionCoreArt';
 
 const coreTabs = [
     {id: "tonne", label: "톤앤매너 요약"},
@@ -12,7 +12,7 @@ const coreTabs = [
     {id: "mood", label: "AI 무드 보드"},
 ];
 
-const Core_function = () => {
+const CoreFunction = () => {
     const [coreTab, setCoreTab] = useState('tonne');
 
     return (
@@ -42,7 +42,7 @@ const Core_function = () => {
                     coreTab === 'tonne' ? 
                     (
                         <div className='core'>
-                            <Core_function_coreDetail 
+                            <CoreFunctionCoreDetail 
                                 icon='🎭'
                                 title='내 기분에 맞는'
                                 accent='요약'
@@ -51,14 +51,14 @@ const Core_function = () => {
                                 badges={['실시간 재생성', 'GEMINI 2.5', '스트리밍 출력']}
                             />
 
-                            <Core_function_coreList />
+                            <CoreFunctionCoreList />
                         </div> 
                     )
                     :
                     coreTab === 'interactive' ?
                     (
                         <div className='core'>
-                            <Core_function_coreDetail 
+                            <CoreFunctionCoreDetail 
                                 icon='💬'
                                 title='궁금한 건'
                                 accent='직접 물어보세요'
@@ -66,14 +66,14 @@ const Core_function = () => {
                                 badges={['무제한 질문', '스포 조절 가능', '컨텍스트 유지']}
                             />
 
-                            <Core_function_coreChat />
+                            <CoreFunctionCoreChat />
                         </div> 
                     )
                     :
                     coreTab === 'mood' ?
                     (
                         <div className='core'>
-                            <Core_function_coreDetail 
+                            <CoreFunctionCoreDetail 
                                 icon='🎨'
                                 title='영화의 감성을'
                                 accent='아트워크로'
@@ -81,7 +81,7 @@ const Core_function = () => {
                                 badges={['AI 이미지 생성', 'SNS 공유', '영화별 감성 분석']}
                             />
 
-                            <Core_function_coreArt />
+                            <CoreFunctionCoreArt />
                         </div> 
                     )
                     : null
@@ -91,4 +91,4 @@ const Core_function = () => {
     );
 };
 
-export default Core_function;
+export default CoreFunction;

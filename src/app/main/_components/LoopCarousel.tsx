@@ -4,7 +4,7 @@ import { Splide, SplideSlide } from '@splidejs/react-splide';
 import { AutoScroll } from '@splidejs/splide-extension-auto-scroll';
 import '@splidejs/react-splide/css';
 
-const Loop_carousel = () => {
+const LoopCarousel = () => {
     return (
         <div className='loop-carousel'>
             <Splide
@@ -64,4 +64,4 @@ const Loop_carousel = () => {
     );
 };
 
-export default Loop_carousel;
+export default LoopCarousel;

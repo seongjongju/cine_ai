@@ -1,0 +1,65 @@
+/***************************** myPageInterface */
+.user-info {
+    margin-bottom: 30px;
+}
+
+.user-info__title {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.user-info__text {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 24px;
+    color: #fff;
+}
+
+.auth-management {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.auth-management__logout {
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.auth-management__withdraw {
+    font-size: 16px;
+    color: #e80404;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1080px) {
+    .user-info__title {
+        font-size: 16px;
+    }
+
+    .user-info__text {
+        gap: 8px;
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .user-info{
+        margin-bottom: 20px;
+    }
+
+    .user-info__title {
+        font-size: 14px;
+    }
+
+    .user-info__text {
+        font-size: 18px;
+    }
+
+    .auth-management {
+        gap: 8px;
+    }
+}

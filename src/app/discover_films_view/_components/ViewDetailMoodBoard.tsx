@@ -1,6 +1,6 @@
 import React from 'react';
 
-const View_detail_moodBoard = () => {
+const ViewDetailMoodBoard = () => {
     return (
         <div>
             <p className='title__chip md'>
@@ -26,4 +26,4 @@ const View_detail_moodBoard = () => {
     );
 };
 
-export default View_detail_moodBoard;
+export default ViewDetailMoodBoard;

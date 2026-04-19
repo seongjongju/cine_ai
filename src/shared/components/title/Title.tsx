@@ -17,7 +17,6 @@ const Title = ({ chip, title, title_1, accent }: TitleProps) => {
             <h2 className='title md'>
                 {title} <br/>
                 <span>{accent}</span> {title_1}
-                
             </h2>
         </div>
     );

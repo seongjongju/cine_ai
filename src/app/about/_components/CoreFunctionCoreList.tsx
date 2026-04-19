@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Core_function_coreList = () => {
+const CoreFunctionCoreList = () => {
     return (
         <ul className='core__list'>
             <li className='core__li'>
@@ -23,4 +23,4 @@ const Core_function_coreList = () => {
     );
 };
 
-export default Core_function_coreList;
+export default CoreFunctionCoreList;

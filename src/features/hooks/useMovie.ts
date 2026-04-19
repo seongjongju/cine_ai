@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getGenres, getMovies } from "../services/getMovie_service";
+import { getGenres, getMovies } from "../services/getMovieService";
 
 export const useMovie = () => {
     //영화 인기순 목록

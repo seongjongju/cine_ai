@@ -14,7 +14,7 @@ const moodTabs = [
     { id: 'light', label: '🌙 가볍게' },
 ];
 
-const How_mood = () => {
+const HowMood = () => {
     const [moodTabState, setMoodTabState] = useState('smile');
     const {movies, genres, isLoading} = useMovie();
     const {comedyMovie, cryMovies, tensionMovies, thinkMovies, lightMovies} = useMoodTabArray(movies);
@@ -150,4 +150,4 @@ const How_mood = () => {
     );
 };
 
-export default How_mood;
+export default HowMood;

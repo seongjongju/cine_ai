@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 import Title from '@/shared/components/title/Title';
 
-const About_intro = () => {
+const AboutIntro = () => {
     return (
         <section className='about-intro'>
             <div className='inner-2'>
@@ -119,4 +119,4 @@ const About_intro = () => {
     );
 };
 
-export default About_intro;
+export default AboutIntro;

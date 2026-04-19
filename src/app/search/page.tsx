@@ -1,7 +1,7 @@
 import React from 'react';
 import './_styles/search.css';
-import Search_interface from './_components/Search_interface';
-import { getAllMovies } from '@/features/services/getMovie_service';
+import SearchInterface from './_components/SearchInterface';
+import { getAllMovies } from '@/features/services/getMovieService';
 import { paginations } from '@/shared/utils/paginations';
 
 const SearchPage = async () => {
@@ -15,7 +15,7 @@ const SearchPage = async () => {
         <section style={{
             minHeight: "85vh"
         }}>
-            <Search_interface allMovies={allMovies}/>
+            <SearchInterface allMovies={allMovies}/>
         </section>
     );
 };

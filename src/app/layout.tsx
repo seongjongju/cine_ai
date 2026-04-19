@@ -5,8 +5,10 @@ import Header from "@/inc/components/header/Header";
 import Footer from "@/inc/components/footer/Footer";
 import QueryProvider from "@/providers/QueryProvider";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
-import { getGenres, getMovies } from "@/features/services/getMovie_service";
+import { getGenres, getMovies } from "@/features/services/getMovieService";
 import Quick_menu from "@/inc/components/quick/Quick_menu";
+import { createSupabaseServerClient } from '@/app/lib/supabaseServer';
+import { UsersProvider } from "@/providers/UsersProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,6 +19,8 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: "CINE AI",
@@ -36,19 +40,24 @@ export default async function RootLayout({
     queryClient.prefetchQuery({ queryKey: ['genres'], queryFn: getGenres }),
   ]);
 
+  const supabase = await createSupabaseServerClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
   return (
     <html lang="ko">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <QueryProvider>
-          <HydrationBoundary state={dehydrate(queryClient)} >
-            <Header />
-            <main>
-              {children}
-            </main>
-            <Quick_menu />
-            <Footer />
-          </HydrationBoundary>
-        </QueryProvider>
+        <UsersProvider user={user}>
+          <QueryProvider>
+            <HydrationBoundary state={dehydrate(queryClient)} >
+              <Header isLoggedIn={!!user} />
+              <main>
+                {children}
+              </main>
+              <Quick_menu />
+              <Footer />
+            </HydrationBoundary>
+          </QueryProvider>
+        </UsersProvider>
       </body>
     </html>
   );
