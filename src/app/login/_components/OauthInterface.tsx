@@ -12,9 +12,20 @@ interface MassageProps {
 const OauthInterface = ({message}: MassageProps) => {
     const {user} = useUser();
     const router = useRouter();
+    //구글
     const signInWithGoogle = async () => {
-    const { error: err } = await supabase.auth.signInWithOAuth({
+        const { error: err } = await supabase.auth.signInWithOAuth({
             provider: "google",
+            options: {
+                redirectTo: `${location.origin}/api/auth/callback`, 
+            },
+        });
+    };
+
+    //카카오
+    const signInWithKaKao = async () => {
+        const { error: err } = await supabase.auth.signInWithOAuth({
+            provider: "kakao",
             options: {
                 redirectTo: `${location.origin}/api/auth/callback`, 
             },
@@ -46,7 +57,10 @@ const OauthInterface = ({message}: MassageProps) => {
                 <Image width={20} height={20} src="/icons/google_ico.png" alt="구글" className='login-btn__icon'/>
                 Google로 계속하기
             </button>
-            <button className='login-btn btn-1'>
+            <button 
+                className='login-btn btn-1'
+                onClick={signInWithKaKao}
+            >
                 <Image width={20} height={20} src="/icons/kakao_ico.png" alt="카카오" className='login-btn__icon'/>
                 카카오로 계속하기
             </button>
