@@ -31,6 +31,9 @@ const OauthInterface = ({message}: MassageProps) => {
         const { error: err } = await supabase.auth.signInWithOAuth({
             provider: "kakao",
             options: {
+                queryParams: {
+                    prompt: 'login',
+                },
                 redirectTo: `${location.origin}/api/auth/callback`, 
             },
         });
