@@ -11,15 +11,17 @@ const moodTabs = [
     { id: 'cry', label: '😭 울고 싶어' },
     { id: 'tension', label: '😱 긴장감' },
     { id: 'think', label: '🧠 생각하고 싶어' },
-    { id: 'light', label: '🌙 가볍게' },
 ];
 
 const HowMood = () => {
     const [moodTabState, setMoodTabState] = useState('smile');
     const {movies, genres, isLoading} = useMovie();
-    const {comedyMovie, cryMovies, tensionMovies, thinkMovies, lightMovies} = useMoodTabArray(movies);
-    
+    const {comedyMovie, cryMovies, tensionMovies, thinkMovies} = useMoodTabArray(movies);
+
     if (isLoading) return null;
+
+    const moodTabLabel = moodTabs.map(tab => tab.label);
+    const moodTabId = moodTabs.map(tab => tab.id);
     
     return (
         <section>
@@ -28,6 +30,51 @@ const HowMood = () => {
 
                 <ul className='mood-tab-btns'>
                     {
+                        comedyMovie.length > 0 &&
+                        (
+                            <li 
+                                className={`mood-tab-btn button-0 ${moodTabId[0]} ${moodTabState === moodTabId[0] ? 'is-active' : ''}`}
+                                onClick={() => setMoodTabState(moodTabId[0])}
+                            >
+                                {moodTabLabel[0]}
+                            </li>
+                        )
+                    }
+                    {
+                        cryMovies.length > 0 &&
+                        (
+                            <li 
+                                className={`mood-tab-btn button-0 ${moodTabId[1]} ${moodTabState === moodTabId[1] ? 'is-active' : ''}`}
+                                onClick={() => setMoodTabState(moodTabId[1])}
+                            >
+                                {moodTabLabel[1]}
+                            </li>
+                        )
+                    }
+                    {
+                        tensionMovies.length > 0 && 
+                        (
+                            <li 
+                                className={`mood-tab-btn button-0 ${moodTabId[2]} ${moodTabState === moodTabId[2] ? 'is-active' : ''}`}
+                                onClick={() => setMoodTabState(moodTabId[2])}
+                            >
+                                {moodTabLabel[2]}
+                            </li>
+                        )
+                    }
+                    {
+                        thinkMovies.length > 0 &&
+                        (
+                            <li 
+                                className={`mood-tab-btn button-0 ${moodTabId[3]} ${moodTabState === moodTabId[3] ? 'is-active' : ''}`}
+                                onClick={() => setMoodTabState(moodTabId[3])}
+                            >
+                                {moodTabLabel[3]}
+                            </li>
+                        )
+                    }
+
+                    {/* {
                         moodTabs.map((btn) => (
                             <li 
                                 key={btn.id} 
@@ -37,7 +84,7 @@ const HowMood = () => {
                                 {btn.label}
                             </li>
                         ))
-                    }
+                    } */}
                 </ul>
 
                 <div className='mood-list'>
@@ -105,26 +152,6 @@ const HowMood = () => {
                         : moodTabState === 'think' ? 
                         (
                             thinkMovies.map((movie) => (
-                                <Link 
-                                    href={`/discover_films_view/${movie.id}`} 
-                                    key={movie.id} 
-                                    className='mood-list__link'
-                                    style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.poster_path ? movie.poster_path : ''})` }}
-                                >
-                                    <div className='mood-list__detail'>
-                                        <p className='mood-list__title'>
-                                            {movie.title ? movie.title : ""}
-                                        </p>
-                                        <p className='mood-list__ex'>
-                                            {movie.genre_ids ? getGenreNames(movie.genre_ids, genres) : "정보없음"}
-                                        </p>
-                                    </div>
-                                </Link> 
-                            ))
-                        )
-                        : moodTabState === 'light' ? 
-                        (
-                            lightMovies.map((movie) => (
                                 <Link 
                                     href={`/discover_films_view/${movie.id}`} 
                                     key={movie.id} 
