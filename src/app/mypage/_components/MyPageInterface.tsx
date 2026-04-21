@@ -18,6 +18,7 @@ const MyPageInterface = () => {
     const isKakao = user?.app_metadata.provider === 'kakao';
     const myKakaoIco = '/icons/my_kakao_ico.png';
 
+    //로그아웃
     const handleSignOut = async (e:React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
 
@@ -28,7 +29,33 @@ const MyPageInterface = () => {
             router.push('/');
         }
     };
-    
+
+    //회원 탈퇴
+    const handleUserDelete = async (e:React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+
+        if (!confirm("정말 탈퇴하시겠습니까? 탈퇴 시 모든 이용 기록과 데이터가 삭제되며 복구할 수 없습니다.")) {
+            return;
+        }
+
+        try {
+            const res = await fetch('/api/auth/delete', {
+                method: "DELETE"
+            });
+
+            if(!res.ok) throw new Error("회원 탈퇴 실패");
+
+            alert("회원 탈퇴가 완료되었습니다. 그동안 이용해 주셔서 감사합니다.");
+            console.log("회원 탈퇴 성공");
+
+            router.refresh();
+            router.push('/');
+        } catch(err) {
+            const error = err as Error;
+            console.error("회원탈퇴 오류", error.message);
+            alert("회원 탈퇴 처리 중 오류가 발생했습니다. 다시 시도해 주세요.");
+        }
+    };
 
     return (
         <section>
@@ -50,7 +77,12 @@ const MyPageInterface = () => {
                     >
                         로그아웃
                     </button>
-                    <button className='button-0 text-[var(--gray-1)] border-1 border-[var(--gray-1)] hover:text-[#e80404] hover:border-[#e80404] transition duration-300'>회원탈퇴</button>
+                    <button 
+                        className='button-0 text-[var(--gray-1)] border-1 border-[var(--gray-1)] hover:text-[#e80404] hover:border-[#e80404] transition duration-300'
+                        onClick={handleUserDelete}
+                    >
+                        회원탈퇴
+                    </button>
                 </div>
             </div>
         </section>

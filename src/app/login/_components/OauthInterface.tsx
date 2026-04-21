@@ -17,6 +17,10 @@ const OauthInterface = ({message}: MassageProps) => {
         const { error: err } = await supabase.auth.signInWithOAuth({
             provider: "google",
             options: {
+                queryParams: {
+                    prompt: 'select_account',
+                    access_type: 'offline',
+                },
                 redirectTo: `${location.origin}/api/auth/callback`, 
             },
         });

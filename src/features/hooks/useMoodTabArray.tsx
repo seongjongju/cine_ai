@@ -35,20 +35,11 @@ const useMoodTabArray = (movies: Movie[]) => {
     const thinkArray = [...filteredThink_0, ...filteredThink_1, ...filteredThink_2, ...filteredThink_3, ...filteredThink_4];
     const thinkMovies = thinkArray.filter((v, i) => thinkArray.indexOf(v) === i);
 
-    //가볍게 탭
-    const filteredLight_0 = movies.filter(mv => mv.genre_ids?.includes(16));
-    const filteredLight_1 = movies.filter(mv => mv.genre_ids?.includes(35));
-    const filteredLight_2 = movies.filter(mv => mv.genre_ids?.includes(10770));
-    const filteredLight_3 = movies.filter(mv => mv.genre_ids?.includes(10751));
-    const lightArray = [...filteredLight_0, ...filteredLight_1, ...filteredLight_2, ...filteredLight_3];
-    const lightMovies = lightArray.filter((v, i) => lightArray.indexOf(v) === i);
-
     return {
         comedyMovie,
         cryMovies,
         tensionMovies,
         thinkMovies,
-        lightMovies
     }
 };
 

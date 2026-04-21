@@ -9,6 +9,7 @@ import { paginations } from '@/shared/utils/paginations';
 const Discover_filmsPage = async ({ searchParams }: { searchParams: Promise<{ page?: string }> }) => {
     const { page } = await searchParams;
     const allMovies = await getAllMovies(Number(page));
+    console.log(allMovies)
     const path = 'discover_films';
 
     return (
