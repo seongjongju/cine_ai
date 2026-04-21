@@ -18,6 +18,21 @@
     background: linear-gradient(to top, #000 0%, transparent 100%);
 }
 
+.save-ico {
+    width: 24px;
+    height: 24px;
+}
+
+.save-ico path {
+    fill: none;            
+    stroke: var(--gray-1);       
+    stroke-width: 1.5;
+}
+
+.save-ico:hover path {
+    fill: var(--gray-1);
+}
+
 .view-detail {
     position: relative;
     z-index: 10;

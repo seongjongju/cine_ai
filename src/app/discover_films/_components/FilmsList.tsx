@@ -30,7 +30,7 @@ const FilmsList = ({ allMovies }: AllMoviesProps) => {
                             </span>
                             {
                                 allMovie.genre_ids ? getGenreNames(allMovie.genre_ids, genres)
-                                : "정보없음" 
+                                : "정보 없음" 
                             }
                         </p>
                         <h6 className='films-list__name'>
