@@ -6,8 +6,6 @@ import React from 'react';
 const Intro = () => {
     const {user} = useUser();
 
-    console.log(user)
-
     return (
         <section className='intro'>
             <div className='inner intro__inner'>

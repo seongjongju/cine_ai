@@ -12,6 +12,7 @@ interface MassageProps {
 const OauthInterface = ({message}: MassageProps) => {
     const {user} = useUser();
     const router = useRouter();
+
     //구글
     const signInWithGoogle = async () => {
         const { error: err } = await supabase.auth.signInWithOAuth({
@@ -53,7 +54,7 @@ const OauthInterface = ({message}: MassageProps) => {
             router.push('/');
             return;
         }
-    }, [])
+    }, []);
 
     return (
         <div className='login-btns'>

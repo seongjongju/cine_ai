@@ -25,6 +25,7 @@ const MyPageInterface = () => {
         const { error } = await supabase.auth.signOut();
         if (error) console.error('로그아웃 에러:', error);
         else {
+            alert('로그아웃이 완료되었습니다.');
             router.refresh();
             router.push('/');
         }
