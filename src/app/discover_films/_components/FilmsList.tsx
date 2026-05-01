@@ -4,7 +4,6 @@ import { getGenreNames } from '@/shared/utils/get.genre.names';
 import React, { useEffect, useReducer, useState } from 'react';
 import Link from 'next/link';
 import { AllMovie } from '@/types/movie';
-import { paginations } from '@/shared/utils/paginations';
 import Paginations from './Paginations';
 import { useRouter } from 'next/navigation';
 
@@ -41,26 +40,15 @@ const FilmsList = ({ allMovies, page }: AllMoviesProps) => {
     const [loading, setLoading] = useState<boolean>(false);
     const router = useRouter();
 
-    const genreReducer = (state:AllMovie[], action: { type: string }):AllMovie[] => {
-        switch (action.type) {
-            case 'all':
-                return allMovies; 
-            case 'drama':
-            case 'thriller':
-            case 'action':
-            case 'comedy':
-            case 'romance':
-            case 'horror':
-            case 'animation':
-                const targetId = GENRE_IDS[action.type];
-                return allMovies.filter(mv => mv.genre_ids?.includes(targetId));
-            default:
-                return state;
-        }
-    };
+    //필터링
+    const filteredMovies = React.useMemo(() => {
+        if (genreSaved === 'all') return allMovies;
 
-    const [genreState, dispatch] = useReducer(genreReducer, allMovies);
-    const currentPageMovies = genreState.slice((page - 1) * 20, (page - 1) * 20 + 20);
+        const targetId = GENRE_IDS[genreSaved as keyof typeof GENRE_IDS];
+        return allMovies.filter(mv => mv.genre_ids?.includes(targetId));
+    }, [genreSaved, allMovies]);
+
+    const currentPageMovies = filteredMovies.slice((page - 1) * 20, (page - 1) * 20 + 20);
     const uniqueMovies = Array.from(
         new Map(currentPageMovies.map(mv => [mv.id, mv])).values()
     );
@@ -68,7 +56,6 @@ const FilmsList = ({ allMovies, page }: AllMoviesProps) => {
     useEffect(() => {
         const saved = sessionStorage.getItem('lastGenre');
         if (saved) {
-            dispatch({ type: saved });
             setGenreSaved(saved);
         }
     }, []);
@@ -78,7 +65,6 @@ const FilmsList = ({ allMovies, page }: AllMoviesProps) => {
 
         const type = e.target.value;
         sessionStorage.setItem('lastGenre', type);
-        dispatch({ type });
 
         setGenreSaved(type);
         router.push('discover_films?page=1');
@@ -154,7 +140,7 @@ const FilmsList = ({ allMovies, page }: AllMoviesProps) => {
                         </div>
 
                         <Paginations
-                            paginations={genreState.length}
+                            paginations={filteredMovies.length}
                             currentPage={page}
                             path='discover_films'
                         />
