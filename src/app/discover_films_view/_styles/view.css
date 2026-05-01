@@ -419,6 +419,10 @@
 }
 
 @media screen and (max-width: 640px) {
+    .back-poster {
+        height: 70vh;
+    }
+
     .view-detail__name {
         font-size: 40px;
     }

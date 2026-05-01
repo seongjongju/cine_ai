@@ -1,12 +1,15 @@
 'use client';
-import { AllMoviesProps } from '@/app/discover_films/_components/Films';
 import { useMovie } from '@/features/hooks/useMovie';
 import { getGenreNames } from '@/shared/utils/get.genre.names';
 import { AllMovie } from '@/types/movie';
 import Link from 'next/link';
 import React, { useRef, useState } from 'react';
 
-const SearchInterface = ({ allMovies }: AllMoviesProps) => {
+export interface SearchMoviesProps {
+    allMovies: AllMovie[];
+};
+
+const SearchInterface = ({ allMovies }: SearchMoviesProps) => {
     const { genres, isLoading } = useMovie();
     const [searchInput, setSearchInput] = useState<string>('');
     const [foundedList, setFoundedList] = useState<AllMovie[]>([]);

@@ -53,6 +53,23 @@
     z-index: 1;
 }
 
+.films-selects {
+    margin-bottom: 40px;
+}
+
+.films-select {
+    display: block;
+    color: #fff;
+    height: 50px;
+    border: 1px solid var(--gold-0);
+    padding: 0 15px;
+    outline: none;
+}
+
+.films-select option {
+    background: #0E0D0A;
+}
+
 @media screen and (max-width: 1080px) {
     .films-list {
         grid-template-columns: repeat(3, 1fr);
@@ -70,6 +87,12 @@
 @media screen and (max-width: 768px) {
     .films-list {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .films-select {
+        height: 40px;
+        padding: 0 10px;
+        font-size: 14px;
     }
 }
 

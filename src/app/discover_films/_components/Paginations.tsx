@@ -1,22 +1,25 @@
+'use client';
 import React from 'react';
 
 interface PaginationsProps {
-    paginations: number[],
-    currentPage: number,
-    path: string,
+    paginations: number;
+    currentPage: number;
+    path: string;
 };
 
 const Paginations = ({ paginations, currentPage, path }: PaginationsProps) => {
+    const pagingArray = Array.from({length: Math.ceil(paginations / 20)}, (_, i) => i + 1);
+
     return (
         <div className='paginations'>
             {
-                currentPage > 5 &&
+                paginations > 100 && currentPage > 5 &&
                 <a href={`${path}?page=5`} className='paging'>←</a>
             }
             {
                 currentPage <= 5 ? 
                 (
-                    paginations.slice(0,5).map((paging) => (
+                    pagingArray.slice(0,5).map((paging) => (
                         <a 
                             href={`${path}?page=${paging}`} 
                             key={paging}
@@ -28,7 +31,7 @@ const Paginations = ({ paginations, currentPage, path }: PaginationsProps) => {
                 )
                 :
                 (
-                    paginations.slice(5,10).map((paging) => (
+                    pagingArray.slice(5,10).map((paging) => (
                         <a 
                             href={`${path}?page=${paging}`} 
                             key={paging}
@@ -40,7 +43,7 @@ const Paginations = ({ paginations, currentPage, path }: PaginationsProps) => {
                 )
             }
             {
-                currentPage <= 5 &&
+                paginations > 100 && currentPage < 6 &&
                 <a href={`${path}?page=6`} className='paging'>→</a>
             }
         </div>
