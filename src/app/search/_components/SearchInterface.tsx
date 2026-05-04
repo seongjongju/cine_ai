@@ -12,6 +12,7 @@ export interface SearchMoviesProps {
 const SearchInterface = ({ allMovies }: SearchMoviesProps) => {
     const { genres, isLoading } = useMovie();
     const [searchInput, setSearchInput] = useState<string>('');
+    const [searchOption, setSearchOption] = useState<string>('title');
     const [foundedList, setFoundedList] = useState<AllMovie[]>([]);
     const [movieCount, setMovieCount] = useState<number>(20);
 
@@ -23,25 +24,28 @@ const SearchInterface = ({ allMovies }: SearchMoviesProps) => {
         setSearchInput(e.target.value);
     };
 
+    const handleChangeSearchSelect = (e:React.ChangeEvent<HTMLSelectElement>) => {
+        setSearchOption(e.target.value);
+    };
+
     const handleClickSearchButton = (e:React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         
         if(searchInput === '') {
-            alert('영화명 또는 장르를 입력해주세요.');
+            searchOption === 'title' ? alert('영화제목을 입력해주세요.') : alert('장르를 입력해주세요.');
             searchInputRef.current?.focus();
             return;
         };
-        const foundMovies = allMovies.filter(mv => {
-            const isTitle = mv.title.includes(searchInput.trim()); //영화제목
-            const isGenre = getGenreNames(mv.genre_ids, genres).includes(searchInput.trim()); //영화장르
 
-            return isTitle || isGenre;
-        });
-        
-        setFoundedList(foundMovies);
-        
+        if(searchOption === 'title') {
+            const foundMovies = allMovies.filter(mv => mv.title.includes(searchInput.trim())); //영화 제목
+            setFoundedList(foundMovies);
+        } else if(searchOption === 'genre') {
+            const foundGenre = allMovies.filter(mv => getGenreNames(mv.genre_ids, genres).includes(searchInput.trim().toUpperCase())); //영화 장르
+            setFoundedList(foundGenre);   
+        }    
+    
         setMovieCount(20);
-
         setSearchInput('');
     };
 
@@ -51,20 +55,29 @@ const SearchInterface = ({ allMovies }: SearchMoviesProps) => {
     return (
         <div className='inner'>
             <form className='search-form'>
-                <input 
-                    type="text" 
-                    placeholder='영화명 또는 장르를 입력하세요.' 
-                    className='search-form__input' 
-                    value={searchInput}
-                    onChange={handleChangeSearchInput}
-                    ref={searchInputRef}
-                />
-                <button 
-                    className='search-form__button'
-                    onClick={handleClickSearchButton}
+                <select 
+                    className='search-form__select'
+                    onChange={handleChangeSearchSelect}
                 >
-                    검색
-                </button>
+                    <option value="title">제목</option>
+                    <option value="genre">장르</option>
+                </select>
+                <div className='search-form__input-wrap'>
+                    <input 
+                        type="text" 
+                        placeholder={searchOption === 'title' ? '영화제목을 입력하세요.' : '장르를 입력하세요.'} 
+                        className='search-form__input' 
+                        value={searchInput}
+                        onChange={handleChangeSearchInput}
+                        ref={searchInputRef}
+                    />
+                    <button 
+                        className='search-form__button'
+                        onClick={handleClickSearchButton}
+                    >
+                        검색
+                    </button>
+                </div>
             </form> {/* search-form */}
 
             <p className='search-count'>
