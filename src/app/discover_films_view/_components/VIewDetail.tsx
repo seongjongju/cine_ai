@@ -3,10 +3,11 @@ import { useMovie } from '@/features/hooks/useMovie';
 import { getGenreNames } from '@/shared/utils/get.genre.names';
 import { Detail } from '@/types/movie';
 import { useRouter } from 'next/navigation';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import ViewDetailQna from './ViewDetailQna';
 import ViewDetailMoodBoard from './ViewDetailMoodBoard';
+import { useMovieStore } from '@/store/movieStore';
 
 interface DetailProps {
     movieDetail:Detail;
@@ -33,6 +34,12 @@ const countryMap: { [key: string]: string } = {
 const VIewDetail = ({ movieDetail }: DetailProps) => {
     const router = useRouter();
     const {genres} = useMovie();
+    const addRecentMovies = useMovieStore((state) => state.addRecentMovies);
+
+    //상세페이지를 들어오면 상세페이지의 정보를 저장한다.   
+    useEffect(() => {
+        addRecentMovies(movieDetail);
+    }, [addRecentMovies, movieDetail]);
 
     //스태프 배열
     const crews = movieDetail.credits.crew;

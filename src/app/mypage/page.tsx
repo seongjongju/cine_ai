@@ -1,4 +1,5 @@
 import React from 'react';
+import 'swiper/css';
 import './_styles/mypage.css';
 import MyPageInterface from './_components/MyPageInterface';
 import MyPageRecentActivity from './_components/MyPageRecentActivity';
