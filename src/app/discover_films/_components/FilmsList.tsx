@@ -1,7 +1,7 @@
 'use client';
 import { useMovie } from '@/features/hooks/useMovie';
 import { getGenreNames } from '@/shared/utils/get.genre.names';
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { AllMovie } from '@/types/movie';
 import Paginations from './Paginations';
@@ -53,13 +53,7 @@ const FilmsList = ({ allMovies, page }: AllMoviesProps) => {
         new Map(currentPageMovies.map(mv => [mv.id, mv])).values()
     );
 
-    useEffect(() => {
-        const saved = sessionStorage.getItem('lastGenre');
-        if (saved) {
-            setGenreSaved(saved);
-        }
-    }, []);
-
+    //장르 필터 상태를 바꿈
     const handleChangeGenreSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setLoading(true);
 
@@ -73,6 +67,17 @@ const FilmsList = ({ allMovies, page }: AllMoviesProps) => {
             setLoading(false);
         }, 1000);
     };
+
+    //로컬에 저장된 장르필터 상태를 불러옴
+    useEffect(() => {
+        const genreSaveded = () => {
+            const saved = sessionStorage.getItem('lastGenre');
+            if (saved) {
+                setGenreSaved(saved);
+            }
+        };   
+        genreSaveded();
+    }, []);
     
     if(!allMovies) return null;
     if(isLoading) return null;

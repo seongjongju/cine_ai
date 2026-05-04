@@ -27,13 +27,19 @@ const SearchInterface = ({ allMovies }: SearchMoviesProps) => {
         e.preventDefault();
         
         if(searchInput === '') {
-            alert('영화명을 입력해주세요.');
+            alert('영화명 또는 장르를 입력해주세요.');
             searchInputRef.current?.focus();
             return;
         };
-        const foundMovies = allMovies.filter(mv => mv.title.includes(searchInput.trim()));
+        const foundMovies = allMovies.filter(mv => {
+            const isTitle = mv.title.includes(searchInput.trim()); //영화제목
+            const isGenre = getGenreNames(mv.genre_ids, genres).includes(searchInput.trim()); //영화장르
 
+            return isTitle || isGenre;
+        });
+        
         setFoundedList(foundMovies);
+        
         setMovieCount(20);
 
         setSearchInput('');
@@ -47,7 +53,7 @@ const SearchInterface = ({ allMovies }: SearchMoviesProps) => {
             <form className='search-form'>
                 <input 
                     type="text" 
-                    placeholder='영화명을 입력하세요.' 
+                    placeholder='영화명 또는 장르를 입력하세요.' 
                     className='search-form__input' 
                     value={searchInput}
                     onChange={handleChangeSearchInput}
