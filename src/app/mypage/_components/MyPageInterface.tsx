@@ -2,6 +2,7 @@
 import { supabase } from '@/app/lib/supabaseClient';
 import { useUser } from '@/providers/UsersProvider';
 import Title from '@/shared/components/title/Title';
+import { recentMovieStoreClear } from '@/store/movieStore';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
@@ -27,6 +28,7 @@ const MyPageInterface = () => {
         else {
             alert('로그아웃이 완료되었습니다.');
             router.refresh();
+            recentMovieStoreClear(); //최근 들어간 상세페이지 목록 전체 삭제
             router.push('/');
         }
     };
@@ -47,7 +49,6 @@ const MyPageInterface = () => {
             if(!res.ok) throw new Error("회원 탈퇴 실패");
 
             alert("회원 탈퇴가 완료되었습니다. 그동안 이용해 주셔서 감사합니다.");
-            console.log("회원 탈퇴 성공");
 
             router.refresh();
             router.push('/');
