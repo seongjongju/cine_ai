@@ -12,7 +12,16 @@ const Quick_menu = () => {
                     window.scrollTo(0,0);
                 }}
             >
-                TOP
+                ↑
+            </button>
+            <button 
+                className='bottom-bottom'
+                onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                    e.preventDefault();
+                    window.scrollTo({top: document.body.scrollHeight, behavior: "smooth"});
+                }}
+            >
+                ↓
             </button>
         </div>
     );

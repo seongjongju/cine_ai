@@ -1,8 +1,12 @@
+'use client';
 import Link from 'next/link';
 import React from 'react';
 import Title from '@/shared/components/title/Title';
+import { useUser } from '@/providers/UsersProvider';
 
 const AboutIntro = () => {
+    const { user } = useUser();
+
     return (
         <section className='about-intro'>
             <div className='inner-2'>
@@ -103,9 +107,15 @@ const AboutIntro = () => {
                     </table>
                 </div> {/* table-wrap */}
                 <div className="flex gap-2 mt-6 sm:mt-10">
-                    <Link className="button-0 bg-[var(--gold-0)] text-[var(--black-1)]" href="/login">
-                        무료로 시작하기
-                    </Link>
+                    {
+                        user === null &&
+                        (
+                            <Link className="button-0 bg-[var(--gold-0)] text-[var(--black-1)]" href="/login">
+                                무료로 시작하기
+                            </Link>
+                        ) 
+                    }
+                    
                     <a className="button-0 text-[var(--gray-1)] border-1 border-[var(--gray-1)] 
                             hover:text-[var(--gold-0)] hover:border-[var(--gold-0)]
                             transition duration-300" 

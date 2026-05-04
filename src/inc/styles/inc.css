@@ -206,7 +206,8 @@
     z-index: 99;
 }
 
-.top-btn {
+.top-btn,
+.bottom-bottom {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -221,7 +222,8 @@
 }
 
 @media screen and (max-width: 640px) {
-    .top-btn {
+    .top-btn,
+    .bottom-bottom {
         width: 45px;
         font-size: 12px;
     }
