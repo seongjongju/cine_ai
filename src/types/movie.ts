@@ -1,3 +1,5 @@
+import { Database, Json } from "./supabase";
+
 export type AllMovie = {
     adult: boolean;
     backdrop_path: string | null;
@@ -115,3 +117,14 @@ export type Detail = {
     vote_average: number;
     vote_count: number;
 };
+
+export type Wishlist = {
+    created_at: string | null;
+    genres: Json;
+    id: string;
+    poster_path: string | null;
+    title: string | null;
+    tmdb_id: number;
+    user_id: string;
+    vote_average: number | null;
+}[] | null | undefined;

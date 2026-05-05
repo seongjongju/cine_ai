@@ -18,6 +18,10 @@
     background: linear-gradient(to top, #000 0%, transparent 100%);
 }
 
+.save-btn {
+    cursor: pointer;    
+}
+
 .save-ico {
     width: 24px;
     height: 24px;
@@ -32,6 +36,15 @@
 .save-ico:hover path {
     fill: var(--gray-1);
 }
+
+.save-btn.is-save {
+    pointer-events: none;
+}
+
+.save-btn.is-save .save-ico path {
+    fill: var(--gray-1);
+}
+
 
 .view-detail {
     position: relative;
