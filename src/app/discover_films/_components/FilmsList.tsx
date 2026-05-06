@@ -4,7 +4,7 @@ import { getGenreNames } from '@/shared/utils/get.genre.names';
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { AllMovie } from '@/types/movie';
-import Paginations from './Paginations';
+import Paginations from '@/shared/components/pagination/Paginations';
 import { useRouter } from 'next/navigation';
 
 export interface AllMoviesProps {

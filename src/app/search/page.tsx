@@ -1,7 +1,7 @@
 import React from 'react';
 import './_styles/search.css';
 import SearchInterface from './_components/SearchInterface';
-import { getAllMovies } from '@/features/services/getMovieService';
+import { getAllMovies } from '@/features/services/movie/getMovieService';
 import { paginations } from '@/shared/utils/paginations';
 
 const SearchPage = async () => {

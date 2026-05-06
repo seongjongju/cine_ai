@@ -5,7 +5,7 @@ import Header from "@/inc/components/header/Header";
 import Footer from "@/inc/components/footer/Footer";
 import QueryProvider from "@/providers/QueryProvider";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
-import { getGenres, getMovies } from "@/features/services/getMovieService";
+import { getGenres, getMovies } from "@/features/services/movie/getMovieService";
 import Quick_menu from "@/inc/components/quick/Quick_menu";
 import { createSupabaseServerClient } from '@/app/lib/supabaseServer';
 import { UsersProvider } from "@/providers/UsersProvider";
