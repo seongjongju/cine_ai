@@ -80,7 +80,7 @@ const VIewDetail = ({ movieDetail, wishlist, viewId }: DetailProps) => {
             setIsSave(true);
             alert(`${result.message}`);
         }catch(err) {
-           console.error('위시리스트 저장 에러', err);
+            console.error('위시리스트 저장 에러', err);
         };
     };
 

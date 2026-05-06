@@ -31,5 +31,5 @@ export const addWishList = async (movie: Detail) => {
         return { success: false, message: "등록 중 오류가 발생했습니다." };
     }
 
-   return { success: true, message: "찜 목록에 추가되었습니다!" };
+    return { success: true, message: "찜 목록에 추가되었습니다!" };
 };
