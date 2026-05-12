@@ -17,7 +17,7 @@ const LoginPage = async ({ searchParams }: { searchParams: Promise<{ message?: s
                     <OauthInterface message={message} />
                     
                     <p className='text-[#5a5550] text-center break-keep text-sm md:text-base'>
-                        가입 시 <Link href={''} className='underline underline-offset-3'>이용약관</Link> 및 <Link href={''} className='underline underline-offset-3'>개인정보처리방침</Link>
+                        가입 시 <Link href={'/terms'} className='underline underline-offset-3'>이용약관</Link> 및 <Link href={'/privacy'} className='underline underline-offset-3'>개인정보처리방침</Link>
                         에 동의하는 것으로 간주됩니다.
                     </p>
                 </div>
