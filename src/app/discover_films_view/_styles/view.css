@@ -37,10 +37,6 @@
     fill: var(--gray-1);
 }
 
-.save-btn.is-save {
-    pointer-events: none;
-}
-
 .save-btn.is-save .save-ico path {
     fill: var(--gray-1);
 }

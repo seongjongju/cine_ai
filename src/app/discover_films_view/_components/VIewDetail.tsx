@@ -10,6 +10,7 @@ import ViewDetailMoodBoard from './ViewDetailMoodBoard';
 import { useMovieStore } from '@/store/movieStore';
 import { useUser } from '@/providers/UsersProvider';
 import { addWishList } from '@/features/services/wish/addWishListService';
+import { deleteWishlist } from '@/features/services/wish/deleteWishListService';
 
 interface DetailProps {
     movieDetail:Detail;
@@ -42,6 +43,8 @@ const VIewDetail = ({ movieDetail, wishlist, viewId }: DetailProps) => {
     const [isSave, setIsSave] = useState(false);
     const addRecentMovies = useMovieStore((state) => state.addRecentMovies);
 
+    console.log(isSave)
+
     //상세페이지를 들어오면 상세페이지의 정보를 저장한다.   
     useEffect(() => {
         if(!user) return;
@@ -66,9 +69,11 @@ const VIewDetail = ({ movieDetail, wishlist, viewId }: DetailProps) => {
     const releseData = krResults?.release_dates || []; 
     const rating = releseData.map(ret => ret.certification).filter(c => c !== "");  
 
+    //위시리스트에 이미 저장되었는지 여부 확인을 위해 id추출
+    const wishId = wishlist?.find(wish => wish.tmdb_id === Number(viewId))?.tmdb_id;
+
     //위시리스트에 저장
-    const handleClickWishButton = async (e:React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault();
+    const handleClickWishButton = async (id: number) => {
         if(!user) {
             alert('로그인이 필요한 서비스입니다.');
             router.push('/login');
@@ -76,17 +81,24 @@ const VIewDetail = ({ movieDetail, wishlist, viewId }: DetailProps) => {
         }
 
         try{
-            const result = await addWishList(movieDetail);
-            setIsSave(true);
-            alert(`${result.message}`);
+            if(!wishId) {
+                const addResult = await addWishList(movieDetail);
+                setIsSave(true);
+                alert(`${addResult.message}`);
+                router.refresh();
+                return;
+            } else {
+                const deleteResult = await deleteWishlist(id);
+                setIsSave(false);
+                alert(`${deleteResult.message}`);
+                router.refresh();
+                return;
+            }
         }catch(err) {
-            console.error('위시리스트 저장 에러', err);
+            console.error('위시리스트 저장/삭제 에러', err);
         };
     };
 
-    //위시리스트에 이미 저장되었는지 여부 확인을 위해 id추출
-    const wishId = wishlist?.find(wish => wish.tmdb_id === Number(viewId))?.tmdb_id;
-    
     return (
         <div>
             <div 
@@ -122,7 +134,10 @@ const VIewDetail = ({ movieDetail, wishlist, viewId }: DetailProps) => {
                         <div className='flex gap-2'>
                             <button 
                                 className={`save-btn ${wishId || isSave ? 'is-save' : ''}`}
-                                onClick={handleClickWishButton}
+                                onClick={(e:React.MouseEvent<HTMLButtonElement>) => {
+                                    e.preventDefault();
+                                    handleClickWishButton(movieDetail.id)
+                                }}
                             >
                                 <svg 
                                     className='save-ico'
