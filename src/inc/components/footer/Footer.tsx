@@ -19,10 +19,10 @@ const Footer = () => {
 
                 <ul className='footer__list'>
                     <li>
-                        <Link href={'/about'}>About</Link>
+                        <Link href={'/terms'}>이용약관</Link>
                     </li>
                     <li>
-                        <Link href={'/'}>Policy</Link>
+                        <Link href={'/privacy'}>개인정보처리방침</Link>
                     </li>
                 </ul>
             </nav>
