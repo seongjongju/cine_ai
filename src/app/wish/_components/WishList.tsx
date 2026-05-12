@@ -23,7 +23,7 @@ const WishList = ({wishlist, page}: WishlistProps) => {
     const currentPageWishlist = wishlist.slice((page - 1) * 20, (page - 1) * 20 + 20);
 
     //위시리스트 아이템 삭제
-    const deleteWishItem = async (id: string) => {
+    const deleteWishItem = async (id: number) => {
         try {
             const result = await deleteWishlist(id);
             alert(`${result.message}`);
@@ -73,7 +73,7 @@ const WishList = ({wishlist, page}: WishlistProps) => {
                                                 className='wishlist__btn'
                                                 onClick={(e:React.MouseEvent<HTMLButtonElement>) => {
                                                     e.preventDefault();
-                                                    deleteWishItem(item.id)
+                                                    deleteWishItem(item.tmdb_id)
                                                 }}
                                             >
                                                 삭제
