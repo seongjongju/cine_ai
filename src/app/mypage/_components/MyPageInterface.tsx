@@ -51,6 +51,7 @@ const MyPageInterface = () => {
             alert("회원 탈퇴가 완료되었습니다. 그동안 이용해 주셔서 감사합니다.");
 
             router.refresh();
+            recentMovieStoreClear(); //최근 들어간 상세페이지 목록 전체 삭제
             router.push('/');
         } catch(err) {
             const error = err as Error;
