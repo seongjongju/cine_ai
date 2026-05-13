@@ -1,3 +1,6 @@
+'use client';
+import { useUser } from '@/providers/UsersProvider';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 
 const geminiMode = [
@@ -16,12 +19,20 @@ const geminiEx = [
 ];
 
 const ViewDetailQna = () => {
+    const { user } = useUser();
     const [modeTab, setModeTab] = useState<string>('');
     const [exTab, setExTab] = useState<string>('');
     const [exText, setExText] = useState<string>('');
     const [qnaTextarea, setQnaTextarea] = useState<string>('');
+    const router = useRouter();
 
     const handleChangeQnaTextarea = (e:React.ChangeEvent<HTMLTextAreaElement>) => {
+        if(!user) {
+            alert('로그인이 필요한 서비스입니다.');
+            router.push('/login');
+            return;
+        };
+
         setExText('');
         setQnaTextarea(e.target.value);
     };
@@ -59,6 +70,12 @@ const ViewDetailQna = () => {
                                     key={ex.id} 
                                     className={`gemini-qna__li ${ex.id === exTab ? 'is-active' : ''}`}
                                     onClick={() => {
+                                        if(!user) {
+                                            alert('로그인이 필요한 서비스입니다.');
+                                            router.push('/login');
+                                            return;
+                                        };
+
                                         setExTab(ex.id);
                                         setExText(ex.text);
                                     }}
