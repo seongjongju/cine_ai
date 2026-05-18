@@ -1,7 +1,7 @@
 'use client';
 import { useMovie } from '@/features/hooks/useMovie';
 import { getGenreNames } from '@/shared/utils/get.genre.names';
-import { Detail, Wishlist } from '@/types/movie';
+import { Detail, Video, Wishlist } from '@/types/movie';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -15,6 +15,7 @@ import { deleteWishlist } from '@/features/services/wish/deleteWishListService';
 interface DetailProps {
     movieDetail:Detail;
     wishlist: Wishlist;
+    video: Video;
     viewId: number;
 };
 
@@ -36,7 +37,7 @@ const countryMap: { [key: string]: string } = {
     'PH': '필리핀',
 };
 
-const VIewDetail = ({ movieDetail, wishlist, viewId }: DetailProps) => {
+const VIewDetail = ({ movieDetail, wishlist, video, viewId }: DetailProps) => {
     const {user} = useUser();
     const router = useRouter();
     const {genres} = useMovie();
@@ -67,7 +68,7 @@ const VIewDetail = ({ movieDetail, wishlist, viewId }: DetailProps) => {
     const releseData = krResults?.release_dates || []; 
     const rating = releseData.map(ret => ret.certification).filter(c => c !== "");  
 
-    //위시리스트에 이미 저장되었는지 여부 확인을 위해 id추출
+    //위시리스트에 이미 저장되었는지 여부 확인을 위해 id확인
     const wishId = wishlist?.find(wish => wish.tmdb_id === Number(viewId))?.tmdb_id;
 
     //위시리스트에 저장
@@ -95,6 +96,13 @@ const VIewDetail = ({ movieDetail, wishlist, viewId }: DetailProps) => {
         }catch(err) {
             console.error('위시리스트 저장/삭제 에러', err);
         };
+    };
+
+    //AI에게 제공할 영화 기본 정보 오브젝트
+    const movieData = {
+        title: movieDetail?.title,
+        overview: movieDetail?.overview,
+        genre: getGenreNames(movieDetail?.genres.map(genre => genre.id), genres)
     };
 
     return (
@@ -143,15 +151,6 @@ const VIewDetail = ({ movieDetail, wishlist, viewId }: DetailProps) => {
                                 >
                                     <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                                 </svg>
-                            </button>
-                            <button className='text-[var(--gray-1)] cursor-pointer hover:text-[var(--gold-0)] hover:border-[var(--gold-0)] transition duration-300'>
-                                넷플릭스
-                            </button>
-                            <button className='text-[var(--gray-1)] cursor-pointer hover:text-[var(--gold-0)] hover:border-[var(--gold-0)] transition duration-300'>
-                                쿠팡플레이
-                            </button>
-                            <button className='text-[var(--gray-1)] cursor-pointer hover:text-[var(--gold-0)] hover:border-[var(--gold-0)] transition duration-300'>
-                                티빙
                             </button>
                         </div>
                     </div> {/* view-detail */}
@@ -252,8 +251,34 @@ const VIewDetail = ({ movieDetail, wishlist, viewId }: DetailProps) => {
                             ))
                         }
                     </Swiper>
-
-                    <ViewDetailQna />
+                    
+                    {
+                        video?.key !== undefined ?  
+                        (   
+                            <>
+                                <p className='title__chip md'>
+                                    <span className='title__line'></span>
+                                    예고편
+                                </p>
+                                <div className='video-wrap'>
+                                    <iframe 
+                                        width="100%" 
+                                        height="100%" 
+                                        src={`https://www.youtube.com/embed/${video?.key}`}
+                                        title="YouTube video player" 
+                                        frameBorder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                        referrerPolicy="strict-origin-when-cross-origin" 
+                                        allowFullScreen
+                                    ></iframe>
+                                </div>
+                            </>
+                        ) : null
+                    }
+                    
+                    <ViewDetailQna 
+                        movieData={movieData}
+                    />
 
                     <ViewDetailMoodBoard />
 

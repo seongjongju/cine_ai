@@ -1,7 +1,18 @@
 'use client';
 import { useUser } from '@/providers/UsersProvider';
 import { useRouter } from 'next/navigation';
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import React, { useState } from 'react';
+
+type MovieData = {
+    title: string;
+    overview: string;
+    genre: string;
+};
+
+interface MovieDataProps {
+    movieData: MovieData;
+};
 
 const geminiMode = [
     {id: 'not spoiler', icon: '🎭', title: '스포 없이', text: '궁금증만 자극하는 흥미 위주 요약'},
@@ -10,20 +21,13 @@ const geminiMode = [
     {id: 'friend', icon: '🍺', title: '친구한테', text: '반말, 유머, 과장 섞인 캐주얼 추천'},
 ];
 
-const geminiEx = [
-    {id: 'ex_0', text: '고구마 구간 있나요?'},
-    {id: 'ex_1', text: '반전 있나요? (스포X)'},
-    {id: 'ex_2', text: '쿠키 영상 있어요?'},
-    {id: 'ex_3', text: '눈물 주의 구간?'},
-    {id: 'ex_4', text: '원작 있나요?'},
-];
-
-const ViewDetailQna = () => {
+const ViewDetailQna = ({ movieData } :MovieDataProps) => {
     const { user } = useUser();
     const [modeTab, setModeTab] = useState<string>('');
-    const [exTab, setExTab] = useState<string>('');
-    const [exText, setExText] = useState<string>('');
     const [qnaTextarea, setQnaTextarea] = useState<string>('');
+    const [aiAnswer, setAiAnswer] = useState<string>('');
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+
     const router = useRouter();
 
     const handleChangeQnaTextarea = (e:React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -33,10 +37,58 @@ const ViewDetailQna = () => {
             return;
         };
 
-        setExText('');
         setQnaTextarea(e.target.value);
     };
 
+    const handleClickAiSubmit = async (e:React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+
+        if(qnaTextarea.trim() === '') {
+            alert('질문을 입력하세요.');
+            return;
+        };
+
+        const geminiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
+        if(geminiKey === undefined) return;
+        
+        const geminiAI = new GoogleGenerativeAI(geminiKey);
+
+        try {
+            setIsLoading(true);
+
+            const modeText = geminiMode.find(mode => mode.id === modeTab)?.text
+
+            const model = geminiAI.getGenerativeModel(
+                {
+                    model: "gemini-2.5-flash",
+                    systemInstruction: `당신은 영화를 모드에 맞게 설명해 주는 전문가입니다. 아래 영화 정보를 바탕으로
+                        사용자가 선택한 ${modeTab} ${modeText}모드에 맞게 친절히 300자 이내로 꼭 끊어서 답변해주세요.
+
+                        [영화정보]
+                        - 제목: ${movieData.title}
+                        - 장르: ${movieData.genre}
+                        - 줄거리: ${movieData.overview}
+                    `,
+                    generationConfig: {},
+                    safetySettings: []
+                },
+            );
+
+            const result = await model.generateContent(qnaTextarea);
+            const res = result.response;
+
+            setAiAnswer(res.text());
+        } catch(err) {
+            if (err instanceof Error) {
+                console.log("제미나이 답변 에러", err.message); 
+            } else {
+                console.log(String(err));
+            }
+        } finally {
+            setIsLoading(false);
+        }
+    };   
+    
     return (
         <div>
             <p className='title__chip md'>
@@ -63,36 +115,19 @@ const ViewDetailQna = () => {
             <div className='gemini-qna'>
                 <div className='gemini-qna__q'>
                     <h6 className='gemini-qna__title'>궁금한 거 물어봐</h6>
-                    <ul className='gemini-qna__ex'>
-                        {
-                            geminiEx.map((ex) => (
-                                <li 
-                                    key={ex.id} 
-                                    className={`gemini-qna__li ${ex.id === exTab ? 'is-active' : ''}`}
-                                    onClick={() => {
-                                        if(!user) {
-                                            alert('로그인이 필요한 서비스입니다.');
-                                            router.push('/login');
-                                            return;
-                                        };
-
-                                        setExTab(ex.id);
-                                        setExText(ex.text);
-                                    }}
-                                >
-                                    {ex.text}
-                                </li>
-                            ))
-                        }
-                    </ul> {/* gemini-qna__ex */}
                     <form className='gemini-qna__form'>
                         <textarea 
-                            placeholder='직접 질문을 입력하세요.' 
+                            placeholder='질문을 입력하세요.' 
                             onChange={handleChangeQnaTextarea}
-                            value={exText ? exText : qnaTextarea}
+                            value={qnaTextarea}
                             className='gemini-qna__textarea' 
                         />
-                        <button className='gemini-qna__button'>질문하기</button>
+                        <button 
+                            className='gemini-qna__button'
+                            onClick={handleClickAiSubmit}
+                        >
+                            질문하기
+                        </button>
                     </form>
                 </div> {/* gemini-qna__q */}
 
@@ -102,19 +137,26 @@ const ViewDetailQna = () => {
                         AI 응답
                     </p>
                     {
-                        exText !== '' || qnaTextarea !== '' ? 
+                        qnaTextarea.trim() !== '' ? 
                         (
                             <p className='gemini-qna__user'>
-                                {exText ? exText : qnaTextarea}
+                                {qnaTextarea}
                             </p>
                         ) : null
                     }
-                    <p className='gemini-qna__answer'>
-                        반전이라기보다 폭로에 가깝습니다. 중반부에 예상치 못한 전환이 있는데, 이게 장르 자
-                        체를 갈아엎어버립니다. 스릴러적 긴장감이 갑자기 치고 들어오는 구조라서 — 알고 봐도
-                        충격이고, 모르고 봐도 충격입니다. 스포 없이 말하자면 지하에 무언가 있다는 것만 알
-                        고 들어가세요.
-                    </p>
+                    {
+                        isLoading ? 
+                        (
+                            <p className='text-[#ffffff]'>답변 작성중...</p>
+                        ) :
+                        (
+                            <p className='gemini-qna__answer'>
+                                {
+                                    aiAnswer !== "" ? aiAnswer : ""
+                                }
+                            </p>
+                        )
+                    }
                 </div> {/* gemini-qna__a */}
             </div> {/* gemini-qna */}
         </div>

@@ -132,6 +132,12 @@
     color: #fff;
 }
 
+.video-wrap {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin-bottom: 100px;
+}
+
 .gemini-mode {
     display: grid;
     grid-template-columns: repeat(4,1fr);
@@ -252,6 +258,7 @@
 }
 
 .gemini-qna__button {
+    display: block;
     font-size: 20px;
     background: var(--gold-0);
     height: 50px;
@@ -327,6 +334,7 @@
 
 .mood-board {
     margin-top: 1rem;
+    margin-bottom: 2rem;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 8px;
@@ -364,6 +372,10 @@
     }
 
     .cast-list {
+        margin-bottom: 10.5%;
+    }
+
+    .video-wrap {
         margin-bottom: 10.5%;
     }
 

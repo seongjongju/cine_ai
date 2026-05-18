@@ -5,8 +5,8 @@ export const getAllMovies = async (page: number = 1): Promise<AllMovie[]> => {
     const options = {
         method: 'GET',
         headers: {
-        accept: 'application/json',
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_MOVIE_API}`
+            accept: 'application/json',
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_MOVIE_API}`
         }
     };
 
@@ -27,8 +27,8 @@ export const getMovies = async (): Promise<Movie[]> => {
     const options = {
         method: 'GET',
         headers: {
-        accept: 'application/json',
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_MOVIE_API}`
+            accept: 'application/json',
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_MOVIE_API}`
         }
     };
 
@@ -49,8 +49,8 @@ export const getGenres = async () => {
     const options = {
         method: 'GET',
         headers: {
-        accept: 'application/json',
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_MOVIE_API}`
+            accept: 'application/json',
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_MOVIE_API}`
         }
     };
 
@@ -70,8 +70,8 @@ export const getDetail = async (id: number):Promise<Detail> => {
     const options = {
         method: 'GET',
         headers: {
-        accept: 'application/json',
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_MOVIE_API}`
+            accept: 'application/json',
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_MOVIE_API}`
         }
     };
 
