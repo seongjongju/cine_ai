@@ -118,6 +118,19 @@ export type Detail = {
     vote_count: number;
 };
 
+export type Video = {
+    id: string;
+    iso_639_1: string;
+    iso_3166_1: string;
+    key: string;
+    name: string;
+    official: boolean;
+    published_at: string;
+    site: string;
+    size: number;
+    type: string;
+};
+
 export type Wishlist = {
     created_at: string | null;
     genres: Json;
