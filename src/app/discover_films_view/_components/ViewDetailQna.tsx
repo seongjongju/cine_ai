@@ -3,6 +3,7 @@ import { useUser } from '@/providers/UsersProvider';
 import { useRouter } from 'next/navigation';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import React, { useState } from 'react';
+import { addHistory } from '@/features/services/history/addHistoryService';
 
 type MovieData = {
     title: string;
@@ -27,7 +28,6 @@ const ViewDetailQna = ({ movieData } :MovieDataProps) => {
     const [qnaTextarea, setQnaTextarea] = useState<string>('');
     const [aiAnswer, setAiAnswer] = useState<string>('');
     const [isLoading, setIsLoading] = useState<boolean>(false);
-
     const router = useRouter();
 
     const handleChangeQnaTextarea = (e:React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -57,12 +57,13 @@ const ViewDetailQna = ({ movieData } :MovieDataProps) => {
             setIsLoading(true);
 
             const modeText = geminiMode.find(mode => mode.id === modeTab)?.text
+            const modeTitle = geminiMode.find(mode => mode.id === modeTab)?.title
 
             const model = geminiAI.getGenerativeModel(
                 {
                     model: "gemini-2.5-flash",
                     systemInstruction: `당신은 영화를 모드에 맞게 설명해 주는 전문가입니다. 아래 영화 정보를 바탕으로
-                        사용자가 선택한 ${modeTab} ${modeText}모드에 맞게 친절히 300자 이내로 꼭 끊어서 답변해주세요.
+                        사용자가 선택한 ${modeTitle} ${modeText}모드에 맞게 친절히 300자 이내로 꼭 끊어서 답변해주세요.
 
                         [영화정보]
                         - 제목: ${movieData.title}
@@ -76,11 +77,23 @@ const ViewDetailQna = ({ movieData } :MovieDataProps) => {
 
             const result = await model.generateContent(qnaTextarea);
             const res = result.response;
+            const aiText = res.text();
 
-            setAiAnswer(res.text());
+            setAiAnswer(aiText);
+            
+            const history = {
+                title: movieData.title,
+                mode: modeTitle,
+                myqna: qnaTextarea,
+                aianswer: aiText,
+            };  
+
+            //히스토리 저장
+            await addHistory(history);
         } catch(err) {
             if (err instanceof Error) {
                 console.log("제미나이 답변 에러", err.message); 
+                alert(`${err.message}`);
             } else {
                 console.log(String(err));
             }

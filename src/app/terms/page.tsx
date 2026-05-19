@@ -52,9 +52,7 @@ const TermsPage = () => {
                         회사는 다음과 같은 서비스를 제공합니다.
                     </p>
                     <ul className='pol-list'>
-                        <li className='pol-list__li'>AI 기반 개인화 영화 추천 및 큐레이션</li>
                         <li className='pol-list__li'>4가지 톤의 영화 줄거리 재구성 서비스</li>
-                        <li className='pol-list__li'>무드 보드 기반 감성 영화 탐색 기능</li>
                         <li className='pol-list__li'>AI 대화형 영화 정보 질의응답</li>
                         <li className='pol-list__li'>위시리스트 및 관심 영화 관리 기능</li>
                     </ul>

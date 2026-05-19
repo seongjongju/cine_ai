@@ -332,18 +332,6 @@
     letter-spacing: -.3px;
 }
 
-.mood-board {
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
-}
-
-.mood-board__img img {
-    width: 100%;
-}
-
 @media screen and (max-width: 1080px) {
     .view-detail__name {
         font-size: 50px;
@@ -467,10 +455,6 @@
 
     .gemini-qna__title {
         font-size: 19.5px;
-    }
-
-    .mood-board {
-        grid-template-columns: repeat(2, 1fr);
     }
 }
 
