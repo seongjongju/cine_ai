@@ -239,104 +239,6 @@
     }
 }
 
-/*********************** AI사용량 */
-.ai-usage__label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 14px;
-    color: #c9a84c;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-}
-
-.ai-usage__list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    list-style: none;
-}
-
-.ai-usage__item {
-    background: #111111;
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    padding: 24px;
-}
-
-.ai-usage__item-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
-}
-
-.ai-usage__name {
-    font-size: 14px;
-    color: #5a5550;
-}
-
-.ai-usage__icon {
-    font-size: 14px;
-    color: #5a5550;
-}
-
-.ai-usage__count {
-    font-size: 36px;
-    font-weight: 400;
-    color: #fff;
-    line-height: 1;
-    margin-bottom: 4px;
-}
-
-.ai-usage__count em {
-    color: #c9a84c;
-    font-style: normal;
-}
-
-.ai-usage__max {
-    font-size: 14px;
-    color: #5a5550;
-    margin-bottom: 16px;
-}
-
-.ai-usage__bar {
-    height: 3px;
-    background: rgba(255, 255, 255, 0.07);
-    overflow: hidden;
-}
-
-.ai-usage__bar-fill {
-    height: 100%;
-    background: #c9a84c;
-    transition: width 0.6s ease;
-}
-
-.ai-usage__bar-fill--warn {
-    background: #e06c6c;
-}
-
-.ai-usage__reset {
-    margin-top: 16px;
-    font-size: 12px;
-    color: #5a5550;
-    letter-spacing: 0.05em;
-}
-
-@media screen and (max-width: 640px) {
-    .ai-usage__item {
-        padding: 16px;
-    }
-
-    .ai-usage__count {
-        font-size: 30px;
-    }
-
-    .ai-usage__max {
-        font-size: 12px;
-    }
-}
-
 /*********************** AI 히스토리 */
 .ai-history__label {
     font-size: 12px;
@@ -398,6 +300,14 @@
     border: 1px solid rgba(201, 168, 76, 0.2);
     padding: 3px 10px;
     letter-spacing: 0.08em;
+}
+
+.ai-history__mytext {
+    font-size: 14px;
+    color: var(--gray-1);
+    line-height: 1.7;
+    word-break: keep-all;
+    margin-bottom: .5em;
 }
 
 .ai-history__text {

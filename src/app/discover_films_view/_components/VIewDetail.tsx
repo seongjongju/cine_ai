@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import ViewDetailQna from './ViewDetailQna';
-import ViewDetailMoodBoard from './ViewDetailMoodBoard';
 import { useMovieStore } from '@/store/movieStore';
 import { useUser } from '@/providers/UsersProvider';
 import { addWishList } from '@/features/services/wish/addWishListService';
@@ -279,8 +278,6 @@ const VIewDetail = ({ movieDetail, wishlist, video, viewId }: DetailProps) => {
                     <ViewDetailQna 
                         movieData={movieData}
                     />
-
-                    <ViewDetailMoodBoard />
 
                     <button 
                         className='back-films-btn'

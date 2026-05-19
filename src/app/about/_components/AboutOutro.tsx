@@ -17,7 +17,7 @@ const AboutOutro = () => {
                     <span>AI에게 물어보세요</span>
                 </h2>
                 <p className='text-[#5a5550] text-center text-sm sm:text-base'>
-                    신용카드 없이, 무료로, 지금 바로
+                    결제 없이, 무료로, 지금 바로
                 </p>
 
                 <div className='flex justify-center gap-2 mt-6 sm:mt-10'>

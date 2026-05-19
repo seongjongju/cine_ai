@@ -49,12 +49,6 @@ const Problem = () => {
                             </p>
                             <p className='problem__text'>원하는 것을 직접 물어보세요. 고구마, 반전, 쿠키, 감독 의도까지 AI가 대답합니다.</p>
                         </div>
-                        <div className='problem__answer'>
-                            <p className='problem__heading'>
-                                <span className='text-[var(--gold-0)]'>✦</span> AI 무드 보드
-                            </p>
-                            <p className='problem__text'>영화의 감성을 AI가 재해석한 아트워크로 시각화합니다. SNS 공유 카드로도 저장 가능.</p>
-                        </div>
                     </div> {/* item */}
                 </div>
             </div>

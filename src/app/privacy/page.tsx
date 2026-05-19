@@ -39,7 +39,6 @@ const PrivacyPage = () => {
                     </p>
                     <ul className='pol-list'>
                         <li className='pol-list__li'>회원 가입, 본인 확인 및 계정 관리</li>
-                        <li className='pol-list__li'>AI 기반 개인화 영화 추천 및 큐레이션 서비스 제공</li>
                         <li className='pol-list__li'>서비스 품질 개선 및 신규 기능 개발</li>
                         <li className='pol-list__li'>이용 통계 분석 및 서비스 안정성 확보</li>
                         <li className='pol-list__li'>법령 준수 및 분쟁 해결</li>

@@ -4,12 +4,10 @@ import React, { useState } from 'react';
 import CoreFunctionCoreDetail from './CoreFunctionCoreDetail';
 import CoreFunctionCoreList from './CoreFunctionCoreList';
 import CoreFunctionCoreChat from './CoreFunctionCoreChat';
-import CoreFunctionCoreArt from './CoreFunctionCoreArt';
 
 const coreTabs = [
     {id: "tonne", label: "톤앤매너 요약"},
     {id: "interactive", label: "인터랙티브 Q&A"},
-    {id: "mood", label: "AI 무드 보드"},
 ];
 
 const CoreFunction = () => {
@@ -63,28 +61,12 @@ const CoreFunction = () => {
                                 title='궁금한 건'
                                 accent='직접 물어보세요'
                                 text={`고구마 구간이 있는지, 반전이 있는지, 쿠키 영상은 있는지 — 정해진 정보가 아닌, 내가 원하는 정보를 AI에게 바로 물어볼 수 있습니다.`}
-                                badges={['무제한 질문', '스포 조절 가능', '컨텍스트 유지']}
+                                badges={['무제한 질문', '스포 조절 가능']}
                             />
 
                             <CoreFunctionCoreChat />
                         </div> 
-                    )
-                    :
-                    coreTab === 'mood' ?
-                    (
-                        <div className='core'>
-                            <CoreFunctionCoreDetail 
-                                icon='🎨'
-                                title='영화의 감성을'
-                                accent='아트워크로'
-                                text={`스틸컷이 아닌, AI가 줄거리와 감성을 분석해 그 영화만의 분위기를 재해석한 아트워크를 생성합니다. SNS 공유 카드로도 저장할 수 있습니다.`}
-                                badges={['AI 이미지 생성', 'SNS 공유', '영화별 감성 분석']}
-                            />
-
-                            <CoreFunctionCoreArt />
-                        </div> 
-                    )
-                    : null
+                    ): null
                 }
             </div>
         </section>

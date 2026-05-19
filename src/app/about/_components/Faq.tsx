@@ -19,8 +19,8 @@ const Faq = () => {
                         <p className='faq__a'>스포없음 모드는 핵심 반전과 결말을 숨기도록 설계되어 있습니다. Q&A에서도 스포 여부를 먼저 물어봅니다.</p>
                     </div>
                     <div className='faq__item'>
-                        <h6 className='faq__q'>무료 요금제에서 카드 등록이 필요한가요?</h6>
-                        <p className='faq__a'>아니요. 무료 요금제는 카드 등록 없이 소셜 계정만으로 바로 시작할 수 있습니다.</p>
+                        <h6 className='faq__q'>결제나 카드 등록이 필요한가요?</h6>
+                        <p className='faq__a'>아니요. 결제나 카드 등록 없이 소셜 계정만으로 바로 시작할 수 있습니다.</p>
                     </div>
                     <div className='faq__item'>
                         <h6 className='faq__q'>어떤 영화까지 지원하나요?</h6>

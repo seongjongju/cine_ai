@@ -1,3 +1,4 @@
+"use server";
 export const getMovieVideo = async (id: number) => {
     const url = `https://api.themoviedb.org/3/movie/${id}/videos?language=ko-KR`;
     const options = {

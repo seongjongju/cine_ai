@@ -17,7 +17,7 @@ const LastSection = () => {
                     <span>대화하세요</span>
                 </h2>
                 <p className='text-[#5a5550] text-center text-sm sm:text-base'>
-                    신용카드 없이 무료로 시작. Gemini API 기반.
+                    결제 없이 무료로 시작. Gemini API 기반.
                 </p>
 
                 <div className='flex justify-center gap-2 mt-6 sm:mt-10'>
