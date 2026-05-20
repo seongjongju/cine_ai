@@ -28,7 +28,7 @@ export const getMovies = async (): Promise<Movie[]> => {
         method: 'GET',
         headers: {
             accept: 'application/json',
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_MOVIE_API}`
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_MOVIE_API}`,
         }
     };
 
@@ -36,6 +36,7 @@ export const getMovies = async (): Promise<Movie[]> => {
         const res = await fetch(url, options);
         if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
         const json = await res.json();
+
         return json.results;
     } catch (err) {
         console.error('인기순 영화 API 요청 실패:', err);
