@@ -41,7 +41,7 @@ const MypageAiHistory = ({history}: HistoryProps) => {
                             <div>
                                 <p className='text-[#fff]'>요약받은 영화가 없습니다.</p>
                                 <Link
-                                    href={'/discover_films?page=1'}
+                                    href={'/discover_films?page=1&genre=all'}
                                     className='text-[var(--gold-0)]'
                                 >
                                     요약받으러 가기 →

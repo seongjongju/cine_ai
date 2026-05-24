@@ -10,7 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@google/genai": "^2.2.0",
+    "@google/genai": "^2.6.0",
     "@google/generative-ai": "^0.24.1",
     "@splidejs/react-splide": "^0.7.12",
     "@splidejs/splide-extension-auto-scroll": "github:splidejs/splide-extension-auto-scroll",

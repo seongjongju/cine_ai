@@ -61,8 +61,8 @@ const Header = ({isLoggedIn}: Users) => {
                     <li>
                         <Link href={'/about'} onClick={gnbClose}>About</Link>
                     </li>
-                    <li>
-                        <Link href={'/discover_films?page=1'} onClick={gnbClose}>Discover Films</Link>
+                    <li>    
+                        <Link href={'/discover_films?page=1&genre=all'} onClick={gnbClose}>Discover Films</Link>
                     </li>
                 </ul>
 

@@ -5,8 +5,9 @@ import { getAllMovies } from '@/features/services/movie/getMovieService';
 import { paginations } from '@/shared/utils/paginations';
 import FilmsList from './_components/FilmsList';
 
-const Discover_filmsPage = async ({ searchParams }: { searchParams: Promise<{ page?: string }> }) => {
+const Discover_filmsPage = async ({ searchParams }: { searchParams: Promise<{ page?: string, genre:string }> }) => {
     const { page } = await searchParams;
+    const { genre } = await searchParams;
     const allMoviesRes = await Promise.all(
         paginations.map(page => getAllMovies(page))
     );
@@ -21,6 +22,7 @@ const Discover_filmsPage = async ({ searchParams }: { searchParams: Promise<{ pa
                     <FilmsList 
                         allMovies={allMovies}
                         page={Number(page)}
+                        genre={genre}
                     />
                 </div>
             </section>

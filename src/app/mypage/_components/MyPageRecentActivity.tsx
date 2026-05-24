@@ -100,7 +100,7 @@ const MyPageRecentActivity = () => {
                         <div>
                             <p className='text-[#fff]'>최근 본 영화가 없습니다.</p>
                             <Link 
-                                href={'/discover_films?page=1'}
+                                href={'/discover_films?page=1&genre=all'}
                                 className='text-[var(--gold-0)]'
                             >
                                 영화 보러 가기 →
