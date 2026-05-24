@@ -49,7 +49,7 @@ const AiPick = () => {
                             <SwiperSlide
                                 className='pick-swiper__slide' 
                                 key={movie.id} 
-                                style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.poster_path ? movie.poster_path : ''}` }}
+                                style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.poster_path ? movie.poster_path : ""}` }}
                             >
                                 <Link 
                                     href={`/discover_films_view/${movie.id}`}
