@@ -6,10 +6,12 @@ import Link from 'next/link';
 import { AllMovie } from '@/types/movie';
 import Paginations from '@/shared/components/pagination/Paginations';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 export interface AllMoviesProps {
     allMovies: AllMovie[];
     page: number;
+    genre: string;
 };
 
 //장르
@@ -34,11 +36,15 @@ const GENRE_IDS = {
     animation: 16,
 };
 
-const FilmsList = ({ allMovies, page }: AllMoviesProps) => {
+const FilmsList = ({ allMovies, page, genre }: AllMoviesProps) => {
     const { genres, isLoading } = useMovie();
-    const [genreSaved, setGenreSaved] = useState<string>('all');
+    const [genreSaved, setGenreSaved] = useState<string>(genre ?? 'all');
     const [loading, setLoading] = useState<boolean>(false);
     const router = useRouter();
+
+    useEffect(() => {
+        setGenreSaved(genre ?? 'all');
+    }, [genre]);
 
     //필터링
     const filteredMovies = React.useMemo(() => {
@@ -58,27 +64,15 @@ const FilmsList = ({ allMovies, page }: AllMoviesProps) => {
         setLoading(true);
 
         const type = e.target.value;
-        sessionStorage.setItem('lastGenre', type);
 
         setGenreSaved(type);
-        router.push('discover_films?page=1');
+        router.push(`discover_films?page=1&genre=${type}`);
 
         setTimeout(() => {
             setLoading(false);
         }, 1000);
     };
 
-    //로컬에 저장된 장르필터 상태를 불러옴
-    useEffect(() => {
-        const genreSaveded = () => {
-            const saved = sessionStorage.getItem('lastGenre');
-            if (saved) {
-                setGenreSaved(saved);
-            }
-        };   
-        genreSaveded();
-    }, []);
-    
     if(!allMovies) return null;
     if(isLoading) return null;
 
@@ -105,8 +99,13 @@ const FilmsList = ({ allMovies, page }: AllMoviesProps) => {
             {
                 loading ? 
                 (
-                    <div style={{color: "#fff", fontSize: "50px"}}>
-                        로딩 중
+                    <div>
+                        <Image 
+                            width={100} 
+                            height={100}
+                            src={"/common/loading_img.gif"}
+                            alt='로딩 Gif' 
+                        />
                     </div>
                 )
                 :
@@ -148,6 +147,7 @@ const FilmsList = ({ allMovies, page }: AllMoviesProps) => {
                             paginations={filteredMovies.length}
                             currentPage={page}
                             path='discover_films'
+                            genre={genreSaved}
                         />
                     </>
                 )

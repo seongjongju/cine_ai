@@ -73,7 +73,7 @@ const MyPageWish = ({wishlist}: WishlistProps) => {
                         <div>
                             <p className='text-[#fff]'>위시리스트 목록이 없습니다.</p>
                             <Link 
-                                href={'/discover_films?page=1'}
+                                href={'/discover_films?page=1&genre=all'}
                                 className='text-[var(--gold-0)]'
                             >
                                 위시리스트 채우러 가기 →
