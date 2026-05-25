@@ -62,13 +62,22 @@ const ViewDetailQna = ({ movieData } :MovieDataProps) => {
             const model = geminiAI.getGenerativeModel(
                 {
                     model: "gemini-2.5-flash",
-                    systemInstruction: `당신은 영화를 모드에 맞게 설명해 주는 전문가입니다. 아래 영화 정보를 바탕으로
-                        사용자가 선택한 ${modeTitle} ${modeText}모드에 맞게 친절히 300자 이내로 꼭 끊어서 답변해주세요.
+                    systemInstruction: `
+                    당신은 영화 정보를 요약하는 전문가입니다.
 
-                        [영화정보]
-                        - 제목: ${movieData.title}
-                        - 장르: ${movieData.genre}
-                        - 줄거리: ${movieData.overview}
+                    규칙:
+                    1. 제공된 영화정보 또는 인터넷에 나와있는 정보를 사용하세요.
+                    2. 없는 내용을 추측하거나 창작하지 마세요.
+                    3. 분위기식 소개문보다 실제 줄거리 핵심을 우선하세요.
+                    4. 주인공, 사건의 시작, 핵심 설정이 있다면 포함하세요.
+                    5. ${modeTitle} ${modeText} 모드에 맞게 작성하세요.
+                    6. 반드시 한국어 300자 이내로 작성하세요.
+                    7. 정보가 부족하면 부족하다고 명시하세요.
+
+                    [영화정보]
+                    - 제목: ${movieData.title}
+                    - 장르: ${movieData.genre}
+                    - 줄거리: ${movieData.overview}
                     `,
                     generationConfig: {},
                     safetySettings: []
@@ -92,10 +101,16 @@ const ViewDetailQna = ({ movieData } :MovieDataProps) => {
             await addHistory(history);
         } catch(err) {
             if (err instanceof Error) {
-                console.log("제미나이 답변 에러", err.message); 
-                alert(`${err.message}`);
+                console.error("제미나이 답변 에러", err.message);
+                if(err.message.includes("API_KEY_INVALID")) {
+                    alert("알수없는 오류 발생 관리자에게 문의하세요.");
+                } else if(err.message.includes("RATE_LIMIT_EXCEEDED")) {
+                    alert("접속량초과로 인한 일시적인 오류 발생 잠시 후 다시 시도해주세요.");
+                } else if(err.message.includes("QUOTA_EXCEEDED")) {
+                    alert("제미나이 무료 티어 할당량 초과 자정 이후 다시 시도해주세요.");
+                }
             } else {
-                console.log(String(err));
+                console.error(String(err));
             }
         } finally {
             setIsLoading(false);
