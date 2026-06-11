@@ -108,6 +108,8 @@ const ViewDetailQna = ({ movieData } :MovieDataProps) => {
                     alert("접속량초과로 인한 일시적인 오류 발생 잠시 후 다시 시도해주세요.");
                 } else if(err.message.includes("QUOTA_EXCEEDED")) {
                     alert("제미나이 무료 티어 할당량 초과 자정 이후 다시 시도해주세요.");
+                } else {
+                    alert("구글 AI 서버에 일시적인 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
                 }
             } else {
                 console.error(String(err));
