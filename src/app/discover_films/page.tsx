@@ -1,7 +1,7 @@
 import React from 'react';
 import './_styles/discover_films.css';
 import Title from '@/shared/components/title/Title';
-import { getAllMovies } from '@/features/services/movie/getMovieService';
+import { getAllMovies } from '@/features/apis/movie/getMovieService';
 import { paginations } from '@/shared/utils/paginations';
 import FilmsList from './_components/FilmsList';
 

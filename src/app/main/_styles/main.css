@@ -1,7 +1,6 @@
 /**************************** intro */
 .intro {
     position: relative;
-    display: flex;
     align-items: center;
     padding-bottom: 50px;
     height: auto;
@@ -131,15 +130,11 @@
 
 @media (min-width: 1024px) {
     .intro {
-        height: 90vh;
+        height: 70vh;
     }
 
     .intro__inner {
         flex-direction: row;
-    }
-
-    .intro__text-col {
-        width: 50%;
     }
 
     .intro__grid {
@@ -161,10 +156,6 @@
 }
 
 @media (min-width: 1280px) {
-    .intro__text-col {
-        width: 60%;
-    }
-
     .intro__grid {
         width: 40%;
         font-size: 1.25rem;

@@ -1,10 +1,10 @@
-import { getDetail } from '@/features/services/movie/getMovieService';
+import { getDetail } from '@/features/apis/movie/getMovieService';
 import React from 'react';
 import 'swiper/css';
 import '../_styles/view.css';
 import VIewDetail from '../_components/VIewDetail';
 import { getWishlist } from '@/features/services/wish/getWishListService';
-import { getMovieVideo } from '@/features/services/movie/getMovieVideoService';
+import { getMovieVideo } from '@/features/apis/movie/getMovieVideoService';
 
 const DiscoverFilmsViewPage = async ({ params }: { params: Promise<{ id: number }> }) => {
     const { id } = await params;

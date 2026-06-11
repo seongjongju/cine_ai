@@ -63,20 +63,6 @@ const AboutIntro = () => {
                             </tr>
                             <tr>
                                 <td>
-                                    <p className='text-[#ffffff] font-semibold mb-2 text-xs sm:text-sm md:text-base break-keep'>추천 / 무드</p>
-                                    <p className='text-[var(--gray-1)] text-xs sm:text-sm md:text-base break-keep'>취향 기반 큐레이션</p>
-                                </td>
-                                <td>
-                                    <p className='text-[var(--gray-1)] mb-2 text-xs sm:text-sm md:text-base break-keep'>스트리밍·예고편 위주</p>
-                                    <br />
-                                </td>
-                                <td>
-                                    <p className='text-[#ffffff] font-semibold mb-2 text-xs sm:text-sm md:text-base break-keep'>AI 생성 무드 보드</p>
-                                    <p className='table-badge'>시각화</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
                                     <p className='text-[#ffffff] font-semibold mb-2 text-xs sm:text-sm md:text-base break-keep'>사용자 경험</p>
                                     <p className='text-[var(--gray-1)] text-xs sm:text-sm md:text-base break-keep'>개인화 수준</p>
                                 </td>
