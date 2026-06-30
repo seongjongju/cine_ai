@@ -1,4 +1,5 @@
 'use client';
+import Swal from 'sweetalert2'
 import { supabase } from '@/app/lib/supabaseClient';
 import { useUser } from '@/providers/UsersProvider';
 import Title from '@/shared/components/title/Title';
@@ -26,10 +27,20 @@ const MyPageInterface = () => {
         const { error } = await supabase.auth.signOut();
         if (error) console.error('로그아웃 에러:', error);
         else {
-            alert('로그아웃이 완료되었습니다.');
-            router.refresh();
-            recentMovieStoreClear(); //최근 들어간 상세페이지 목록 전체 삭제
-            router.push('/');
+            Swal.fire({
+                theme: 'dark',
+                text: '로그아웃이 완료되었습니다.',
+                icon: 'error',
+                confirmButtonText: '확인',
+                confirmButtonColor: "#c9a84c",
+                width: '600',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    router.refresh();
+                    recentMovieStoreClear(); //최근 들어간 상세페이지 목록 전체 삭제
+                    router.push('/');
+                }
+            });
         }
     };
 
@@ -37,27 +48,54 @@ const MyPageInterface = () => {
     const handleUserDelete = async (e:React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
 
-        if (!confirm("정말 탈퇴하시겠습니까? 탈퇴 시 모든 이용 기록과 데이터가 삭제되며 복구할 수 없습니다.")) {
-            return;
-        }
+        Swal.fire({
+            theme: 'dark',
+            title: '회원탈퇴',
+            text: '정말 탈퇴하시겠습니까? 탈퇴 시 모든 이용 기록과 데이터가 삭제되며 복구할 수 없습니다.',
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: '탈퇴',
+            cancelButtonText: '취소',
+            confirmButtonColor: "#ff0000",
+            cancelButtonColor: "#c9a84c",
+            width: '600',
+        }).then(async (result) => {
+            if(result.isConfirmed) {
+                try {
+                    const res = await fetch('/api/auth/delete', {
+                        method: "DELETE"
+                    });
 
-        try {
-            const res = await fetch('/api/auth/delete', {
-                method: "DELETE"
-            });
+                    if(!res.ok) throw new Error("회원 탈퇴 실패");
 
-            if(!res.ok) throw new Error("회원 탈퇴 실패");
+                    Swal.fire({
+                        theme: 'dark',
+                        icon: 'success',
+                        text: '회원 탈퇴가 완료되었습니다. 그동안 이용해 주셔서 감사합니다.',
+                        confirmButtonText: '확인',
+                        confirmButtonColor: "#c9a84c",
+                        width: '600',
+                    });
 
-            alert("회원 탈퇴가 완료되었습니다. 그동안 이용해 주셔서 감사합니다.");
-
-            router.refresh();
-            recentMovieStoreClear(); //최근 들어간 상세페이지 목록 전체 삭제
-            router.push('/');
-        } catch(err) {
-            const error = err as Error;
-            console.error("회원탈퇴 오류", error.message);
-            alert("회원 탈퇴 처리 중 오류가 발생했습니다. 다시 시도해 주세요.");
-        }
+                    router.refresh();
+                    recentMovieStoreClear(); //최근 들어간 상세페이지 목록 전체 삭제
+                    router.push('/');
+                } catch(err) {
+                    const error = err as Error;
+                    console.error("회원탈퇴 오류", error.message);
+                    Swal.fire({
+                        theme: 'dark',
+                        icon: 'error',
+                        text: '회원 탈퇴 처리 중 오류가 발생했습니다. 다시 시도해 주세요.',
+                        confirmButtonText: '확인',
+                        confirmButtonColor: "#c9a84c",
+                        width: '600',
+                    });
+                }
+            } else if(result.isDismissed) {
+                return;
+            }
+        });
     };
 
     return (

@@ -1,4 +1,5 @@
 'use client';
+import Swal from 'sweetalert2'
 import { useMovie } from '@/features/hooks/useMovie';
 import { deleteWishlist } from '@/features/services/wish/deleteWishListService';
 import Paginations from '@/shared/components/pagination/Paginations';
@@ -26,7 +27,20 @@ const WishList = ({wishlist, page}: WishlistProps) => {
     const deleteWishItem = async (id: number) => {
         try {
             const result = await deleteWishlist(id);
-            alert(`${result.message}`);
+            Swal.fire({
+                toast: true,
+                theme: 'dark',
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                icon: "success",
+                text: `${result.message}`,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
 
             if(currentPageWishlist.length === 1 && page > 1) {
                 router.push(`wish?page=${page - 1}`);
