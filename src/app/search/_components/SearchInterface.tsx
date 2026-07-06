@@ -1,9 +1,11 @@
 'use client';
 import { useMovie } from '@/features/hooks/useMovie';
 import { getGenreNames } from '@/shared/utils/get.genre.names';
+import { basicSwal } from '@/shared/utils/swal';
 import { AllMovie } from '@/types/movie';
 import Link from 'next/link';
 import React, { useRef, useState } from 'react';
+import { text } from 'stream/consumers';
 
 export interface SearchMoviesProps {
     allMovies: AllMovie[];
@@ -32,7 +34,7 @@ const SearchInterface = ({ allMovies }: SearchMoviesProps) => {
         e.preventDefault();
         
         if(searchInput === '') {
-            searchOption === 'title' ? alert('영화제목을 입력해주세요.') : alert('장르를 입력해주세요.');
+            searchOption === 'title' ? basicSwal.fire({text: "영화제목을 입력해주세요."}) : basicSwal.fire({text: "장르를 입력해주세요."})
             searchInputRef.current?.focus();
             return;
         };

@@ -1,6 +1,7 @@
 'use client';
 import { supabase } from '@/app/lib/supabaseClient';
 import { useUser } from '@/providers/UsersProvider';
+import { errorSwal } from '@/shared/utils/swal';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
@@ -42,7 +43,7 @@ const OauthInterface = ({message}: MassageProps) => {
 
     useEffect(() => {
         if(message) {
-            alert('로그인이 필요한 서비스입니다.');
+            errorSwal.fire({text:'로그인이 필요한 서비스입니다.'});
             window.history.replaceState({}, '', '/login');
             return;
         }
@@ -50,7 +51,7 @@ const OauthInterface = ({message}: MassageProps) => {
 
     useEffect(() => {
         if(user) {
-            alert('이미 로그인 상태입니다.');
+            errorSwal.fire({text:'이미 로그인 상태입니다.'});
             router.push('/');
             return;
         }

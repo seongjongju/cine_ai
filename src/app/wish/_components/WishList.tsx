@@ -1,4 +1,5 @@
 'use client';
+import Swal from 'sweetalert2'
 import { useMovie } from '@/features/hooks/useMovie';
 import { deleteWishlist } from '@/features/services/wish/deleteWishListService';
 import Paginations from '@/shared/components/pagination/Paginations';
@@ -7,6 +8,7 @@ import { Wishlist } from '@/types/movie';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react';
+import { errorSwal, toastSwal } from '@/shared/utils/swal';
 
 interface WishlistProps {
     wishlist: Wishlist;
@@ -26,15 +28,19 @@ const WishList = ({wishlist, page}: WishlistProps) => {
     const deleteWishItem = async (id: number) => {
         try {
             const result = await deleteWishlist(id);
-            alert(`${result.message}`);
+            toastSwal.fire({text: `${result.message}`});
 
             if(currentPageWishlist.length === 1 && page > 1) {
                 router.push(`wish?page=${page - 1}`);
             } else {
                 router.refresh();
             }
-        } catch(err) {
-            console.error('위시리스트 삭제 에러', err);
+        } catch(err: unknown) {
+            if(err instanceof Error) {
+                console.error('위시리스트 삭제 에러', err);
+                errorSwal.fire({text: `${err.message}`});
+                return;
+            }
         }
     };
 

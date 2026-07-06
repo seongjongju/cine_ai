@@ -25,9 +25,6 @@ export const addWishList = async (movie: Detail) => {
     ]);
 
     if(error) {
-        if(error.code === "23505") {
-            return {success: false, message: "이미 찜한 영화입니다."}
-        }
         return { success: false, message: "등록 중 오류가 발생했습니다." };
     }
 

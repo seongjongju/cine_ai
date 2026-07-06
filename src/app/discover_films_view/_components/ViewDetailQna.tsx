@@ -2,8 +2,9 @@
 import { useUser } from '@/providers/UsersProvider';
 import { useRouter } from 'next/navigation';
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { addHistory } from '@/features/services/history/addHistoryService';
+import { basicSwal, errorSwal } from '@/shared/utils/swal';
 
 type MovieData = {
     title: string;
@@ -32,7 +33,7 @@ const ViewDetailQna = ({ movieData } :MovieDataProps) => {
 
     const handleChangeQnaTextarea = (e:React.ChangeEvent<HTMLTextAreaElement>) => {
         if(!user) {
-            alert('로그인이 필요한 서비스입니다.');
+            errorSwal.fire({text: '로그인이 필요한 서비스입니다.',});
             router.push('/login');
             return;
         };
@@ -44,7 +45,7 @@ const ViewDetailQna = ({ movieData } :MovieDataProps) => {
         e.preventDefault();
 
         if(qnaTextarea.trim() === '') {
-            alert('질문을 입력하세요.');
+            basicSwal.fire({text: '질문을 입력하세요.'});
             return;
         };
 
@@ -102,14 +103,23 @@ const ViewDetailQna = ({ movieData } :MovieDataProps) => {
         } catch(err) {
             if (err instanceof Error) {
                 console.error("제미나이 답변 에러", err.message);
+
                 if(err.message.includes("API_KEY_INVALID")) {
-                    alert("알수없는 오류 발생 관리자에게 문의하세요.");
+                    errorSwal.fire({
+                        text: '알수없는 오류 발생 관리자에게 문의하세요.',
+                    });
                 } else if(err.message.includes("RATE_LIMIT_EXCEEDED")) {
-                    alert("접속량초과로 인한 일시적인 오류 발생 잠시 후 다시 시도해주세요.");
+                    errorSwal.fire({
+                        text: '접속량초과로 인한 일시적인 오류 발생 잠시 후 다시 시도해주세요.',
+                    });
                 } else if(err.message.includes("QUOTA_EXCEEDED")) {
-                    alert("제미나이 무료 티어 할당량 초과 자정 이후 다시 시도해주세요.");
+                    errorSwal.fire({
+                        text: '제미나이 무료 티어 할당량 초과 자정 이후 다시 시도해주세요.',
+                    });
                 } else {
-                    alert("구글 AI 서버에 일시적인 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
+                    errorSwal.fire({
+                        text: '구글 AI 서버에 일시적인 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.',
+                    });
                 }
             } else {
                 console.error(String(err));
