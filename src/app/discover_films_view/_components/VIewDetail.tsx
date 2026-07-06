@@ -1,5 +1,4 @@
 'use client';
-import Swal from 'sweetalert2'
 import { useMovie } from '@/features/hooks/useMovie';
 import { getGenreNames } from '@/shared/utils/get.genre.names';
 import { Detail, Video, Wishlist } from '@/types/movie';
@@ -11,6 +10,7 @@ import { useMovieStore } from '@/store/movieStore';
 import { useUser } from '@/providers/UsersProvider';
 import { addWishList } from '@/features/services/wish/addWishListService';
 import { deleteWishlist } from '@/features/services/wish/deleteWishListService';
+import { errorSwal, toastSwal } from '@/shared/utils/swal';
 
 interface DetailProps {
     movieDetail:Detail;
@@ -74,37 +74,16 @@ const VIewDetail = ({ movieDetail, wishlist, video, viewId }: DetailProps) => {
     //위시리스트에 저장
     const handleClickWishButton = useCallback(async (id: number) => {
         if(!user) {
-            Swal.fire({
-                theme: 'dark',
-                text: '로그인이 필요한 서비스입니다.',
-                icon: 'error',
-                confirmButtonText: '확인',
-                confirmButtonColor: "#c9a84c",
-                width: '600',
-            });
+            errorSwal.fire({text: '로그인이 필요한 서비스입니다.'});
             router.push('/login');
             return;
         }
 
         try{
-            const toastAlert = Swal.mixin({
-                toast: true,
-                theme: 'dark',
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                icon: "success",
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                }
-            });
-
             if(!wishId) {
                 const addResult = await addWishList(movieDetail);
                 setIsSave(true);
-                toastAlert.fire({
+                toastSwal.fire({
                     text: `${addResult.message}`,
                 });
                 
@@ -113,17 +92,21 @@ const VIewDetail = ({ movieDetail, wishlist, video, viewId }: DetailProps) => {
             } else {
                 setIsSave(false);
                 const deleteResult = await deleteWishlist(id);
-                toastAlert.fire({
+                toastSwal.fire({
                     text: `${deleteResult.message}`,
                 });
                 
                 router.refresh();
                 return;
             }
-        }catch(err) {
-            console.error('위시리스트 저장/삭제 에러', err);
+        }catch(err:unknown) {
+            if (err instanceof Error) {
+                console.error('위시리스트 저장/삭제 에러', err);
+                errorSwal.fire({text: `${err.message}`});
+                return;
+            }
         };
-    }, [user, wishId, movieDetail, wishlist, router]);
+    }, [user, wishId, isSave, movieDetail, wishlist, router]);
 
     //AI에게 제공할 영화 기본 정보 오브젝트
     const movieData = {

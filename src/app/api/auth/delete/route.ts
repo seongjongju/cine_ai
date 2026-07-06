@@ -11,6 +11,17 @@ export async function DELETE(request: Request) {
             return NextResponse.json({ error: "유저가 확인되지 않습니다." }, {status: 401});
         }
 
+        //탈퇴 전 wishlist, history 데이터를 삭제한다.
+        const {error: wishError} = await supabase.from("wishlist").delete().eq("user_id", user.id).throwOnError();
+        if(wishError) {
+            console.error('데이터 삭제 실패:', wishError);
+        }
+
+        const {error: hisError} = await supabase.from("history").delete().eq("user_id", user.id).throwOnError();
+        if(hisError) {
+            console.error('데이터 삭제 실패:', hisError);
+        }
+
         const {error: deleteError} = await adminAuthClient.deleteUser(user.id);
 
         if(deleteError) throw deleteError;

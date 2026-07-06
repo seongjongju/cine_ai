@@ -1,7 +1,7 @@
 'use client';
-import Swal from 'sweetalert2'
 import { useMovie } from '@/features/hooks/useMovie';
 import { getGenreNames } from '@/shared/utils/get.genre.names';
+import { basicSwal } from '@/shared/utils/swal';
 import { AllMovie } from '@/types/movie';
 import Link from 'next/link';
 import React, { useRef, useState } from 'react';
@@ -32,16 +32,9 @@ const SearchInterface = ({ allMovies }: SearchMoviesProps) => {
 
     const handleClickSearchButton = (e:React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-
-        const toastAlert = Swal.mixin({
-            theme: 'dark',
-            confirmButtonText: '확인',
-            confirmButtonColor: "#c9a84c",
-            width: '600',
-        });
         
         if(searchInput === '') {
-            searchOption === 'title' ? toastAlert.fire({text: "영화제목을 입력해주세요."}) : toastAlert.fire({text: "장르를 입력해주세요."})
+            searchOption === 'title' ? basicSwal.fire({text: "영화제목을 입력해주세요."}) : basicSwal.fire({text: "장르를 입력해주세요."})
             searchInputRef.current?.focus();
             return;
         };
