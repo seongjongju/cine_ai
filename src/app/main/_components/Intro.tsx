@@ -16,7 +16,7 @@ const Intro = () => {
                     </p>
                     <h2 className='title'>
                         영화를 보기 전 <br />
-                        <span>대화하세요</span>
+                        <span>질문하세요</span>
                     </h2>
                     <p className='intro__desc'>
                         고구마 구간이 있는지, 철학적으로 어떤 의미인지, <br />

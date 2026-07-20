@@ -10,6 +10,8 @@ type MovieData = {
     title: string;
     overview: string;
     genre: string;
+    crews: string[];
+    casts: string[];
 };
 
 interface MovieDataProps {
@@ -74,11 +76,14 @@ const ViewDetailQna = ({ movieData } :MovieDataProps) => {
                     5. ${modeTitle} ${modeText} 모드에 맞게 작성하세요.
                     6. 반드시 한국어 300자 이내로 작성하세요.
                     7. 정보가 부족하면 부족하다고 명시하세요.
+                    8. 정보가 부족하면 웹서칭을 이용해 작성해주세요.
 
                     [영화정보]
                     - 제목: ${movieData.title}
                     - 장르: ${movieData.genre}
                     - 줄거리: ${movieData.overview}
+                    - 스태프: ${movieData.crews}
+                    - 캐스팅: ${movieData.casts}
                     `,
                     generationConfig: {},
                     safetySettings: []
@@ -187,7 +192,12 @@ const ViewDetailQna = ({ movieData } :MovieDataProps) => {
                     {
                         isLoading ? 
                         (
-                            <p className='text-[#ffffff]'>답변 작성중...</p>
+                            <div className='gemini-qna__loading'>
+                                답변 작성 중
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
                         ) :
                         (
                             <p className='gemini-qna__answer'>

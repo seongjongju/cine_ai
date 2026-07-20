@@ -1,6 +1,7 @@
 import { getDetail } from '@/features/apis/movie/getMovieService';
 import React from 'react';
 import 'swiper/css';
+import 'swiper/css/free-mode';
 import '../_styles/view.css';
 import VIewDetail from '../_components/VIewDetail';
 import { getWishlist } from '@/features/services/wish/getWishListService';

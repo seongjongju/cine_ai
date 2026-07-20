@@ -1,7 +1,7 @@
 'use client';
 import { useMovie } from '@/features/hooks/useMovie';
 import { getGenreNames } from '@/shared/utils/get.genre.names';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { AllMovie } from '@/types/movie';
 import Paginations from '@/shared/components/pagination/Paginations';
@@ -41,10 +41,6 @@ const FilmsList = ({ allMovies, page, genre }: AllMoviesProps) => {
     const [genreSaved, setGenreSaved] = useState<string>(genre ?? 'all');
     const [loading, setLoading] = useState<boolean>(false);
     const router = useRouter();
-
-    useEffect(() => {
-        setGenreSaved(genre ?? 'all');
-    }, [genre]);
 
     //필터링
     const filteredMovies = React.useMemo(() => {
