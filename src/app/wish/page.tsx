@@ -11,7 +11,6 @@ const WishPage = async ({ searchParams }: { searchParams: Promise<{ page?: strin
         <section style={{ minHeight: "85vh" }}>
             <div className='inner-2'>
                 <WishList 
-                    wishlist={wishlist}
                     page={Number(page)}
                 />
             </div>

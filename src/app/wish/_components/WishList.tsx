@@ -9,15 +9,18 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { errorSwal, toastSwal } from '@/shared/utils/swal';
+import useWishList from '@/features/hooks/useWishList';
 
 interface WishlistProps {
-    wishlist: Wishlist;
     page: number;
 };
 
-const WishList = ({wishlist, page}: WishlistProps) => {
+const WishList = ({page}: WishlistProps) => {
     const {genres} = useMovie();
     const router = useRouter();
+    
+    const {wishs} = useWishList();
+    const wishlist: Wishlist = wishs;
 
     if(!wishlist) return null;
 

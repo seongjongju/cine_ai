@@ -91,6 +91,25 @@
     gap: 1rem;
 }
 
+.user-service a {
+    position: relative;
+}
+
+.user-service__wish-quantity {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    font-size: 12px;
+    color: #fff;
+    background: var(--gold-0);
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .back-btn {
     color: #fff;
     font-size: 14px;

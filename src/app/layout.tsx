@@ -9,6 +9,7 @@ import { getGenres, getMovies } from "@/features/apis/movie/getMovieService";
 import Quick_menu from "@/inc/components/quick/Quick_menu";
 import { createSupabaseServerClient } from '@/app/lib/supabaseServer';
 import { UsersProvider } from "@/providers/UsersProvider";
+import { getWishlist } from "@/features/services/wish/getWishListService";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,6 +39,7 @@ export default async function RootLayout({
   await Promise.all([
     queryClient.prefetchQuery({ queryKey: ['movies'], queryFn: getMovies }),
     queryClient.prefetchQuery({ queryKey: ['genres'], queryFn: getGenres }),
+    queryClient.prefetchQuery({ queryKey: ['wish'], queryFn: getWishlist }),
   ]);
 
   const supabase = await createSupabaseServerClient();
@@ -49,7 +51,10 @@ export default async function RootLayout({
         <UsersProvider user={user}>
           <QueryProvider>
             <HydrationBoundary state={dehydrate(queryClient)} >
-              <Header isLoggedIn={!!user} />
+              <Header 
+                isLoggedIn={!!user} 
+
+              />
               <main>
                 {children}
               </main>
