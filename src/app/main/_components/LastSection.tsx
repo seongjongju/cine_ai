@@ -14,7 +14,7 @@ const LastSection = () => {
                 </p>
                 <h2 className='title text-center'>
                     영화를 보기 전 <br />
-                    <span>대화하세요</span>
+                    <span>질문하세요</span>
                 </h2>
                 <p className='text-[#5a5550] text-center text-sm sm:text-base'>
                     결제 없이 무료로 시작. Gemini API 기반.

@@ -5,6 +5,7 @@ import { Detail, Video, Wishlist } from '@/types/movie';
 import { useRouter } from 'next/navigation';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { FreeMode } from 'swiper/modules';
 import ViewDetailQna from './ViewDetailQna';
 import { useMovieStore } from '@/store/movieStore';
 import { useUser } from '@/providers/UsersProvider';
@@ -63,7 +64,7 @@ const VIewDetail = ({ movieDetail, wishlist, video, viewId }: DetailProps) => {
                         ? (countryMap[movieDetail.origin_country[0]] || movieDetail.origin_country[0]) 
                         : '정보 없음';
 
-    //등급
+    //등급(한국)
     const krResults = movieDetail.release_dates?.results?.find(country => country.iso_3166_1 === 'KR');
     const releseData = krResults?.release_dates || []; 
     const rating = releseData.map(ret => ret.certification).filter(c => c !== "");  
@@ -108,11 +109,14 @@ const VIewDetail = ({ movieDetail, wishlist, video, viewId }: DetailProps) => {
         };
     }, [user, wishId, isSave, movieDetail, wishlist, router]);
 
+
     //AI에게 제공할 영화 기본 정보 오브젝트
     const movieData = {
         title: movieDetail?.title,
         overview: movieDetail?.overview,
-        genre: getGenreNames(movieDetail?.genres.map(genre => genre.id), genres)
+        genre: getGenreNames(movieDetail?.genres.map(genre => genre.id), genres),
+        crews: crews.map(crew => crew.name),
+        casts: casts.map(cast => cast.name)
     };
 
     return (
@@ -223,6 +227,7 @@ const VIewDetail = ({ movieDetail, wishlist, video, viewId }: DetailProps) => {
                         spaceBetween={10}
                         speed={1300}
                         freeMode={true}
+                        modules={[FreeMode]}
                         breakpoints={{
                             1081: {slidesPerView: 5.5},
                             769: {slidesPerView: 4.5},
@@ -289,16 +294,6 @@ const VIewDetail = ({ movieDetail, wishlist, video, viewId }: DetailProps) => {
                     <ViewDetailQna 
                         movieData={movieData}
                     />
-
-                    <button 
-                        className='back-films-btn'
-                        onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-                            e.preventDefault();
-                            router.back();
-                        }}
-                    >
-                        Back To
-                    </button>
                 </div> {/* inner */}
             </div> {/* detail */}
         </div>

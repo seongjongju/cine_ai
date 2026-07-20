@@ -91,6 +91,15 @@
     gap: 1rem;
 }
 
+.back-btn {
+    color: #fff;
+    font-size: 14px;
+    padding: .3em 1em;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 100px;
+    cursor: pointer;
+}
+
 @media screen and (max-width: 1024px) {
     .header {
         height: 70px;
