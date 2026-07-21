@@ -17,7 +17,7 @@ const Paginations = ({ paginations, currentPage, path, genre }: PaginationsProps
                 paginations > 100 && currentPage > 5 &&
                 <a href={
                     !genre ? `${path}?page=5` : 
-                    `${path}?page=5$&genre=${genre}`
+                    `${path}?page=5&genre=${genre}`
                 } className='paging'>←</a>
             }
             {
@@ -55,7 +55,8 @@ const Paginations = ({ paginations, currentPage, path, genre }: PaginationsProps
             {
                 paginations > 100 && currentPage < 6 &&
                 <a href={!genre ? `${path}?page=6` : 
-                    `${path}?page=6$&genre=${genre}`} className='paging'>→</a>
+                    `${path}?page=6&genre=${genre}`} className='paging'>→
+                </a>
             }
         </div>
     );
