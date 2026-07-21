@@ -10,11 +10,19 @@ const AboutIntro = () => {
     return (
         <section className='about-intro'>
             <div className='inner-2'>
-                <Title  
-                    chip='서비스 소개' 
-                    title='넷플릭스는 100명에게' 
-                    accent='같은 줄거리' 
-                    title_1='보여줍니다.'
+                <Title 
+                    title={
+                        <>
+                            <p className='title__chip md'>
+                                <span className='title__line'></span>
+                                서비스 소개
+                            </p>
+                            <h2 className='title md'>
+                                넷플릭스는 100명에게 <br/>
+                                <span>같은 줄거리</span>를 보여줍니다.
+                            </h2>
+                        </>
+                    }
                 />
                 <p className='text-[var(--gray-0)] break-keep text-sm mb-5 md:mb-10 md:text-base'>
                     CineAI는 다릅니다. 100명에게 100가지 다른 방식으로 영화를 소개하고, AI가 당신만을 위한 큐레이터가 됩니다.

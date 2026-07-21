@@ -7,6 +7,7 @@ import { AllMovie } from '@/types/movie';
 import Paginations from '@/shared/components/pagination/Paginations';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import Title from '@/shared/components/title/Title';
 
 export interface AllMoviesProps {
     allMovies: AllMovie[];
@@ -74,10 +75,16 @@ const FilmsList = ({ allMovies, page, genre }: AllMoviesProps) => {
 
     return (
         <>
-            <p className="title__chip md" style={{marginBottom: "16px"}}>
-                <span className="title__line"></span>
-                필터
-            </p>
+            <Title 
+                title={
+                    <>
+                        <p className='title__chip md' style={{marginBottom: "16px"}}>
+                            <span className='title__line'></span>
+                            필터
+                        </p>
+                    </>
+                }
+            />
             <div className='films-selects'>
                 <select 
                     className="films-select"

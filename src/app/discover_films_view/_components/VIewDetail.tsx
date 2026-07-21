@@ -12,6 +12,7 @@ import { useUser } from '@/providers/UsersProvider';
 import { addWishList } from '@/features/services/wish/addWishListService';
 import { deleteWishlist } from '@/features/services/wish/deleteWishListService';
 import { errorSwal, toastSwal } from '@/shared/utils/swal';
+import Title from '@/shared/components/title/Title';
 
 interface DetailProps {
     movieDetail:Detail;
@@ -206,10 +207,16 @@ const VIewDetail = ({ movieDetail, wishlist, video, viewId }: DetailProps) => {
                         movieDetail.overview !== '' ?
                         (   
                             <>
-                                <p className='title__chip md'>
-                                    <span className='title__line'></span>
-                                    영화 소개
-                                </p>
+                                <Title 
+                                    title={
+                                        <>
+                                            <p className='title__chip md'>
+                                                <span className='title__line'></span>
+                                                영화 소개
+                                            </p>
+                                        </>
+                                    }
+                                />
                                 <div className='movie-info'>
                                     <p className='movie-info__text'>{movieDetail.overview}</p>
                                 </div>
@@ -217,11 +224,16 @@ const VIewDetail = ({ movieDetail, wishlist, video, viewId }: DetailProps) => {
                         ) : null
                     }
 
-                    <p className='title__chip md'>
-                        <span className='title__line'></span>
-                        캐스팅
-                    </p>
-
+                    <Title 
+                        title={
+                            <>
+                                <p className='title__chip md'>
+                                    <span className='title__line'></span>
+                                    캐스팅
+                                </p>
+                            </>
+                        }
+                    />
                     <Swiper
                         slidesPerView={5.5}
                         spaceBetween={10}
@@ -271,10 +283,16 @@ const VIewDetail = ({ movieDetail, wishlist, video, viewId }: DetailProps) => {
                         video?.key !== undefined ?  
                         (   
                             <>
-                                <p className='title__chip md'>
-                                    <span className='title__line'></span>
-                                    예고편
-                                </p>
+                                <Title 
+                                    title={
+                                        <>
+                                            <p className='title__chip md'>
+                                                <span className='title__line'></span>
+                                                예고편
+                                            </p>
+                                        </>
+                                    }
+                                />
                                 <div className='video-wrap'>
                                     <iframe 
                                         width="100%" 

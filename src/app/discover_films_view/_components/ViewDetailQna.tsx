@@ -5,6 +5,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import React, { useCallback, useState } from 'react';
 import { addHistory } from '@/features/services/history/addHistoryService';
 import { basicSwal, errorSwal } from '@/shared/utils/swal';
+import Title from '@/shared/components/title/Title';
 
 type MovieData = {
     title: string;
@@ -136,10 +137,16 @@ const ViewDetailQna = ({ movieData } :MovieDataProps) => {
     
     return (
         <div>
-            <p className='title__chip md'>
-                <span className='title__line'></span>
-                인터랙티브 Q&A : 모드를 선택해주세요.
-            </p>
+            <Title 
+                title={
+                    <>
+                        <p className='title__chip md'>
+                            <span className='title__line'></span>
+                            인터랙티브 Q&A : 모드를 선택해주세요.
+                        </p>
+                    </>
+                }
+            />
 
             <ul className='gemini-mode'>
                 {

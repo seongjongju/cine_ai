@@ -10,6 +10,8 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 import { errorSwal, toastSwal } from '@/shared/utils/swal';
 import useWishList from '@/features/hooks/useWishList';
+import Title from '@/shared/components/title/Title';
+import NoneItemLayout from '@/shared/components/noneItem/NoneItemLayout';
 
 interface WishlistProps {
     page: number;
@@ -49,13 +51,19 @@ const WishList = ({page}: WishlistProps) => {
 
     return (
         <div>
-            <p className='title__chip md'>
-                <span className='title__line'></span>
-                위시리스트
-            </p>
-            <h2 className='title md'>
-                내가 담아둔 <span>영화들</span>
-            </h2>
+            <Title 
+                title={
+                    <>
+                        <p className='title__chip md'>
+                            <span className='title__line'></span>
+                            위시리스트
+                        </p>
+                        <h2 className='title md'>
+                            내가 담아둔 <span>영화들</span>
+                        </h2>
+                    </>
+                }
+            />
 
             {
                 wishlist?.length > 0 ? 
@@ -119,15 +127,11 @@ const WishList = ({page}: WishlistProps) => {
                     </>
                 ) :
                 (
-                    <div>
-                        <p className='text-[#fff]'>위시리스트 목록이 없습니다.</p>
-                        <Link 
-                            href={'/discover_films?page=1&genre=all'}
-                            className='text-[var(--gold-0)]'
-                        >
-                            위시리스트 채우러 가기 →
-                        </Link>
-                    </div>
+                    <NoneItemLayout 
+                        text='위시리스트 목록이 없습니다.'
+                        href='/discover_films?page=1&genre=all'
+                        linkText='위시리스트 채우러 가기 →'
+                    />
                 )
             }
         </div>

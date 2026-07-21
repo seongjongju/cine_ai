@@ -17,7 +17,20 @@ const AiPick = () => {
     return (
         <section>
             <div className='inner-2'>
-                <Title chip='오늘의 큐레이션' title='AI가 고른' accent='이주의 영화'/>
+                <Title 
+                    title={
+                        <>
+                            <p className='title__chip md'>
+                                <span className='title__line'></span>
+                                오늘의 큐레이션
+                            </p>
+                            <h2 className='title md'>
+                                AI가 고른 <br/>
+                                <span>이주의 영화</span>
+                            </h2>
+                        </>
+                    }
+                />
 
                 <Swiper
                     slidesPerView={4}

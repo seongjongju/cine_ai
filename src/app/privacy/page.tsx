@@ -6,7 +6,19 @@ const PrivacyPage = () => {
     return (
         <section>
             <nav className='inner-3'>
-                <Title chip='법적 고지' title='개인정보처리방침' />
+                <Title 
+                    title={
+                        <>
+                            <p className='title__chip md'>
+                                <span className='title__line'></span>
+                                법적 고지
+                            </p>
+                            <h2 className='title md'>
+                                개인정보처리방침
+                            </h2>
+                        </>
+                    }
+                />
                 <p className='text-[#7a7068] break-keep text-sm md:text-base'>
                     CineAI는 이용자의 개인정보를 소중히 여기며, 관련 법령을 준수하여 안전하게 보호합니다. <br />
                     본 방침을 통해 수집하는 정보와 이용 목적을 투명하게 안내드립니다.

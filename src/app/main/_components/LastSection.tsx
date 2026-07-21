@@ -1,5 +1,6 @@
 'use client';
 import { useUser } from '@/providers/UsersProvider';
+import Title from '@/shared/components/title/Title';
 import Link from 'next/link';
 import React from 'react';
 
@@ -9,13 +10,19 @@ const LastSection = () => {
     return (
         <section className='bg-[#111111]'>
             <div className='inner-2'>
-                <p className='title__chip w-full text-center justify-center'>
-                    무료 시작
-                </p>
-                <h2 className='title text-center'>
-                    영화를 보기 전 <br />
-                    <span>질문하세요</span>
-                </h2>
+                <Title 
+                    title={
+                        <>
+                            <p className='title__chip w-full text-center justify-center'>
+                                무료 시작
+                            </p>
+                            <h2 className='title text-center'>
+                                영화를 보기 전 <br/>
+                                <span>질문하세요</span>
+                            </h2>
+                        </>
+                    }
+                />
                 <p className='text-[#5a5550] text-center text-sm sm:text-base'>
                     결제 없이 무료로 시작. Gemini API 기반.
                 </p>

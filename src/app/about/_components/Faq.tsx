@@ -6,8 +6,17 @@ const Faq = () => {
         <section>
             <div className='inner-2'>
                 <Title 
-                    chip='자주 묻는 질문'
-                    title='FAQ'
+                    title={
+                        <>
+                            <p className='title__chip md'>
+                                <span className='title__line'></span>
+                                자주 묻는 질문
+                            </p>
+                            <h2 className='title md'>
+                                FAQ
+                            </h2>
+                        </>
+                    }
                 />
                 <div className='faq'>
                     <div className='faq__item'>

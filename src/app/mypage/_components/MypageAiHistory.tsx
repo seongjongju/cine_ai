@@ -1,3 +1,5 @@
+import NoneItemLayout from '@/shared/components/noneItem/NoneItemLayout';
+import Title from '@/shared/components/title/Title';
 import { History } from '@/types/history';
 import Link from 'next/link';
 import React from 'react';
@@ -10,13 +12,19 @@ const MypageAiHistory = ({history}: HistoryProps) => {
     return (
         <section>
             <nav className='inner'>
-                <p className='title__chip md'>
-                    <span className='title__line'></span>
-                    AI 요약 히스토리
-                </p>
-                <h2 className='title md'>
-                    내가 받은 <span>AI 요약</span>
-                </h2>
+                <Title 
+                    title={
+                        <>
+                            <p className='title__chip md'>
+                                <span className='title__line'></span>
+                                AI 요약 히스토리
+                            </p>
+                            <h2 className='title md'>
+                                내가 받은 <span>AI 요약</span>
+                            </h2>
+                        </>
+                    }
+                />
                 <ul className="ai-history__list">
                     {
                         history?.length ? 
@@ -38,15 +46,11 @@ const MypageAiHistory = ({history}: HistoryProps) => {
                             ))
                         ) :
                         (
-                            <div>
-                                <p className='text-[#fff]'>요약받은 영화가 없습니다.</p>
-                                <Link
-                                    href={'/discover_films?page=1&genre=all'}
-                                    className='text-[var(--gold-0)]'
-                                >
-                                    요약받으러 가기 →
-                                </Link>
-                            </div>
+                            <NoneItemLayout 
+                                text='요약받은 영화가 없습니다.'
+                                href='/discover_films?page=1&genre=all'
+                                linkText='요약받으러 가기 →'
+                            />
                         )
                     }
                 </ul>

@@ -18,7 +18,19 @@ const DiscoverFilmsPage = async ({ searchParams }: { searchParams: Promise<{ pag
         <div className='wrap'>
             <section>
                 <div className='inner-2'>
-                    <Title chip='전체 영화' title='Discover Films' />
+                    <Title 
+                        title={
+                            <>
+                                <p className='title__chip md'>
+                                    <span className='title__line'></span>
+                                    전체 영화
+                                </p>
+                                <h2 className='title md'>
+                                    Discover Films
+                                </h2>
+                            </>
+                        }
+                    />
                     <FilmsList 
                         allMovies={allMovies}
                         page={Number(page)}

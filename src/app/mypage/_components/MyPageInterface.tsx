@@ -79,7 +79,20 @@ const MyPageInterface = () => {
     return (
         <section>
             <div className='inner'>
-                <Title chip='마이페이지' title='안녕하세요' accent={userName} title_1='님' />
+                <Title 
+                    title={
+                        <>
+                            <p className='title__chip md'>
+                                <span className='title__line'></span>
+                                마이페이지
+                            </p>
+                            <h2 className='title md'>
+                                안녕하세요 <br />
+                                <span>{userName}</span>님
+                            </h2>
+                        </>
+                    }
+                />
 
                 <div className='user-info'>
                     <p className='user-info__title'>로그인 계정</p>

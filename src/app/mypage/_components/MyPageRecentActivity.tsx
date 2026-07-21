@@ -7,6 +7,8 @@ import React from 'react';
 import Link from 'next/link';
 import { getGenreNames } from '@/shared/utils/get.genre.names';
 import { useMovie } from '@/features/hooks/useMovie';
+import Title from '@/shared/components/title/Title';
+import NoneItemLayout from '@/shared/components/noneItem/NoneItemLayout';
 
 const MyPageRecentActivity = () => {
     const {genres} = useMovie();
@@ -15,13 +17,19 @@ const MyPageRecentActivity = () => {
     return (
         <section>
             <div className='inner'>
-                <p className='title__chip md'>
-                    <span className='title__line'></span>
-                    최근 활동
-                </p>
-                <h2 className='title md'>
-                    최근 본 <span>영화</span>
-                </h2>
+                <Title 
+                    title={
+                        <>
+                            <p className='title__chip md'>
+                                <span className='title__line'></span>
+                                최근 활동
+                            </p>
+                            <h2 className='title md'>
+                                최근 본 <span>영화</span>
+                            </h2>
+                        </>
+                    }
+                />
 
                 {
                     recentMovies?.length > 0 ?
@@ -97,15 +105,11 @@ const MyPageRecentActivity = () => {
                         </>
                     ) :
                     (
-                        <div>
-                            <p className='text-[#fff]'>최근 본 영화가 없습니다.</p>
-                            <Link 
-                                href={'/discover_films?page=1&genre=all'}
-                                className='text-[var(--gold-0)]'
-                            >
-                                영화 보러 가기 →
-                            </Link>
-                        </div>
+                        <NoneItemLayout 
+                            text='최근 본 영화가 없습니다.'
+                            href='/discover_films?page=1&genre=all'
+                            linkText='영화 보러 가기 →'
+                        />
                     )
                 }
             </div>

@@ -26,7 +26,20 @@ const HowMood = () => {
     return (
         <section>
             <div className='inner-2'>
-                <Title chip='무드 픽' title='오늘 기분은' accent='어떤가요?'/>
+                <Title 
+                    title={
+                        <>
+                            <p className='title__chip md'>
+                                <span className='title__line'></span>
+                                무드 픽
+                            </p>
+                            <h2 className='title md'>
+                                오늘 기분은 <br/>
+                                <span>어떤가요?</span>
+                            </h2>
+                        </>
+                    }
+                />
 
                 <ul className='mood-tab-btns'>
                     {

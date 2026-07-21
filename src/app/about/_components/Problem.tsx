@@ -7,10 +7,19 @@ const Problem = () => {
             <div className='inner-2'>
                 <div className='problem'>
                     <div className='problem__item'>
-                        <Title  
-                            chip='문제 인식' 
-                            title='기존 서비스의' 
-                            accent='한계' 
+                        <Title 
+                            title={
+                                <>
+                                    <p className='title__chip md'>
+                                        <span className='title__line'></span>
+                                        문제 인식
+                                    </p>
+                                    <h2 className='title md'>
+                                        기존 서비스의 <br/>
+                                        <span>한계</span>
+                                    </h2>
+                                </>
+                            }
                         />
                         <ul className='problem__list'>
                             <li className='problem__li'>
@@ -32,10 +41,19 @@ const Problem = () => {
                         </ul>
                     </div> {/* item */}
                     <div className='problem__item'>
-                        <Title  
-                            chip='CineAI 솔루션' 
-                            title='우리의' 
-                            accent='답변' 
+                        <Title 
+                            title={
+                                <>
+                                    <p className='title__chip md'>
+                                        <span className='title__line'></span>
+                                        CineAI 솔루션
+                                    </p>
+                                    <h2 className='title md'>
+                                        우리의 <br/>
+                                        <span>답변</span>
+                                    </h2>
+                                </>
+                            }
                         />
                         <div className='problem__answer'>
                             <p className='problem__heading'>

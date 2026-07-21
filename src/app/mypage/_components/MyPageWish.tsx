@@ -1,5 +1,7 @@
 'use client';
 import { useMovie } from '@/features/hooks/useMovie';
+import NoneItemLayout from '@/shared/components/noneItem/NoneItemLayout';
+import Title from '@/shared/components/title/Title';
 import { getGenreNames } from '@/shared/utils/get.genre.names';
 import { Wishlist } from '@/types/movie';
 import Link from 'next/link';
@@ -18,13 +20,19 @@ const MyPageWish = ({wishlist}: WishlistProps) => {
     return (
         <section>
             <div className='inner'>
-                <p className='title__chip md'>
-                    <span className='title__line'></span>
-                    위시리스트
-                </p>
-                <h2 className='title md'>
-                    내가 담아둔 <span>영화들</span>
-                </h2>
+                <Title 
+                    title={
+                        <>
+                            <p className='title__chip md'>
+                                <span className='title__line'></span>
+                                위시리스트
+                            </p>
+                            <h2 className='title md'>
+                                내가 담아둔 <span>영화들</span>
+                            </h2>
+                        </>
+                    }
+                />
                 
                 {
                     wishlist.length > 0 ?
@@ -70,15 +78,11 @@ const MyPageWish = ({wishlist}: WishlistProps) => {
                         </div>
                     ) :
                     (
-                        <div>
-                            <p className='text-[#fff]'>위시리스트 목록이 없습니다.</p>
-                            <Link 
-                                href={'/discover_films?page=1&genre=all'}
-                                className='text-[var(--gold-0)]'
-                            >
-                                위시리스트 채우러 가기 →
-                            </Link>
-                        </div>
+                        <NoneItemLayout 
+                            text='위시리스트 목록이 없습니다.'
+                            href='/discover_films?page=1&genre=all'
+                            linkText='위시리스트 채우러 가기 →'
+                        />
                     )
                 }
             </div>

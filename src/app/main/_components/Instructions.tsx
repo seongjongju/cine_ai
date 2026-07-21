@@ -5,7 +5,20 @@ const Instructions = () => {
     return (
         <section className='bg-[#111111]'>
             <div className='inner-2'>
-                <Title chip='사용 방법' title='어떻게' accent='작동하나요'/>
+                <Title 
+                    title={
+                        <>
+                            <p className='title__chip md'>
+                                <span className='title__line'></span>
+                                사용 방법
+                            </p>
+                            <h2 className='title md'>
+                                어떻게 <br/>
+                                <span>작동하나요?</span>
+                            </h2>
+                        </>
+                    }
+                />
 
                 <div className='instructions'>
                     <div className='instructions__item'>

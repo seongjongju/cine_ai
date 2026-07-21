@@ -6,7 +6,19 @@ const TermsPage = () => {
     return (
         <section>
             <nav className='inner-3'>
-                <Title chip='법적 고지' title='이용약관' />
+                <Title 
+                    title={
+                        <>
+                            <p className='title__chip md'>
+                                <span className='title__line'></span>
+                                법적 고지
+                            </p>
+                            <h2 className='title md'>
+                                이용약관
+                            </h2>
+                        </>
+                    }
+                />
                 <p className='text-[#7a7068] break-keep text-sm md:text-base'>
                     CineAI 서비스를 이용하시기 전에 본 약관을 주의 깊게 읽어 주십시오. <br />
                     서비스 이용 시 본 약관에 동의한 것으로 간주됩니다.

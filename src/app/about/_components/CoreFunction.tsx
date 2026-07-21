@@ -16,10 +16,19 @@ const CoreFunction = () => {
     return (
         <section>
             <div className='inner-2'>
-                <Title  
-                    chip='핵심 기능' 
-                    title='3가지' 
-                    accent='핵심 기능' 
+                <Title 
+                    title={
+                        <>
+                            <p className='title__chip md'>
+                                <span className='title__line'></span>
+                                핵심 기능
+                            </p>
+                            <h2 className='title md'>
+                                3가지 <br/>
+                                <span>핵심 기능</span>
+                            </h2>
+                        </>
+                    }
                 />
 
                 <div className='core-tab-btns'>
