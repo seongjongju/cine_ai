@@ -6,6 +6,9 @@ import { recentMovieStoreClear } from '@/store/movieStore';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { basicSwal, confirmSwal } from '@/shared/utils/swal';
+import Image from 'next/image';
+import myGoogleIco from '@/assets/icons/my_google_ico.png';
+import myKakaoIco from '@/assets/icons/my_kakao_ico.png';
 
 const MyPageInterface = () => {
     const {user} = useUser();
@@ -15,10 +18,8 @@ const MyPageInterface = () => {
     const userEmail = user?.email;
 
     const isGoogle = user?.app_metadata.provider === 'google';
-    const myGoogleIco = '/icons/my_google_ico.png';
 
     const isKakao = user?.app_metadata.provider === 'kakao';
-    const myKakaoIco = '/icons/my_kakao_ico.png';
 
     //로그아웃
     const handleSignOut = async (e:React.MouseEvent<HTMLButtonElement>) => {
@@ -97,7 +98,7 @@ const MyPageInterface = () => {
                 <div className='user-info'>
                     <p className='user-info__title'>로그인 계정</p>
                     <p className='user-info__text'>
-                        <img src={`${isGoogle ? myGoogleIco : myKakaoIco}`} width={32} />
+                        <Image src={`${isGoogle ? myGoogleIco : myKakaoIco}`} alt='가입한 소셜 아이콘' width={32} height={32} />
                         {userEmail}
                     </p>
                 </div>

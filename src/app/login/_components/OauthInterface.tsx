@@ -5,6 +5,8 @@ import { errorSwal } from '@/shared/utils/swal';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
+import googleIcon from '@/assets/icons/google_ico.png';
+import kakaoIcon from '@/assets/icons/kakao_ico.png';
 
 interface MassageProps {
     message?: string;
@@ -63,14 +65,14 @@ const OauthInterface = ({message}: MassageProps) => {
                 className='login-btn btn-0'
                 onClick={signInWithGoogle}
             >
-                <Image width={20} height={20} src="/icons/google_ico.png" alt="구글" className='login-btn__icon'/>
+                <Image width={20} height={20} src={googleIcon} alt="구글" className='login-btn__icon'/>
                 Google로 계속하기
             </button>
             <button 
                 className='login-btn btn-1'
                 onClick={signInWithKaKao}
             >
-                <Image width={20} height={20} src="/icons/kakao_ico.png" alt="카카오" className='login-btn__icon'/>
+                <Image width={20} height={20} src={kakaoIcon} alt="카카오" className='login-btn__icon'/>
                 카카오로 계속하기
             </button>
         </div>

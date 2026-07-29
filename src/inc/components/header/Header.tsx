@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { Users } from '@/types/user';
 import useWishList from '@/features/hooks/useWishList';
+import logo from '@/assets/icons/logo.png';
 
 const Header = ({isLoggedIn}: Users) => {
     const pathName = usePathname();
@@ -64,7 +65,7 @@ const Header = ({isLoggedIn}: Users) => {
                     (
                         <h1>
                             <Link href={'/'}>
-                                <Image src="/common/logo.png" alt="CINE AI 로고" width={68} height={33}/>
+                                <Image src={logo} alt="CINE AI 로고" width={68} height={33}/>
                             </Link>
                         </h1>
                     )

@@ -13,6 +13,8 @@ import { addWishList } from '@/features/services/wish/addWishListService';
 import { deleteWishlist } from '@/features/services/wish/deleteWishListService';
 import { errorSwal, toastSwal } from '@/shared/utils/swal';
 import Title from '@/shared/components/title/Title';
+import Image from 'next/image';
+import noneProfile from '@/assets/images/profile_none.png';
 
 interface DetailProps {
     movieDetail:Detail;
@@ -257,16 +259,20 @@ const VIewDetail = ({ movieDetail, wishlist, video, viewId }: DetailProps) => {
                                     {
                                         cast.profile_path !== null ? 
                                         (
-                                            <img 
+                                            <Image 
                                                 src={`https://image.tmdb.org/t/p/w300${cast.profile_path}`} 
+                                                width={283}
+                                                height={424}
                                                 alt={cast.name}
                                                 className='cast-list__image' 
                                             />
                                         )
                                         :
                                         (
-                                            <img 
-                                                src="/images/profile_none.png" 
+                                            <Image 
+                                                src={noneProfile} 
+                                                width={283}
+                                                height={424}
                                                 alt="기본 이미지"
                                                 className='cast-list__image' 
                                             />
