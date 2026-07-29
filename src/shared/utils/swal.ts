@@ -18,7 +18,7 @@ export const errorSwal = Swal.mixin({
 export const toastSwal = Swal.mixin({
     toast: true,
     theme: 'dark',
-    position: "bottom-end",
+    position: "top-end",
     showConfirmButton: false,
     timer: 3000,
     timerProgressBar: true,
