@@ -8,6 +8,7 @@ import Paginations from '@/shared/components/pagination/Paginations';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Title from '@/shared/components/title/Title';
+import loadingImg from '@/assets/icons/loading_img.gif';
 
 export interface AllMoviesProps {
     allMovies: AllMovie[];
@@ -106,7 +107,7 @@ const FilmsList = ({ allMovies, page, genre }: AllMoviesProps) => {
                         <Image 
                             width={100} 
                             height={100}
-                            src={"/common/loading_img.gif"}
+                            src={loadingImg}
                             alt='로딩 Gif' 
                         />
                     </div>
