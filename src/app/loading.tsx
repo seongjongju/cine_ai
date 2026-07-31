@@ -5,10 +5,10 @@ import loadingImg from '@/assets/icons/loading_img.gif';
 const Loading = () => {
     return (
         <div id='loading'>
-            <Image 
+            <img 
                 width={150} 
                 height={150}
-                src={loadingImg}
+                src={loadingImg.src}
                 alt='로딩 Gif' 
             />
         </div>

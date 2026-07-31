@@ -259,22 +259,26 @@ const VIewDetail = ({ movieDetail, wishlist, video, viewId }: DetailProps) => {
                                     {
                                         cast.profile_path !== null ? 
                                         (
-                                            <Image 
+                                            <img 
                                                 src={`https://image.tmdb.org/t/p/w300${cast.profile_path}`} 
                                                 width={283}
                                                 height={424}
                                                 alt={cast.name}
                                                 className='cast-list__image' 
+                                                loading='lazy'
+                                                decoding='async'
                                             />
                                         )
                                         :
                                         (
-                                            <Image 
-                                                src={noneProfile} 
+                                            <img 
+                                                src={noneProfile.src} 
                                                 width={283}
                                                 height={424}
                                                 alt="기본 이미지"
                                                 className='cast-list__image' 
+                                                loading='lazy'
+                                                decoding='async'
                                             />
                                         )
                                     }

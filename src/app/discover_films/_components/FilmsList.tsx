@@ -104,10 +104,10 @@ const FilmsList = ({ allMovies, page, genre }: AllMoviesProps) => {
                 loading ? 
                 (
                     <div>
-                        <Image 
+                        <img 
                             width={100} 
                             height={100}
-                            src={loadingImg}
+                            src={loadingImg.src}
                             alt='로딩 Gif' 
                         />
                     </div>

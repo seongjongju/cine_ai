@@ -98,7 +98,7 @@ const MyPageInterface = () => {
                 <div className='user-info'>
                     <p className='user-info__title'>로그인 계정</p>
                     <p className='user-info__text'>
-                        <Image src={`${isGoogle ? myGoogleIco : myKakaoIco}`} alt='가입한 소셜 아이콘' width={32} height={32} />
+                        <img src={`${isGoogle ? myGoogleIco.src : myKakaoIco.src}`} alt='가입한 소셜 아이콘' width={32} height={32} />
                         {userEmail}
                     </p>
                 </div>

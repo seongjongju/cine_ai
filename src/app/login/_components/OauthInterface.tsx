@@ -65,14 +65,14 @@ const OauthInterface = ({message}: MassageProps) => {
                 className='login-btn btn-0'
                 onClick={signInWithGoogle}
             >
-                <Image width={20} height={20} src={googleIcon} alt="구글" className='login-btn__icon'/>
+                <img width={20} height={20} src={googleIcon.src} alt="구글" className='login-btn__icon'/>
                 Google로 계속하기
             </button>
             <button 
                 className='login-btn btn-1'
                 onClick={signInWithKaKao}
             >
-                <Image width={20} height={20} src={kakaoIcon} alt="카카오" className='login-btn__icon'/>
+                <img width={20} height={20} src={kakaoIcon.src} alt="카카오" className='login-btn__icon'/>
                 카카오로 계속하기
             </button>
         </div>

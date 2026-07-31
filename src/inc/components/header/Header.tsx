@@ -65,7 +65,7 @@ const Header = ({isLoggedIn}: Users) => {
                     (
                         <h1>
                             <Link href={'/'}>
-                                <Image src={logo} alt="CINE AI 로고" width={68} height={33}/>
+                                <img src={logo.src} alt="CINE AI 로고" width={68} height={33}/>
                             </Link>
                         </h1>
                     )

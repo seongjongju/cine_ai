@@ -10,7 +10,7 @@ const Footer = () => {
             <nav className='inner footer__nav'>
                 <h1 className='footer__logo'>
                     <Link href={''}>
-                        <Image src={footerLogo} alt="CINE AI 로고" width={58} height={15} />
+                        <img src={footerLogo.src} alt="CINE AI 로고" width={58} height={15} />
                     </Link>
                 </h1>
 
