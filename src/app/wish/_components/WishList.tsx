@@ -1,5 +1,4 @@
 'use client';
-import Swal from 'sweetalert2'
 import { useMovie } from '@/features/hooks/useMovie';
 import { deleteWishlist } from '@/features/services/wish/deleteWishListService';
 import Paginations from '@/shared/components/pagination/Paginations';
@@ -7,11 +6,12 @@ import { getGenreNames } from '@/shared/utils/get.genre.names';
 import { Wishlist } from '@/types/movie';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import React from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { errorSwal, toastSwal } from '@/shared/utils/swal';
 import useWishList from '@/features/hooks/useWishList';
 import Title from '@/shared/components/title/Title';
 import NoneItemLayout from '@/shared/components/noneItem/NoneItemLayout';
+import { useQueryClient } from '@tanstack/react-query';
 
 interface WishlistProps {
     page: number;
@@ -24,22 +24,23 @@ const WishList = ({page}: WishlistProps) => {
     const {wishs} = useWishList();
     const wishlist: Wishlist = wishs;
 
-    if(!wishlist) return null;
-
     //위시리스트를 20개씩 페이징 처리
-    const currentPageWishlist = wishlist.slice((page - 1) * 20, (page - 1) * 20 + 20);
+    const currentPageWishlist = useMemo(() => {
+        return wishlist.slice((page - 1) * 20, (page - 1) * 20 + 20);
+    }, [page, wishlist]);
 
     //위시리스트 아이템 삭제
-    const deleteWishItem = async (id: number) => {
+    const queryClient = useQueryClient();
+    const deleteWishItem = useCallback(async (id: number) => {
         try {
             const result = await deleteWishlist(id);
             toastSwal.fire({text: `${result.message}`});
 
+            await queryClient.invalidateQueries({queryKey: ['wish']});
+
             if(currentPageWishlist.length === 1 && page > 1) {
                 router.push(`wish?page=${page - 1}`);
-            } else {
-                router.refresh();
-            }
+            } 
         } catch(err: unknown) {
             if(err instanceof Error) {
                 console.error('위시리스트 삭제 에러', err);
@@ -47,7 +48,9 @@ const WishList = ({page}: WishlistProps) => {
                 return;
             }
         }
-    };
+    }, [page, currentPageWishlist, router, queryClient]);
+
+    if(!wishlist) return null;
 
     return (
         <div>
