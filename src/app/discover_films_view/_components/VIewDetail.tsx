@@ -3,7 +3,7 @@ import { useMovie } from '@/features/hooks/useMovie';
 import { getGenreNames } from '@/shared/utils/get.genre.names';
 import { Detail, Video, Wishlist } from '@/types/movie';
 import { useRouter } from 'next/navigation';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
 import ViewDetailQna from './ViewDetailQna';
@@ -13,7 +13,6 @@ import { addWishList } from '@/features/services/wish/addWishListService';
 import { deleteWishlist } from '@/features/services/wish/deleteWishListService';
 import { errorSwal, toastSwal } from '@/shared/utils/swal';
 import Title from '@/shared/components/title/Title';
-import Image from 'next/image';
 import noneProfile from '@/assets/images/profile_none.png';
 
 interface DetailProps {
@@ -52,7 +51,7 @@ const VIewDetail = ({ movieDetail, wishlist, video, viewId }: DetailProps) => {
     useEffect(() => {
         if(!user) return;
         addRecentMovies(movieDetail);
-    }, [addRecentMovies, movieDetail]);
+    }, [addRecentMovies, movieDetail, user]);
 
     //스태프 배열
     const crews = movieDetail.credits.crew;
@@ -73,7 +72,11 @@ const VIewDetail = ({ movieDetail, wishlist, video, viewId }: DetailProps) => {
     const rating = releseData.map(ret => ret.certification).filter(c => c !== "");  
 
     //위시리스트에 이미 저장되었는지 여부 확인을 위해 id확인
-    const wishId = wishlist?.find(wish => wish.tmdb_id === Number(viewId))?.tmdb_id;
+    const wishId = useMemo(() => {
+        return wishlist?.find(wish => wish.tmdb_id === Number(viewId))?.tmdb_id;
+    }, [wishlist, viewId]);
+    
+    
 
     //위시리스트에 저장
     const handleClickWishButton = useCallback(async (id: number) => {
@@ -110,7 +113,7 @@ const VIewDetail = ({ movieDetail, wishlist, video, viewId }: DetailProps) => {
                 return;
             }
         };
-    }, [user, wishId, isSave, movieDetail, wishlist, router]);
+    }, [user, wishId, movieDetail, router]);
 
 
     //AI에게 제공할 영화 기본 정보 오브젝트
