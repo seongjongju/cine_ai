@@ -36,12 +36,12 @@ const WishList = ({page}: WishlistProps) => {
     const queryClient = useQueryClient();
     const deleteWishItem = useCallback(async (id: number) => {
         try {
-            setIsLoading(false);
+            setIsLoading(true);
 
             const result = await deleteWishlist(id);
             toastSwal.fire({text: `${result.message}`});
 
-            queryClient.invalidateQueries({queryKey: ['wish']});
+            await queryClient.invalidateQueries({queryKey: ['wish']});
 
             if(currentPageWishlist.length === 1 && page > 1) {
                 router.push(`wish?page=${page - 1}`);
@@ -57,7 +57,7 @@ const WishList = ({page}: WishlistProps) => {
         }
     }, [page, currentPageWishlist, router, queryClient, setIsLoading]);
 
-    if(!wishlist) return null;
+    // if(!wishlist) return null;
 
     return (
         <div>
@@ -146,13 +146,13 @@ const WishList = ({page}: WishlistProps) => {
             }
 
             {
-                isLoading && (
+                isLoading &&
+                (
                     <Loading 
                         isLoading={isLoading}
-                    /> 
+                    />
                 )
             }
-            
         </div>
     );
 };
