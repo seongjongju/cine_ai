@@ -14,6 +14,7 @@ import { deleteWishlist } from '@/features/services/wish/deleteWishListService';
 import { errorSwal, toastSwal } from '@/shared/utils/swal';
 import Title from '@/shared/components/title/Title';
 import noneProfile from '@/assets/images/profile_none.png';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 interface DetailProps {
     movieDetail:Detail;
@@ -44,8 +45,16 @@ const VIewDetail = ({ movieDetail, wishlist, video, viewId }: DetailProps) => {
     const {user} = useUser();
     const router = useRouter();
     const {genres} = useMovie();
-    const [isSave, setIsSave] = useState(false);
+
+    //위시리스트에 이미 저장되었는지 여부 확인을 위해 id확인
+    const wishId = useMemo(() => {
+        return !!wishlist?.find(wish => wish.tmdb_id === Number(viewId));
+    }, [wishlist, viewId]);
+
+    const [isSave, setIsSave] = useState<boolean>(wishId);
     const addRecentMovies = useMovieStore((state) => state.addRecentMovies);
+
+    console.log(isSave)
 
     //상세페이지를 들어오면 상세페이지의 정보를 저장한다.   
     useEffect(() => {
@@ -70,15 +79,69 @@ const VIewDetail = ({ movieDetail, wishlist, video, viewId }: DetailProps) => {
     const krResults = movieDetail.release_dates?.results?.find(country => country.iso_3166_1 === 'KR');
     const releseData = krResults?.release_dates || []; 
     const rating = releseData.map(ret => ret.certification).filter(c => c !== "");  
-
-    //위시리스트에 이미 저장되었는지 여부 확인을 위해 id확인
-    const wishId = useMemo(() => {
-        return wishlist?.find(wish => wish.tmdb_id === Number(viewId))?.tmdb_id;
-    }, [wishlist, viewId]);
     
-    
-
+    //위시리서트 저장/삭제 낙관적 업데이트
     //위시리스트에 저장
+    const queryClient = useQueryClient();
+    const addWishMutation = useMutation({
+        mutationFn: (movie: typeof movieDetail) => addWishList(movie),
+
+        onMutate: async () => {
+            await queryClient.cancelQueries({ queryKey: ['wish'] });
+
+            const previousIsSave = isSave;
+
+            setIsSave(true);
+
+            return { previousIsSave };
+        },
+
+        onSuccess: (data) => {
+            toastSwal.fire({
+                text: `${data.message}`,
+            });
+        },
+
+        onError: (err, variables, context) => {
+            if (context?.previousIsSave !== undefined) {
+                setIsSave(context.previousIsSave);
+            }
+            const errorMessage = err instanceof Error ? err.message : '저장에 실패했습니다.';
+            errorSwal.fire({ text: errorMessage });
+        },
+
+        onSettled: () => {
+            queryClient.invalidateQueries({ queryKey: ['wish'] });
+        },
+    });
+
+    // 2. 위시리스트 삭제 Mutation
+    const deleteWishMutation = useMutation({
+        mutationFn: (id: number) => deleteWishlist(id),
+        onMutate: async () => {
+            await queryClient.cancelQueries({ queryKey: ['wish'] });
+
+            const previousIsSave = isSave;
+
+            setIsSave(false);
+
+            return { previousIsSave };
+        },
+        onSuccess: (data) => {
+            toastSwal.fire({ text: `${data.message}` });
+        },
+        onError: (err, variables, context) => {
+            if (context?.previousIsSave !== undefined) {
+                setIsSave(context.previousIsSave);
+            }
+            const errorMessage = err instanceof Error ? err.message : '삭제에 실패했습니다.';
+            errorSwal.fire({ text: errorMessage });
+        },
+        onSettled: () => {
+            queryClient.invalidateQueries({ queryKey: ['wish'] });
+        },
+    });
+
     const handleClickWishButton = useCallback(async (id: number) => {
         if(!user) {
             errorSwal.fire({text: '로그인이 필요한 서비스입니다.'});
@@ -86,34 +149,12 @@ const VIewDetail = ({ movieDetail, wishlist, video, viewId }: DetailProps) => {
             return;
         }
 
-        try{
-            if(!wishId) {
-                const addResult = await addWishList(movieDetail);
-                setIsSave(true);
-                toastSwal.fire({
-                    text: `${addResult.message}`,
-                });
-                
-                router.refresh();
-                return;
-            } else {
-                setIsSave(false);
-                const deleteResult = await deleteWishlist(id);
-                toastSwal.fire({
-                    text: `${deleteResult.message}`,
-                });
-                
-                router.refresh();
-                return;
-            }
-        }catch(err:unknown) {
-            if (err instanceof Error) {
-                console.error('위시리스트 저장/삭제 에러', err);
-                errorSwal.fire({text: `${err.message}`});
-                return;
-            }
-        };
-    }, [user, wishId, movieDetail, router]);
+        if (!isSave) {
+            addWishMutation.mutate(movieDetail);
+        } else {
+            deleteWishMutation.mutate(id);
+        }
+    }, [user, movieDetail, router, addWishMutation, deleteWishMutation, isSave]);
 
 
     //AI에게 제공할 영화 기본 정보 오브젝트
@@ -159,7 +200,7 @@ const VIewDetail = ({ movieDetail, wishlist, video, viewId }: DetailProps) => {
                         </div>
                         <div className='flex gap-2'>
                             <button 
-                                className={`save-btn ${wishId || isSave ? 'is-save' : ''}`}
+                                className={`save-btn ${isSave ? 'is-save' : ''}`}
                                 onClick={(e:React.MouseEvent<HTMLButtonElement>) => {
                                     e.preventDefault();
                                     handleClickWishButton(movieDetail.id)

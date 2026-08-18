@@ -12,12 +12,15 @@ import useWishList from '@/features/hooks/useWishList';
 import Title from '@/shared/components/title/Title';
 import NoneItemLayout from '@/shared/components/noneItem/NoneItemLayout';
 import { useQueryClient } from '@tanstack/react-query';
+import Loading from '@/shared/components/loading/Loading';
+import useLoading from '@/shared/hooks/useLoading';
 
 interface WishlistProps {
     page: number;
 };
 
 const WishList = ({page}: WishlistProps) => {
+    const {isLoading, setIsLoading} = useLoading();
     const {genres} = useMovie();
     const router = useRouter();
     
@@ -33,10 +36,12 @@ const WishList = ({page}: WishlistProps) => {
     const queryClient = useQueryClient();
     const deleteWishItem = useCallback(async (id: number) => {
         try {
+            setIsLoading(false);
+
             const result = await deleteWishlist(id);
             toastSwal.fire({text: `${result.message}`});
 
-            await queryClient.invalidateQueries({queryKey: ['wish']});
+            queryClient.invalidateQueries({queryKey: ['wish']});
 
             if(currentPageWishlist.length === 1 && page > 1) {
                 router.push(`wish?page=${page - 1}`);
@@ -47,8 +52,10 @@ const WishList = ({page}: WishlistProps) => {
                 errorSwal.fire({text: `${err.message}`});
                 return;
             }
+        } finally {
+            setIsLoading(false);
         }
-    }, [page, currentPageWishlist, router, queryClient]);
+    }, [page, currentPageWishlist, router, queryClient, setIsLoading]);
 
     if(!wishlist) return null;
 
@@ -137,6 +144,15 @@ const WishList = ({page}: WishlistProps) => {
                     />
                 )
             }
+
+            {
+                isLoading && (
+                    <Loading 
+                        isLoading={isLoading}
+                    /> 
+                )
+            }
+            
         </div>
     );
 };
