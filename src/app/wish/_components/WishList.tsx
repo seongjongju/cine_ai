@@ -57,8 +57,6 @@ const WishList = ({page}: WishlistProps) => {
         }
     }, [page, currentPageWishlist, router, queryClient, setIsLoading]);
 
-    // if(!wishlist) return null;
-
     return (
         <div>
             <Title 
