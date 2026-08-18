@@ -314,13 +314,28 @@ section:first-child {
 /*************************** loading_bar */
 #loading {
 	position: fixed;
+	top: 0; 
+	left: 0;
     width: 100%;
-   	height: 100vh;
+	height: 100vh;
     z-index: 100;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	background: #0e0d0a;
+}
+
+.spiner-loading {
+	position: fixed;
+	top: 0; 
+	left: 0;
+    width: 100%;
+	height: 100vh;
+    z-index: 100;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(0, 0, 0, .5);
 }
 
 @media screen and (max-width: 500px) {
