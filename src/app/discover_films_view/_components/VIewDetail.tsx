@@ -54,8 +54,6 @@ const VIewDetail = ({ movieDetail, wishlist, video, viewId }: DetailProps) => {
     const [isSave, setIsSave] = useState<boolean>(wishId);
     const addRecentMovies = useMovieStore((state) => state.addRecentMovies);
 
-    console.log(isSave)
-
     //상세페이지를 들어오면 상세페이지의 정보를 저장한다.   
     useEffect(() => {
         if(!user) return;
