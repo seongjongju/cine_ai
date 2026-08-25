@@ -2,8 +2,8 @@
 
 > **Gemini 2.5 Flash 기반의 AI 대화형 맞춤형 영화 큐레이션 플랫폼**  
 > TMDB의 영화 데이터와 Gemini API를 결합하여, 사용자가 선택한 모드에 따라 영화에 대한 깊이 있는 분석과 인사이트를 맞춤형으로 제공하는 모바일/웹 서비스입니다.
-> 서비스 URL: https://cine-ai-murex.vercel.app/
-> GitHub 저장소: https://github.com/seongjongju/cine_ai
+* 서비스 URL: https://cine-ai-murex.vercel.app/
+* GitHub 저장소: https://github.com/seongjongju/cine_ai
 
 ---
 
