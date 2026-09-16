@@ -36,7 +36,6 @@ Gemini 2.5 Flash와 TMDB API를 기반으로 제작한 AI 대화형 맞춤형 �
 
 * Next.js App Router
 * TypeScript
-* React
 * Tailwind CSS
 * CSS
 * Zustand
