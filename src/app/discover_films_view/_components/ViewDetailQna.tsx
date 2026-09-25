@@ -170,12 +170,14 @@ const ViewDetailQna = ({ movieData } :MovieDataProps) => {
                     <form className='gemini-qna__form'>
                         <textarea 
                             placeholder='질문을 입력하세요.' 
+                            disabled={isLoading ? true : false}
                             onChange={handleChangeQnaTextarea}
                             value={qnaTextarea}
                             className='gemini-qna__textarea' 
                         />
                         <button 
-                            className='gemini-qna__button'
+                            className={`gemini-qna__button ${isLoading ? 'disabled' : ''}`}
+                            disabled={isLoading ? true : false}
                             onClick={handleClickAiSubmit}
                         >
                             질문하기
