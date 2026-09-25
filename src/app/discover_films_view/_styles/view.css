@@ -267,6 +267,12 @@
     margin: 0 auto;
 }
 
+.gemini-qna__button.disabled {
+    background: var(--gray-0);
+    color: #aaa;
+    cursor: not-allowed;
+}
+
 .gemini-qna__a {
     width: 100%;
     padding: 36px;
